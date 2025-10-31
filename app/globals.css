@@ -1,0 +1,157 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0 0 0); /* Black background */
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.08 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.08 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  /* Made red much more vibrant and visible as primary color */
+  --primary: oklch(0.7 0.3 20); /* Bright vibrant red - primary dominant color */
+  --primary-foreground: oklch(0 0 0);
+  --secondary: oklch(0.2 0 0); /* Dark black for secondary elements */
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.2 0 0);
+  --muted-foreground: oklch(0.6 0 0);
+  /* Made green more vibrant to complement red */
+  --accent: oklch(0.75 0.25 145); /* Bright green - primary accent color */
+  --accent-foreground: oklch(0 0 0);
+  --destructive: oklch(0.6 0.3 20);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.3 0.12 240); /* Blue - secondary for borders */
+  --input: oklch(0.3 0.12 240);
+  /* Made ring red and more visible for focus states */
+  --ring: oklch(0.7 0.3 20); /* Bright red for focus states */
+  /* Updated chart colors with more vibrant red and green */
+  --chart-1: oklch(0.7 0.3 20); /* Bright red */
+  --chart-2: oklch(0.75 0.25 145); /* Bright green */
+  --chart-3: oklch(0.5 0.15 240); /* Blue */
+  --chart-4: oklch(0.78 0.24 150); /* Emerald green variant */
+  --chart-5: oklch(0.65 0.28 15); /* Orange-red variant */
+  --radius: 0.5rem;
+  --sidebar: oklch(0.08 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  /* Made sidebar primary red more visible */
+  --sidebar-primary: oklch(0.7 0.3 20); /* Bright red */
+  --sidebar-primary-foreground: oklch(0 0 0);
+  --sidebar-accent: oklch(0.2 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.3 0.12 240); /* Blue */
+  --sidebar-ring: oklch(0.7 0.3 20);
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Made red, green, and blue color utilities more vibrant */
+  --color-red-400: oklch(0.75 0.32 20);
+  --color-red-500: oklch(0.7 0.3 20);
+  --color-red-600: oklch(0.6 0.28 20);
+  --color-green-400: oklch(0.78 0.25 145);
+  --color-green-500: oklch(0.75 0.25 145);
+  --color-green-600: oklch(0.65 0.23 145);
+  --color-blue-400: oklch(0.6 0.15 240);
+  --color-blue-500: oklch(0.5 0.15 240);
+  --color-blue-600: oklch(0.4 0.15 240);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-black text-foreground font-sans antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  @keyframes gradient {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      /* Increased red intensity in glow animation */
+      text-shadow: 0 0 10px rgba(255, 40, 40, 0.8), 0 0 20px rgba(0, 255, 100, 0.6), 0 0 30px rgba(50, 150, 255, 0.3);
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(255, 40, 40, 1), 0 0 40px rgba(0, 255, 100, 0.8), 0 0 50px rgba(50, 150, 255, 0.4);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      /* Increased red intensity in pulse glow animation */
+      box-shadow: 0 0 20px rgba(255, 40, 40, 0.6), 0 0 30px rgba(0, 255, 100, 0.4), 0 0 40px rgba(50, 150, 255, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(255, 40, 40, 0.9), 0 0 50px rgba(0, 255, 100, 0.6), 0 0 60px rgba(50, 150, 255, 0.3);
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+}

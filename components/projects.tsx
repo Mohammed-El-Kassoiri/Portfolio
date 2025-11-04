@@ -18,7 +18,7 @@ const projects = [
       "High accuracy sorting by color",
     ],
     gradient: "from-cyan-400 to-blue-500",
-    github: "https://github.com/yourusername/robot-arm-sorting",
+    github: "https://github.com/Mohammed-El-Kassoiri/vision-robotic-arm",
   },
   {
     title: "English to Darija Translation",
@@ -32,7 +32,7 @@ const projects = [
       "Research innovation",
     ],
     gradient: "from-magenta-400 to-purple-500",
-    github: "https://github.com/yourusername/english-darija-translation",
+    github: "https://github.com/Mohammed-El-Kassoiri/English-to-Darija-Translator",
   },
   {
     title: "Letterboxd Movie Analytics & Recommendation System",
@@ -47,7 +47,7 @@ const projects = [
      "Fast & Scalable API",
     ],
     gradient: "from-green-400 to-emerald-500",
-    github: "https://github.com/yourusername/fraud-detection-api",
+    github: "https://github.com/Mohammed-El-Kassoiri/Letterboxd-Movie-Analytics-Recommendation-System",
   },
 ]
 

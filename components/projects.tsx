@@ -11,7 +11,7 @@ const projects = [
     title: "Robot Arm Object Sorting System",
     description:
       "Real-time object detection and automated sorting system using advanced CV algorithms for color sorting.",
-    category: "Industrial",
+    category: "industrial",
     tags: ["Python", "OpenCV", "Tkinter","Arduino", "Computer Vision"],
     highlights: [
       "Real-time object detection",
@@ -27,7 +27,7 @@ const projects = [
     title: "English to Darija Translation",
     description:
       "Neural translation system bridging English and Moroccan Darija using state-of-the-art NLP techniques.",
-    category: "Other",
+    category: "other",
     tags: ["NLP", "Neural Networks", "Transformers", "Deep Learning"],
     highlights: [
       "Multilingual NLP processing",
@@ -42,7 +42,7 @@ const projects = [
     title: "Letterboxd Movie Analytics & Recommendation System",
     description:
       "Analyzed Letterboxd user data and built a personalized movie recommendation system that suggests unseen films by combining past ratings with movie content.",
-    category: "Other",
+    category: "other",
     tags: ["Data Science","Python", "NLP", "Scikit-learn", 
     "TF-IDF + cosine similarity","LDA","SVD"],
     highlights: [

@@ -4,49 +4,78 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0 0 0); /* Black background */
+  --background: oklch(0 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.08 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.08 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  /* Made red much more vibrant and visible as primary color */
-  --primary: oklch(0.7 0.3 20); /* Bright vibrant red - primary dominant color */
+  --primary: oklch(0.7 0.3 20);
   --primary-foreground: oklch(0 0 0);
-  --secondary: oklch(0.2 0 0); /* Dark black for secondary elements */
+  --secondary: oklch(0.2 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.2 0 0);
   --muted-foreground: oklch(0.6 0 0);
-  /* Made green more vibrant to complement red */
-  --accent: oklch(0.75 0.25 145); /* Bright green - primary accent color */
+  --accent: oklch(0.75 0.25 145);
   --accent-foreground: oklch(0 0 0);
   --destructive: oklch(0.6 0.3 20);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.3 0.12 240); /* Blue - secondary for borders */
+  --border: oklch(0.3 0.12 240);
   --input: oklch(0.3 0.12 240);
-  /* Made ring red and more visible for focus states */
-  --ring: oklch(0.7 0.3 20); /* Bright red for focus states */
-  /* Updated chart colors with more vibrant red and green */
-  --chart-1: oklch(0.7 0.3 20); /* Bright red */
-  --chart-2: oklch(0.75 0.25 145); /* Bright green */
-  --chart-3: oklch(0.5 0.15 240); /* Blue */
-  --chart-4: oklch(0.78 0.24 150); /* Emerald green variant */
-  --chart-5: oklch(0.65 0.28 15); /* Orange-red variant */
+  --ring: oklch(0.7 0.3 20);
+  --chart-1: oklch(0.7 0.3 20);
+  --chart-2: oklch(0.75 0.25 145);
+  --chart-3: oklch(0.5 0.15 240);
+  --chart-4: oklch(0.78 0.24 150);
+  --chart-5: oklch(0.65 0.28 15);
   --radius: 0.5rem;
   --sidebar: oklch(0.08 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  /* Made sidebar primary red more visible */
-  --sidebar-primary: oklch(0.7 0.3 20); /* Bright red */
+  --sidebar-primary: oklch(0.7 0.3 20);
   --sidebar-primary-foreground: oklch(0 0 0);
   --sidebar-accent: oklch(0.2 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.3 0.12 240); /* Blue */
+  --sidebar-border: oklch(0.3 0.12 240);
   --sidebar-ring: oklch(0.7 0.3 20);
 }
 
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
 @theme inline {
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -83,25 +112,15 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-
-  /* Made red, green, and blue color utilities more vibrant */
-  --color-red-400: oklch(0.75 0.32 20);
-  --color-red-500: oklch(0.7 0.3 20);
-  --color-red-600: oklch(0.6 0.28 20);
-  --color-green-400: oklch(0.78 0.25 145);
-  --color-green-500: oklch(0.75 0.25 145);
-  --color-green-600: oklch(0.65 0.23 145);
-  --color-blue-400: oklch(0.6 0.15 240);
-  --color-blue-500: oklch(0.5 0.15 240);
-  --color-blue-600: oklch(0.4 0.15 240);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-black text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased;
   }
 
   html {
@@ -123,7 +142,6 @@
   @keyframes glow {
     0%,
     100% {
-      /* Increased red intensity in glow animation */
       text-shadow: 0 0 10px rgba(255, 40, 40, 0.8), 0 0 20px rgba(0, 255, 100, 0.6), 0 0 30px rgba(50, 150, 255, 0.3);
     }
     50% {
@@ -134,7 +152,6 @@
   @keyframes pulse-glow {
     0%,
     100% {
-      /* Increased red intensity in pulse glow animation */
       box-shadow: 0 0 20px rgba(255, 40, 40, 0.6), 0 0 30px rgba(0, 255, 100, 0.4), 0 0 40px rgba(50, 150, 255, 0.2);
     }
     50% {

@@ -65,6 +65,7 @@ const projects = [
     ],
     gradient: "from-red-400 to-pink-500",
     github: "https://github.com/Mohammed-El-Kassoiri/Medical-Diagnosis-COT-DeepSeek",
+    huggingface: "https://huggingface.co/MOHAMMED7M7/AI_Doctor_V1",
   },
 ]
 
@@ -224,23 +225,33 @@ export function Projects() {
                           <Github className="w-4 h-4" />
                           <span>View Code</span>
                         </motion.a>
-                        <motion.button
-                          whileHover={{ scale: 1.05, x: 2 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="flex items-center gap-2 px-3 py-2 text-xs font-mono border border-magenta-400/50 text-magenta-400 rounded hover:bg-magenta-400/20 hover:border-magenta-400 transition-all"
-                        >
-                        <motion.a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.05, x: 2 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="flex items-center gap-2 px-3 py-2 text-xs font-mono border border-cyan-400/50 text-cyan-400 rounded hover:bg-cyan-400/20 hover:border-cyan-400 transition-all"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                          <span>Demo | huggingface</span>
+
+                        {/* Show Demo if available; otherwise show Hugging Face if available. Never both. */}
+                        {project.demo ? (
+                          <motion.a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05, x: 2 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex items-center gap-2 px-3 py-2 text-xs font-mono border border-cyan-400/50 text-cyan-400 rounded hover:bg-cyan-400/20 hover:border-cyan-400 transition-all"
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                            <span>Demo</span>
                           </motion.a>
-                        </motion.button>
+                        ) : project.huggingface ? (
+                          <motion.a
+                            href={project.huggingface}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05, x: 2 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex items-center gap-2 px-3 py-2 text-xs font-mono border border-cyan-400/50 text-cyan-400 rounded hover:bg-cyan-400/20 hover:border-cyan-400 transition-all"
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                            <span>Hugging Face</span>
+                          </motion.a>
+                        ) : null}
                       </div>
                     </div>
                   </Card>

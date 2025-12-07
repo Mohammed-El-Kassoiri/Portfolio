@@ -24,7 +24,7 @@ const projects = [
     demo: "https://www.youtube.com/watch?v=9RaW4qnF28s",
   },
 
-  // 🔁 English → Darija project UPDATED
+  //  English → Darija project UPDATED
   {
     title: "English → Darija Translation System",
     description:

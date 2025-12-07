@@ -12,7 +12,7 @@ const projects = [
     description:
       "Real-time object detection and automated sorting system using advanced CV algorithms for color sorting.",
     category: "industrial",
-    tags: ["Python", "OpenCV", "Tkinter","Arduino", "Computer Vision"],
+    tags: ["Python", "OpenCV", "Tkinter", "Arduino", "Computer Vision"],
     highlights: [
       "Real-time object detection",
       "Automated sorting & tracking",
@@ -23,37 +23,55 @@ const projects = [
     github: "https://github.com/Mohammed-El-Kassoiri/vision-robotic-arm",
     demo: "https://www.youtube.com/watch?v=9RaW4qnF28s",
   },
+
+  // 🔁 English → Darija project UPDATED
   {
-    title: "English to Darija Translation",
+    title: "English → Darija Translation System",
     description:
-      "Neural translation system bridging English and Moroccan Darija using state-of-the-art NLP techniques.",
+      "Bidirectional neural machine translation system between English and Moroccan Darija (Moroccan Arabic dialect), built on a state-of-the-art Transformer architecture.",
     category: "other",
-    tags: ["NLP", "Neural Networks", "Transformers", "Deep Learning"],
+    tags: [
+      "NLP",
+      "Neural Networks",
+      "Transformers",
+      "Deep Learning",
+      "Moroccan Darija",
+      "Machine Translation",
+    ],
     highlights: [
-      "Multilingual NLP processing",
-      "Neural translation models",
-      "Cultural bridge technology",
-      "Research innovation",
+      "Advanced NLP algorithms",
+      "Bidirectional English ↔ Darija translation (~83% accuracy)",
+      "Context-aware understanding of informal dialect",
     ],
     gradient: "from-magenta-400 to-purple-500",
     github: "https://github.com/Mohammed-El-Kassoiri/English-to-Darija-Translator",
+    huggingface: "https://huggingface.co/NeoAivara/English_to_Darija_translator",
   },
+
   {
     title: "Letterboxd Movie Analytics & Recommendation System",
     description:
       "Analyzed Letterboxd user data and built a personalized movie recommendation system that suggests unseen films by combining past ratings with movie content.",
     category: "other",
-    tags: ["Data Science","Python", "NLP", "Scikit-learn", 
-    "TF-IDF + cosine similarity","LDA","SVD"],
+    tags: [
+      "Data Science",
+      "Python",
+      "NLP",
+      "Scikit-learn",
+      "TF-IDF + cosine similarity",
+      "LDA",
+      "SVD",
+    ],
     highlights: [
-     "Letterboxd Movie Analytics",
-     "Personalized Recommendation System",
-     "User Behavior & Movie Content Analysis",
-     "Fast & Scalable API",
+      "Letterboxd movie analytics",
+      "Personalized recommendation system",
+      "User behavior & movie content analysis",
+      "Fast & scalable API",
     ],
     gradient: "from-green-400 to-emerald-500",
     github: "https://github.com/Mohammed-El-Kassoiri/Letterboxd-Movie-Analytics-Recommendation-System",
   },
+
   {
     title: "Medical-Diagnosis-COT-DeepSeek V1",
     description:
@@ -69,6 +87,37 @@ const projects = [
     gradient: "from-red-400 to-pink-500",
     github: "https://github.com/Mohammed-El-Kassoiri/Medical-Diagnosis-COT-DeepSeek",
     huggingface: "https://huggingface.co/MOHAMMED7M7/AI_Doctor_V1",
+  },
+
+  // 🆕 New Agriculture / U-Net project ADDED
+  {
+    title:
+      "Cartographie du Stress Hydrique et du Potentiel d'Adaptation Agricole (Taroudant)",
+    description:
+      "Semantic segmentation system based on Attention U-Net for mapping water stress and agricultural adaptation potential using multi-source remote sensing and environmental data.",
+    category: "agriculture",
+    tags: [
+      "Remote Sensing",
+      "Attention U-Net",
+      "Semantic Segmentation",
+      "Sentinel-1",
+      "Sentinel-2",
+      "SMAP",
+      "DEM",
+      "Google Earth Engine",
+      "Agriculture",
+    ],
+    highlights: [
+      "Fusion de 16 bandes (optique, radar, SMAP, DEM, pente, précipitations)",
+      "Attention U-Net (Accuracy: 93.6%, Mean IoU: 0.81)",
+      "Pipeline de weak supervision développé sur Google Earth Engine",
+    ],
+    gradient: "from-amber-400 to-lime-500",
+    github:
+      "https://www.kaggle.com/code/kassoirimohammed/mapping-water-stress-adaptation-potential",
+    // Si tu veux aussi afficher le lien vers l’article,
+    // tu peux étendre le composant pour gérer un bouton "Article" avec une propriété `paper`.
+    // paper: "https://link_to_paper",
   },
 ]
 
@@ -89,14 +138,17 @@ export function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("all")
 
   const filteredProjects = projects.filter((project) => {
-    const matchesCategory = selectedCategory === "all" || project.category === selectedCategory
+    const matchesCategory =
+      selectedCategory === "all" || project.category === selectedCategory
     return matchesCategory
   })
 
   const sortedProjects = filteredProjects.sort((a, b) => {
     if (selectedCategory !== "all") {
-      if (a.category === selectedCategory && b.category !== selectedCategory) return -1
-      if (a.category !== selectedCategory && b.category === selectedCategory) return 1
+      if (a.category === selectedCategory && b.category !== selectedCategory)
+        return -1
+      if (a.category !== selectedCategory && b.category === selectedCategory)
+        return 1
     }
     return 0
   })
@@ -140,7 +192,9 @@ export function Projects() {
                 <motion.div
                   key={project.title}
                   initial={{ opacity: 0, y: 50, rotateX: -15 }}
-                  animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                  animate={
+                    inView ? { opacity: 1, y: 0, rotateX: 0 } : {}
+                  }
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                   whileHover={{
                     y: -15,
@@ -167,7 +221,11 @@ export function Projects() {
                     <div className="relative z-10">
                       <div className="mb-3">
                         <span className="inline-block px-2 py-1 text-xs font-mono bg-cyan-400/20 border border-cyan-400/50 text-cyan-400 rounded">
-                          {categories.find((c) => c.id === project.category)?.label}
+                          {
+                            categories.find(
+                              (c) => c.id === project.category
+                            )?.label
+                          }
                         </span>
                       </div>
 
@@ -176,7 +234,12 @@ export function Projects() {
                         whileHover={{ rotate: 360, scale: 1.1 }}
                         transition={{ duration: 0.6 }}
                       >
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg
+                          className="w-6 h-6 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -186,16 +249,24 @@ export function Projects() {
                         </svg>
                       </motion.div>
 
-                      <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
-                      <p className="text-white text-sm mb-4 leading-relaxed">{project.description}</p>
+                      <h3 className="text-xl font-bold text-white mb-3">
+                        {project.title}
+                      </h3>
+                      <p className="text-white text-sm mb-4 leading-relaxed">
+                        {project.description}
+                      </p>
 
                       <ul className="space-y-2 mb-4">
                         {project.highlights.map((highlight, i) => (
                           <motion.li
                             key={i}
                             initial={{ opacity: 0, x: -20 }}
-                            animate={inView ? { opacity: 1, x: 0 } : {}}
-                            transition={{ delay: index * 0.2 + i * 0.1 }}
+                            animate={
+                              inView ? { opacity: 1, x: 0 } : {}
+                            }
+                            transition={{
+                              delay: index * 0.2 + i * 0.1,
+                            }}
                             className="text-xs text-white flex items-start gap-2"
                           >
                             <span className="text-cyan-400">▹</span>
@@ -262,7 +333,9 @@ export function Projects() {
               ))
             ) : (
               <div className="col-span-full text-center py-12">
-                <p className="text-white/60 text-lg">No projects found matching your search.</p>
+                <p className="text-white/60 text-lg">
+                  No projects found matching your search.
+                </p>
               </div>
             )}
           </div>

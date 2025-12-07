@@ -2,18 +2,29 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { Brain, Code2, Database, Eye, MessageSquare, BarChart3, FileCode, Boxes, Wrench } from "lucide-react"
+import {
+  Brain,
+  Code2,
+  Database,
+  Eye,
+  MessageSquare,
+  BarChart3,
+  FileCode,
+  Boxes,
+  Wrench,
+} from "lucide-react"
 
 const skillCategories = [
   {
-    title: "AI/ML Expertise",
+    title: "AI & Deep Learning",
     color: "cyan",
     skills: [
-      { name: "Deep Learning", icon: Brain },
       { name: "Machine Learning", icon: Brain },
+      { name: "Deep Learning", icon: Brain },
+      { name: "Transformers", icon: Brain },
+      { name: "Hugging Face", icon: Brain },
       { name: "Computer Vision", icon: Eye },
       { name: "NLP", icon: MessageSquare },
-      { name: "Data Analysis", icon: BarChart3 },
     ],
   },
   {
@@ -21,20 +32,53 @@ const skillCategories = [
     color: "magenta",
     skills: [
       { name: "Python", icon: FileCode },
-      { name: "R", icon: Code2 },
-      { name: "JavaScript", icon: Code2 },
       { name: "SQL", icon: Database },
+      { name: "JavaScript", icon: Code2 },
+      { name: "R", icon: Code2 },
     ],
   },
   {
-    title: "Frameworks & Tools",
+    title: "Frameworks & APIs",
     color: "green",
     skills: [
-      { name: "TensorFlow", icon: Boxes },
       { name: "PyTorch", icon: Boxes },
+      { name: "TensorFlow", icon: Boxes },
+      { name: "Keras", icon: Boxes },
       { name: "Scikit-learn", icon: Boxes },
-      { name: "OpenCV", icon: Eye },
-      { name: "Django/Flask", icon: Wrench },
+      { name: "Flask", icon: Wrench },
+      { name: "FastAPI", icon: Wrench },
+    ],
+  },
+  {
+    title: "Data & Databases",
+    color: "cyan",
+    skills: [
+      { name: "Pandas", icon: Database },
+      { name: "NumPy", icon: Database },
+      { name: "SciPy", icon: Database },
+      { name: "MongoDB", icon: Database },
+      { name: "MySQL", icon: Database },
+      { name: "SQLite", icon: Database },
+    ],
+  },
+  {
+    title: "NLP Stack",
+    color: "magenta",
+    skills: [
+      { name: "NLTK", icon: MessageSquare },
+      { name: "spaCy", icon: MessageSquare },
+      { name: "Gensim", icon: MessageSquare },
+      { name: "TextBlob", icon: MessageSquare },
+    ],
+  },
+  {
+    title: "Math & Theory",
+    color: "green",
+    skills: [
+      { name: "Statistics", icon: BarChart3 },
+      { name: "Probabilities", icon: BarChart3 },
+      { name: "Linear Algebra", icon: BarChart3 },
+      { name: "Analysis", icon: BarChart3 },
     ],
   },
 ]
@@ -81,7 +125,13 @@ export function Skills() {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 className="border border-cyan-400/30 p-6 rounded-lg bg-black/50 backdrop-blur-sm hover:border-cyan-400 transition-all"
               >
-                <h3 className={`text-xl font-mono mb-6 ${getColorClass(category.color)}`}>{category.title}</h3>
+                <h3
+                  className={`text-xl font-mono mb-6 ${getColorClass(
+                    category.color,
+                  )}`}
+                >
+                  {category.title}
+                </h3>
                 <div className="grid grid-cols-2 gap-4">
                   {category.skills.map((skill, i) => {
                     const Icon = skill.icon
@@ -90,13 +140,20 @@ export function Skills() {
                         key={i}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={inView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ duration: 0.5, delay: index * 0.2 + i * 0.1 }}
+                        transition={{
+                          duration: 0.5,
+                          delay: index * 0.2 + i * 0.1,
+                        }}
                         className="flex flex-col items-center gap-2 p-3 rounded-lg bg-gray-900/50 hover:bg-gray-800/50 transition-all group"
                       >
                         <Icon
-                          className={`w-8 h-8 ${getColorClass(category.color)} group-hover:scale-110 transition-transform`}
+                          className={`w-8 h-8 ${getColorClass(
+                            category.color,
+                          )} group-hover:scale-110 transition-transform`}
                         />
-                        <span className="text-xs text-gray-300 text-center">{skill.name}</span>
+                        <span className="text-xs text-gray-300 text-center">
+                          {skill.name}
+                        </span>
                       </motion.div>
                     )
                   })}

@@ -9,42 +9,8 @@ export function Hero() {
     <section id="hero" className="relative min-h-screen flex items-center justify-center px-4">
       <div className="container mx-auto text-center z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-          <motion.div
-            className="inline-block mb-4"
-            animate={{
-              rotateY: [0, 360],
-              boxShadow: [
-                "0 0 30px rgba(0, 255, 255, 0.5), 0 0 60px rgba(255, 0, 255, 0.3)",
-                "0 0 50px rgba(255, 0, 255, 0.5), 0 0 80px rgba(0, 255, 255, 0.3)",
-                "0 0 30px rgba(0, 255, 255, 0.5), 0 0 60px rgba(255, 0, 255, 0.3)",
-              ],
-            }}
-            transition={{
-              rotateY: { duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
-              boxShadow: { duration: 3, repeat: Number.POSITIVE_INFINITY },
-            }}
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-cyan-400 via-magenta-500 to-green-400 p-1">
-              <div className="w-full h-full rounded-full bg-black flex items-center justify-center relative overflow-hidden">
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-magenta-500/20 to-green-400/20"
-                  animate={{
-                    rotate: [0, 360],
-                  }}
-                  transition={{
-                    duration: 8,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "linear",
-                  }}
-                />
-                <span className="text-4xl font-mono font-bold text-cyan-400 relative z-10">MK</span>
-              </div>
-            </div>
-          </motion.div>
-
           <motion.h1
-            className="text-5xl md:text-7xl font-bold mb-4 font-mono relative"
+            className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 font-mono relative"
             whileHover={{ scale: 1.02 }}
             style={{
               perspective: "1000px",
@@ -52,7 +18,7 @@ export function Hero() {
             }}
           >
             <motion.span
-              className="text-white relative inline-block"
+              className="text-white relative inline"
               style={{
                 transformStyle: "preserve-3d",
                 transform: "translateZ(50px)",
@@ -75,7 +41,7 @@ export function Hero() {
               Mohammed
             </motion.span>{" "}
             <motion.span
-              className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-magenta-500 to-green-400 animate-gradient inline-block"
+              className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-magenta-500 to-green-400 animate-gradient inline"
               style={{
                 transformStyle: "preserve-3d",
                 transform: "translateZ(50px)",

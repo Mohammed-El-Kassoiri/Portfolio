@@ -5,18 +5,17 @@ import { useInView } from "react-intersection-observer"
 
 const experiences = [
   {
-    title: "PFA Internship",
+    title: "Stagiaire Data Science & Machine Learning",
     company: "XAI Morocco",
-    period: "Aug 2025 - Oct 2025",
-    description: "Developing X-EdTech Platform - an AI-powered educational ecosystem",
+    period: "Août 2025 - Octobre 2025",
+    description:
+      "Contribution au développement de la plateforme X-EdTech, un écosystème éducatif intégrant plusieurs modules IA.",
     highlights: [
-      "X-Forms: Dynamic form creation with AI-powered field suggestions",
-      "X-Quiz: Intelligent assessment builder with auto-generated questions",
-      "X-Table: Smart data visualization for educational analytics",
-      "X-Survey: Advanced survey system with NLP-powered response analysis",
-      "X-Classroom: Integrated virtual classroom hub",
+      "X-Forms: Génération automatique de formulaires intelligents",
+      "X-Quiz: Création intelligente de questions d'évaluation",
+      "X-Table: Visualisation avancée et analyse des données éducatives",
     ],
-    tags: ["AI", "EdTech", "Full Stack", "Data Analytics"],
+    tags: ["Data Science", "Machine Learning", "IA", "EdTech"],
     color: "cyan",
   },
 ]

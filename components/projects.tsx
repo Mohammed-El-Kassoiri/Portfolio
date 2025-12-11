@@ -114,7 +114,7 @@ const projects = [
     ],
     gradient: "from-amber-400 to-lime-500",
     github:
-      "https://www.kaggle.com/code/kassoirimohammed/mapping-water-stress-adaptation-potential",
+      "https://github.com/Mohammed-El-Kassoiri/Mapping-Water-Stress-and-Agricultural-Adaptation-Potential",
     // Si tu veux aussi afficher le lien vers l’article,
     // tu peux étendre le composant pour gérer un bouton "Article" avec une propriété `paper`.
     // paper: "https://link_to_paper",

@@ -84,7 +84,7 @@ export function Navigation() {
           </div>
 
           <motion.a
-             href="/MOHAMMED_CV.pdf"   // ou /cv.pdf selon le nom
+             href="/Mohammed_el_kassoiri.pdf"   // ou /cv.pdf selon le nom
              target="_blank"
              rel="noopener noreferrer"
              whileHover={{ scale: 1.05 }}

@@ -113,12 +113,39 @@ const projects = [
       "Pipeline de weak supervision développé sur Google Earth Engine",
     ],
     gradient: "from-amber-400 to-lime-500",
-    github:
-      "https://github.com/Mohammed-El-Kassoiri/Mapping-Water-Stress-and-Agricultural-Adaptation-Potential",
+    github: "https://github.com/Mohammed-El-Kassoiri/Mapping-Water-Stress-and-Agricultural-Adaptation-Potential",
     // Si tu veux aussi afficher le lien vers l’article,
     // tu peux étendre le composant pour gérer un bouton "Article" avec une propriété `paper`.
     // paper: "https://link_to_paper",
   },
+  {
+  title: "MY LAW – Moroccan Legal RAG System",
+  description:
+    "Retrieval-Augmented Generation (RAG) system for Moroccan legal texts, enabling accurate, multilingual (Arabic/French) legal question answering with strict source citation.",
+  category: "legal",
+  tags: [
+    "RAG",
+    "NLP",
+    "Arabic NLP",
+    "Legal AI",
+    "FAISS",
+    "Sentence Transformers",
+    "Gdadio",
+    "FastAPI",
+],
+  highlights: [
+  "Retrieval-Augmented Generation (RAG) architecture",
+  "Multilingual legal QA (Arabic / French)",
+  "FAISS vector search with linguistic preference",
+  "Strict source-cited legal answers",
+  "Optimized for Moroccan legal texts",
+],
+  gradient: "from-indigo-400 to-blue-600",
+  //github: "https://github.com/Mohammed-El-Kassoiri/MY-LAW",
+  // optional if deployed later
+  demo: "https://huggingface.co/spaces/NeoAivara/law",
+},
+  
 ]
 
 const categories = [
@@ -126,6 +153,7 @@ const categories = [
   { id: "medical", label: "Medical" },
   { id: "industrial", label: "Industrial" },
   { id: "agriculture", label: "Agriculture" },
+  { id: "legal", label: "Legal AI" },
   { id: "other", label: "Other" },
 ]
 

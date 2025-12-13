@@ -160,7 +160,7 @@ me = AI()
 me.say_hi()`}
                 </pre>
               </motion.div>
-
+{/*
               <div className="grid grid-cols-2 gap-4">
                 <motion.div
                   whileHover={{
@@ -213,6 +213,7 @@ me.say_hi()`}
                   <div className="text-sm text-white font-mono relative z-10">Projects</div>
                 </motion.div>
               </div>
+              */}
             </div>
           </div>
         </motion.div>

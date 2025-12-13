@@ -46,6 +46,7 @@ const projects = [
     gradient: "from-magenta-400 to-purple-500",
     github: "https://github.com/Mohammed-El-Kassoiri/English-to-Darija-Translator",
     huggingface: "https://huggingface.co/NeoAivara/English_to_Darija_translator",
+    demo: "https://huggingface.co/spaces/NeoAivara/English_to_Darija_translator",
   },
 
   {

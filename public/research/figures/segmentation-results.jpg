@@ -1,0 +1,69 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0a0a0a"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" font-family="monospace" font-size="20" fill="#06b6d4" text-anchor="middle" font-weight="bold">Agricultural Land Segmentation Results</text>
+  <text x="400" y="55" font-family="monospace" font-size="12" fill="#ffffff" text-anchor="middle">Accuracy: 93.6% | Mean IoU: 0.81</text>
+  
+  <!-- Ground Truth Section -->
+  <text x="200" y="90" font-family="monospace" font-size="14" fill="#10b981" text-anchor="middle" font-weight="bold">Ground Truth</text>
+  <rect x="50" y="100" width="300" height="250" fill="#1a1a1a" stroke="#06b6d4" stroke-width="2"/>
+  
+  <!-- Ground truth segmentation patterns -->
+  <rect x="70" y="120" width="80" height="60" fill="#16a34a" opacity="0.8"/>
+  <rect x="170" y="120" width="90" height="70" fill="#16a34a" opacity="0.75"/>
+  <rect x="280" y="125" width="50" height="55" fill="#16a34a" opacity="0.8"/>
+  
+  <rect x="60" y="200" width="70" height="80" fill="#16a34a" opacity="0.8"/>
+  <rect x="150" y="210" width="100" height="70" fill="#16a34a" opacity="0.75"/>
+  <rect x="270" y="200" width="60" height="90" fill="#16a34a" opacity="0.8"/>
+  
+  <rect x="80" y="300" width="80" height="40" fill="#16a34a" opacity="0.8"/>
+  <rect x="180" y="295" width="85" height="45" fill="#16a34a" opacity="0.75"/>
+  <rect x="285" y="300" width="45" height="40" fill="#16a34a" opacity="0.8"/>
+  
+  <!-- Predicted Section -->
+  <text x="600" y="90" font-family="monospace" font-size="14" fill="#06b6d4" text-anchor="middle" font-weight="bold">Model Prediction</text>
+  <rect x="450" y="100" width="300" height="250" fill="#1a1a1a" stroke="#06b6d4" stroke-width="2"/>
+  
+  <!-- Predicted segmentation patterns (slightly different to show accuracy) -->
+  <rect x="470" y="120" width="82" height="62" fill="#06b6d4" opacity="0.7"/>
+  <rect x="570" y="120" width="88" height="68" fill="#06b6d4" opacity="0.65"/>
+  <rect x="680" y="125" width="50" height="55" fill="#06b6d4" opacity="0.7"/>
+  
+  <rect x="460" y="200" width="72" height="82" fill="#06b6d4" opacity="0.7"/>
+  <rect x="550" y="210" width="98" height="68" fill="#06b6d4" opacity="0.65"/>
+  <rect x="670" y="200" width="60" height="88" fill="#06b6d4" opacity="0.7"/>
+  
+  <rect x="480" y="300" width="78" height="38" fill="#06b6d4" opacity="0.7"/>
+  <rect x="580" y="295" width="83" height="43" fill="#06b6d4" opacity="0.65"/>
+  <rect x="685" y="300" width="45" height="40" fill="#06b6d4" opacity="0.7"/>
+  
+  <!-- Comparison arrow -->
+  <path d="M 360 225 L 440 225" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="400" y="215" font-family="monospace" font-size="12" fill="#ffffff" text-anchor="middle">Compare</text>
+  
+  <!-- Statistics box -->
+  <rect x="100" y="380" width="600" height="100" fill="#0a0a0a" stroke="#06b6d4" stroke-width="2"/>
+  <text x="400" y="405" font-family="monospace" font-size="16" fill="#06b6d4" text-anchor="middle" font-weight="bold">Performance Metrics</text>
+  
+  <!-- Metrics grid -->
+  <text x="150" y="430" font-family="monospace" font-size="12" fill="#10b981" text-anchor="start">Accuracy: 93.6%</text>
+  <text x="150" y="450" font-family="monospace" font-size="12" fill="#10b981" text-anchor="start">Precision: 92.8%</text>
+  <text x="150" y="470" font-family="monospace" font-size="12" fill="#10b981" text-anchor="start">Recall: 94.2%</text>
+  
+  <text x="450" y="430" font-family="monospace" font-size="12" fill="#10b981" text-anchor="start">F1-Score: 93.5%</text>
+  <text x="450" y="450" font-family="monospace" font-size="12" fill="#10b981" text-anchor="start">Mean IoU: 0.81</text>
+  <text x="450" y="470" font-family="monospace" font-size="12" fill="#10b981" text-anchor="start">Kappa: 0.87</text>
+  
+  <!-- Legend -->
+  <rect x="350" y="360" width="100" height="15" fill="#16a34a" opacity="0.7"/>
+  <text x="355" y="372" font-family="monospace" font-size="10" fill="#ffffff">Agriculture</text>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#ffffff"/>
+    </marker>
+  </defs>
+</svg>

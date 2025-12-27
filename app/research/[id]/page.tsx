@@ -13,7 +13,6 @@ import {
 import { getResearchPaperById } from "@/lib/research-data"
 import { FileText, Download, Github, ExternalLink, Calendar } from "lucide-react"
 import { useState } from "react"
-import Image from "next/image"
 import Link from "next/link"
 
 export default function ResearchDetailPage() {

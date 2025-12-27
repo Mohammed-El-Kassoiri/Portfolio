@@ -1,0 +1,103 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#0a0a0a"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" font-family="monospace" font-size="20" fill="#06b6d4" text-anchor="middle" font-weight="bold">Attention U-Net Architecture</text>
+  
+  <!-- Encoder Path (Left Side) -->
+  <text x="150" y="70" font-family="monospace" font-size="14" fill="#10b981" text-anchor="middle">Encoder</text>
+  
+  <!-- Input -->
+  <rect x="100" y="90" width="100" height="40" fill="#1e40af" stroke="#06b6d4" stroke-width="2"/>
+  <text x="150" y="115" font-family="monospace" font-size="11" fill="#ffffff" text-anchor="middle">Input 16 Bands</text>
+  
+  <!-- Conv Block 1 -->
+  <path d="M 150 130 L 150 150" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="100" y="150" width="100" height="50" fill="#1e40af" stroke="#06b6d4" stroke-width="2"/>
+  <text x="150" y="170" font-family="monospace" font-size="10" fill="#ffffff" text-anchor="middle">Conv Block 1</text>
+  <text x="150" y="185" font-family="monospace" font-size="9" fill="#06b6d4" text-anchor="middle">64 channels</text>
+  
+  <!-- Pool 1 -->
+  <path d="M 150 200 L 150 220" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="125" y="220" width="50" height="30" fill="#7c3aed" stroke="#06b6d4" stroke-width="1"/>
+  <text x="150" y="240" font-family="monospace" font-size="9" fill="#ffffff" text-anchor="middle">MaxPool</text>
+  
+  <!-- Conv Block 2 -->
+  <path d="M 150 250 L 150 270" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="90" y="270" width="120" height="50" fill="#1e40af" stroke="#06b6d4" stroke-width="2"/>
+  <text x="150" y="290" font-family="monospace" font-size="10" fill="#ffffff" text-anchor="middle">Conv Block 2</text>
+  <text x="150" y="305" font-family="monospace" font-size="9" fill="#06b6d4" text-anchor="middle">128 channels</text>
+  
+  <!-- Pool 2 -->
+  <path d="M 150 320 L 150 340" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="125" y="340" width="50" height="30" fill="#7c3aed" stroke="#06b6d4" stroke-width="1"/>
+  <text x="150" y="360" font-family="monospace" font-size="9" fill="#ffffff" text-anchor="middle">MaxPool</text>
+  
+  <!-- Bottleneck -->
+  <path d="M 150 370 L 150 400" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="80" y="400" width="140" height="60" fill="#ea580c" stroke="#06b6d4" stroke-width="3"/>
+  <text x="150" y="425" font-family="monospace" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold">Bottleneck</text>
+  <text x="150" y="445" font-family="monospace" font-size="10" fill="#06b6d4" text-anchor="middle">256 channels</text>
+  
+  <!-- Decoder Path (Right Side) -->
+  <text x="650" y="70" font-family="monospace" font-size="14" fill="#10b981" text-anchor="middle">Decoder</text>
+  
+  <!-- UpConv 1 -->
+  <path d="M 220 430 L 280 380" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="580" y="340" width="140" height="50" fill="#059669" stroke="#06b6d4" stroke-width="2"/>
+  <text x="650" y="360" font-family="monospace" font-size="10" fill="#ffffff" text-anchor="middle">UpConv Block 1</text>
+  <text x="650" y="375" font-family="monospace" font-size="9" fill="#06b6d4" text-anchor="middle">128 channels</text>
+  
+  <!-- Attention Gate 1 -->
+  <rect x="280" y="340" width="280" height="50" fill="#f59e0b" stroke="#06b6d4" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="420" y="360" font-family="monospace" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="bold">⚡ Attention Gate</text>
+  <text x="420" y="375" font-family="monospace" font-size="9" fill="#06b6d4" text-anchor="middle">Feature Selection</text>
+  
+  <!-- Skip Connection 1 with attention -->
+  <path d="M 210 295 L 280 295 L 280 365 L 580 365" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="3,3"/>
+  <circle cx="280" cy="365" r="5" fill="#f59e0b"/>
+  
+  <!-- UpConv 2 -->
+  <path d="M 650 340 L 650 240" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="590" y="190" width="120" height="50" fill="#059669" stroke="#06b6d4" stroke-width="2"/>
+  <text x="650" y="210" font-family="monospace" font-size="10" fill="#ffffff" text-anchor="middle">UpConv Block 2</text>
+  <text x="650" y="225" font-family="monospace" font-size="9" fill="#06b6d4" text-anchor="middle">64 channels</text>
+  
+  <!-- Attention Gate 2 -->
+  <rect x="320" y="190" width="250" height="50" fill="#f59e0b" stroke="#06b6d4" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="445" y="210" font-family="monospace" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="bold">⚡ Attention Gate</text>
+  <text x="445" y="225" font-family="monospace" font-size="9" fill="#06b6d4" text-anchor="middle">Feature Selection</text>
+  
+  <!-- Skip Connection 2 with attention -->
+  <path d="M 200 175 L 320 175 L 320 215 L 590 215" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="3,3"/>
+  <circle cx="320" cy="215" r="5" fill="#f59e0b"/>
+  
+  <!-- Output -->
+  <path d="M 650 190 L 650 140" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="600" y="90" width="100" height="50" fill="#16a34a" stroke="#06b6d4" stroke-width="2"/>
+  <text x="650" y="110" font-family="monospace" font-size="11" fill="#ffffff" text-anchor="middle">Segmentation</text>
+  <text x="650" y="125" font-family="monospace" font-size="9" fill="#06b6d4" text-anchor="middle">Water Stress Map</text>
+  
+  <!-- Legend -->
+  <rect x="50" y="500" width="700" height="80" fill="#0a0a0a" stroke="#06b6d4" stroke-width="2"/>
+  <text x="400" y="525" font-family="monospace" font-size="13" fill="#06b6d4" text-anchor="middle" font-weight="bold">Architecture Components</text>
+  
+  <rect x="70" y="540" width="30" height="15" fill="#1e40af" stroke="#06b6d4" stroke-width="1"/>
+  <text x="105" y="551" font-family="monospace" font-size="10" fill="#ffffff">Convolution Blocks</text>
+  
+  <rect x="250" y="540" width="30" height="15" fill="#f59e0b" stroke="#06b6d4" stroke-width="1"/>
+  <text x="285" y="551" font-family="monospace" font-size="10" fill="#ffffff">Attention Gates</text>
+  
+  <line x1="420" y1="547" x2="450" y2="547" stroke="#10b981" stroke-width="2" stroke-dasharray="3,3"/>
+  <text x="455" y="551" font-family="monospace" font-size="10" fill="#ffffff">Skip Connections</text>
+  
+  <rect x="600" y="540" width="30" height="15" fill="#059669" stroke="#06b6d4" stroke-width="1"/>
+  <text x="635" y="551" font-family="monospace" font-size="10" fill="#ffffff">Upsampling</text>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#06b6d4"/>
+    </marker>
+  </defs>
+</svg>

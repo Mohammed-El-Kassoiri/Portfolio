@@ -14,6 +14,7 @@ import { getResearchPaperById } from "@/lib/research-data"
 import { FileText, Download, Github, ExternalLink, Calendar } from "lucide-react"
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function ResearchDetailPage() {
   const params = useParams()
@@ -179,14 +180,13 @@ export default function ResearchDetailPage() {
                         className="cursor-pointer group"
                       >
                         <div className="relative aspect-video bg-white/5 rounded-lg overflow-hidden mb-3 border border-cyan-400/20 group-hover:border-cyan-400/50 transition-colors">
-                          <div className="absolute inset-0 flex items-center justify-center text-white/50">
-                            <FileText className="w-12 h-12" />
-                          </div>
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <span className="text-white/70 text-sm">
-                              Click to view
-                            </span>
-                          </div>
+                          <Image
+                            src={figure.src}
+                            alt={figure.alt}
+                            fill
+                            className="object-contain"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          />
                         </div>
                         <p className="text-sm text-white/80 font-mono">
                           {figure.caption}
@@ -203,9 +203,13 @@ export default function ResearchDetailPage() {
                         {figure.caption}
                       </DialogTitle>
                       <div className="relative aspect-video bg-white/5 rounded-lg overflow-hidden">
-                        <div className="absolute inset-0 flex items-center justify-center text-white/50">
-                          <FileText className="w-16 h-16" />
-                        </div>
+                        <Image
+                          src={figure.src}
+                          alt={figure.alt}
+                          fill
+                          className="object-contain"
+                          sizes="100vw"
+                        />
                       </div>
                       {figure.description && (
                         <p className="text-white/80 text-sm">

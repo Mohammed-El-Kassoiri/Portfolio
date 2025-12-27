@@ -1,0 +1,66 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#0a0a0a"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" font-family="monospace" font-size="20" fill="#06b6d4" text-anchor="middle" font-weight="bold">Water Stress Classification Results</text>
+  <text x="400" y="55" font-family="monospace" font-size="12" fill="#ffffff" text-anchor="middle">Taroudant Region - Agricultural Areas</text>
+  
+  <!-- Main map area -->
+  <rect x="50" y="80" width="700" height="400" fill="#1a1a1a" stroke="#06b6d4" stroke-width="2"/>
+  
+  <!-- Simulated water stress zones -->
+  <!-- Low stress (green) -->
+  <ellipse cx="150" cy="180" rx="80" ry="60" fill="#16a34a" opacity="0.7"/>
+  <ellipse cx="200" cy="250" rx="60" ry="50" fill="#16a34a" opacity="0.6"/>
+  <ellipse cx="280" cy="350" rx="70" ry="55" fill="#16a34a" opacity="0.65"/>
+  
+  <!-- Moderate stress (yellow) -->
+  <ellipse cx="350" cy="200" rx="90" ry="70" fill="#eab308" opacity="0.7"/>
+  <ellipse cx="450" cy="280" rx="75" ry="60" fill="#eab308" opacity="0.6"/>
+  <ellipse cx="380" cy="380" rx="65" ry="50" fill="#eab308" opacity="0.65"/>
+  
+  <!-- High stress (orange) -->
+  <ellipse cx="550" cy="220" rx="80" ry="65" fill="#f97316" opacity="0.7"/>
+  <ellipse cx="620" cy="320" rx="70" ry="55" fill="#f97316" opacity="0.65/>
+  
+  <!-- Severe stress (red) -->
+  <ellipse cx="680" cy="180" rx="60" ry="50" fill="#ef4444" opacity="0.7"/>
+  <ellipse cx="650" cy="400" rx="55" ry="45" fill="#ef4444" opacity="0.65"/>
+  
+  <!-- Grid overlay -->
+  <defs>
+    <pattern id="grid3" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#06b6d4" stroke-width="0.3" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect x="50" y="80" width="700" height="400" fill="url(#grid3)"/>
+  
+  <!-- Coordinate labels -->
+  <text x="30" y="150" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.7">N</text>
+  <text x="30" y="250" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.7">↑</text>
+  <text x="30" y="450" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.7">S</text>
+  
+  <text x="100" y="510" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.7">W ←</text>
+  <text x="700" y="510" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.7">→ E</text>
+  
+  <!-- Scale bar -->
+  <rect x="650" y="440" width="80" height="3" fill="#ffffff"/>
+  <text x="690" y="460" font-family="monospace" font-size="10" fill="#ffffff" text-anchor="middle">5 km</text>
+  
+  <!-- Legend -->
+  <rect x="80" y="520" width="640" height="60" fill="#0a0a0a" stroke="#06b6d4" stroke-width="2"/>
+  <text x="400" y="540" font-family="monospace" font-size="14" fill="#06b6d4" text-anchor="middle" font-weight="bold">Water Stress Level Classification</text>
+  
+  <!-- Legend items -->
+  <rect x="100" y="550" width="30" height="20" fill="#16a34a" opacity="0.7" stroke="#ffffff" stroke-width="1"/>
+  <text x="135" y="565" font-family="monospace" font-size="11" fill="#ffffff">Low (0-25%)</text>
+  
+  <rect x="250" y="550" width="30" height="20" fill="#eab308" opacity="0.7" stroke="#ffffff" stroke-width="1"/>
+  <text x="285" y="565" font-family="monospace" font-size="11" fill="#ffffff">Moderate (25-50%)</text>
+  
+  <rect x="440" y="550" width="30" height="20" fill="#f97316" opacity="0.7" stroke="#ffffff" stroke-width="1"/>
+  <text x="475" y="565" font-family="monospace" font-size="11" fill="#ffffff">High (50-75%)</text>
+  
+  <rect x="600" y="550" width="30" height="20" fill="#ef4444" opacity="0.7" stroke="#ffffff" stroke-width="1"/>
+  <text x="635" y="565" font-family="monospace" font-size="11" fill="#ffffff">Severe (75-100%)</text>
+</svg>

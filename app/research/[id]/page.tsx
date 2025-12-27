@@ -21,7 +21,6 @@ import {
   ChevronRight,
 } from "lucide-react"
 import { Card } from "@/components/ui/card"
-import { PDFViewer } from "@/components/pdf-viewer"
 import { getResearchPaperById, ResearchPaper } from "@/lib/research-data"
 
 export default function ResearchDetailPage() {
@@ -305,7 +304,7 @@ export default function ResearchDetailPage() {
               </Card>
             </motion.div>
 
-            {/* PDF Viewer */}
+            {/* PDF Viewer - Placeholder */}
             {paper.pdfUrl && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -317,7 +316,22 @@ export default function ResearchDetailPage() {
                     <FileText className="w-6 h-6" />
                     Research Paper PDF
                   </h2>
-                  <PDFViewer pdfUrl={paper.pdfUrl} title={paper.title} />
+                  <div className="bg-gray-900/50 border border-cyan-400/30 rounded-lg p-8 text-center">
+                    <p className="text-white/80 mb-4">
+                      The PDF viewer will display the research paper here.
+                    </p>
+                    <motion.a
+                      href={paper.pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="inline-flex items-center gap-2 px-6 py-3 text-sm font-mono bg-cyan-400 text-black rounded hover:bg-cyan-300 transition-all"
+                    >
+                      <Download className="w-5 h-5" />
+                      <span>Download PDF</span>
+                    </motion.a>
+                  </div>
                 </Card>
               </motion.div>
             )}

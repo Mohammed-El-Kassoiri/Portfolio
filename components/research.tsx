@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Card } from "@/components/ui/card"
 import { FileText, ExternalLink, Calendar, Users, Github } from "lucide-react"
 import { getAllResearchPapers } from "@/lib/research-data"
@@ -14,6 +14,7 @@ export function Research() {
     triggerOnce: true,
     threshold: 0.1,
   })
+  const router = useRouter()
 
   return (
     <section id="research" className="relative py-20 px-4" ref={ref}>
@@ -31,18 +32,20 @@ export function Research() {
 
           <div className="space-y-8">
             {publications.map((publication, index) => (
-              <Link href={`/research/${publication.id}`} key={publication.id}>
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                  whileHover={{
-                    y: -5,
-                    transition: { duration: 0.3 },
-                  }}
-                  className="cursor-pointer"
+              <motion.div
+                key={publication.id}
+                initial={{ opacity: 0, y: 50 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                whileHover={{
+                  y: -5,
+                  transition: { duration: 0.3 },
+                }}
+              >
+                <Card
+                  className="border-cyan-400/30 bg-black/50 backdrop-blur-sm hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-400/30 transition-all p-6 md:p-8 relative overflow-hidden group cursor-pointer"
+                  onClick={() => router.push(`/research/${publication.id}`)}
                 >
-                  <Card className="border-cyan-400/30 bg-black/50 backdrop-blur-sm hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-400/30 transition-all p-6 md:p-8 relative overflow-hidden group">
                   <motion.div
                     className={`absolute inset-0 bg-gradient-to-br ${publication.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
                     animate={{
@@ -176,7 +179,6 @@ export function Research() {
                   </div>
                 </Card>
               </motion.div>
-            </Link>
             ))}
           </div>
         </motion.div>

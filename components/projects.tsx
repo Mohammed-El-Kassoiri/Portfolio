@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Card } from "@/components/ui/card"
-import { Github, ExternalLink } from "lucide-react"
+import { Github, ExternalLink, FileText } from "lucide-react"
 
 const projects = [
   {
@@ -117,36 +117,36 @@ const projects = [
     github: "https://github.com/Mohammed-El-Kassoiri/Mapping-Water-Stress-and-Agricultural-Adaptation-Potential",
     // Si tu veux aussi afficher le lien vers l’article,
     // tu peux étendre le composant pour gérer un bouton "Article" avec une propriété `paper`.
-    paper: "https://www.researchgate.net/publication/399089388_Mapping_Water_Stress_and_Agricultural_Adaptation_Potential_Using_Multi-Source_16-Band_Attention_U-Net_Case_of_Taroudant_Morocco",
+    paper:
+      "https://www.researchgate.net/publication/399089388_Mapping_Water_Stress_and_Agricultural_Adaptation_Potential_Using_Multi-Source_16-Band_Attention_U-Net_Case_of_Taroudant_Morocco",
   },
   {
-  title: "MY LAW – Moroccan Legal RAG System",
-  description:
-    "Retrieval-Augmented Generation (RAG) system for Moroccan legal texts, enabling accurate, multilingual (Arabic/French) legal question answering with strict source citation.",
-  category: "legal",
-  tags: [
-    "RAG",
-    "NLP",
-    "Arabic NLP",
-    "Legal AI",
-    "FAISS",
-    "Sentence Transformers",
-    "Gdadio",
-    "FastAPI",
-],
-  highlights: [
-  "Retrieval-Augmented Generation (RAG) architecture",
-  "Multilingual legal QA (Arabic / French)",
-  "FAISS vector search with linguistic preference",
-  "Strict source-cited legal answers",
-  "Optimized for Moroccan legal texts",
-],
-  gradient: "from-indigo-400 to-blue-600",
-  //github: "https://github.com/Mohammed-El-Kassoiri/MY-LAW",
-  // optional if deployed later
-  demo: "https://huggingface.co/spaces/NeoAivara/law",
-},
-  
+    title: "MY LAW – Moroccan Legal RAG System",
+    description:
+      "Retrieval-Augmented Generation (RAG) system for Moroccan legal texts, enabling accurate, multilingual (Arabic/French) legal question answering with strict source citation.",
+    category: "legal",
+    tags: [
+      "RAG",
+      "NLP",
+      "Arabic NLP",
+      "Legal AI",
+      "FAISS",
+      "Sentence Transformers",
+      "Gdadio",
+      "FastAPI",
+    ],
+    highlights: [
+      "Retrieval-Augmented Generation (RAG) architecture",
+      "Multilingual legal QA (Arabic / French)",
+      "FAISS vector search with linguistic preference",
+      "Strict source-cited legal answers",
+      "Optimized for Moroccan legal texts",
+    ],
+    gradient: "from-indigo-400 to-blue-600",
+    //github: "https://github.com/Mohammed-El-Kassoiri/MY-LAW",
+    // optional if deployed later
+    demo: "https://huggingface.co/spaces/NeoAivara/law",
+  },
 ]
 
 const categories = [
@@ -355,6 +355,20 @@ export function Projects() {
                             <span>Hugging Face</span>
                           </motion.a>
                         ) : null}
+
+                        {project.paper && (
+                          <motion.a
+                            href={project.paper}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05, x: 2 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex items-center gap-2 px-3 py-2 text-xs font-mono border border-cyan-400/50 text-cyan-400 rounded hover:bg-cyan-400/20 hover:border-cyan-400 transition-all"
+                          >
+                            <FileText className="w-4 h-4" />
+                            <span>Paper</span>
+                          </motion.a>
+                        )}
                       </div>
                     </div>
                   </Card>

@@ -27,7 +27,7 @@ export default function ResearchDetailPage() {
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Research Paper Not Found</h1>
-          <Link href="/" className="text-cyan-400 hover:underline">
+          <Link href="/research/figures/pdf.pdf" className="text-cyan-400 hover:underline">
             Return to Home
           </Link>
         </div>

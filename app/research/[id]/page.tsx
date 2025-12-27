@@ -27,7 +27,7 @@ export default function ResearchDetailPage() {
   const params = useParams()
   const router = useRouter()
   const [paper, setPaper] = useState<ResearchPaper | null>(null)
-  const [showCitations, setShowCitations] = useState(false)
+  const [expandedCitations, setExpandedCitations] = useState<string[]>([])
 
   useEffect(() => {
     const id = params.id as string
@@ -36,6 +36,14 @@ export default function ResearchDetailPage() {
       setPaper(foundPaper)
     }
   }, [params.id])
+
+  const toggleCitation = (format: string) => {
+    setExpandedCitations((prev) =>
+      prev.includes(format)
+        ? prev.filter((f) => f !== format)
+        : [...prev, format]
+    )
+  }
 
   if (!paper) {
     return (
@@ -86,12 +94,13 @@ export default function ResearchDetailPage() {
           url: window.location.href,
         })
       } catch (error) {
-        console.log("Error sharing:", error)
+        // User cancelled or share failed
+        console.log("Sharing cancelled or failed")
       }
     } else {
       // Fallback: copy to clipboard
       navigator.clipboard.writeText(window.location.href)
-      alert("Link copied to clipboard!")
+      // Could add a toast notification here in the future
     }
   }
 
@@ -405,24 +414,18 @@ export default function ResearchDetailPage() {
                   {citationFormats.map((citation, i) => (
                     <div key={i}>
                       <button
-                        onClick={() => setShowCitations(!showCitations)}
+                        onClick={() => toggleCitation(citation.format)}
                         className="text-sm font-mono text-cyan-400 mb-2 hover:underline"
                       >
                         {citation.format}
                       </button>
-                      {showCitations && (
+                      {expandedCitations.includes(citation.format) && (
                         <div className="text-xs text-white/70 bg-black/50 p-3 rounded border border-cyan-400/20 font-mono whitespace-pre-wrap break-words">
                           {citation.text}
                         </div>
                       )}
                     </div>
                   ))}
-                  <button
-                    onClick={() => setShowCitations(!showCitations)}
-                    className="text-sm font-mono text-cyan-400 hover:underline w-full text-left"
-                  >
-                    {showCitations ? "Hide citations" : "Show all citations"}
-                  </button>
                 </div>
               </Card>
             </motion.div>

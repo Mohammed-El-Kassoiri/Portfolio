@@ -117,7 +117,7 @@ const projects = [
     github: "https://github.com/Mohammed-El-Kassoiri/Mapping-Water-Stress-and-Agricultural-Adaptation-Potential",
     // Si tu veux aussi afficher le lien vers l’article,
     // tu peux étendre le composant pour gérer un bouton "Article" avec une propriété `paper`.
-    // paper: "https://link_to_paper",
+    paper: "https://www.researchgate.net/publication/399089388_Mapping_Water_Stress_and_Agricultural_Adaptation_Potential_Using_Multi-Source_16-Band_Attention_U-Net_Case_of_Taroudant_Morocco",
   },
   {
   title: "MY LAW – Moroccan Legal RAG System",

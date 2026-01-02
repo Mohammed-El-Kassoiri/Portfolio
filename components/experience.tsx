@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
+import { Calendar } from "lucide-react"
 
 const experiences = [
   {
@@ -16,7 +17,6 @@ const experiences = [
       "X-Table: Visualisation avancée et analyse des données éducatives",
     ],
     tags: ["Data Science", "Machine Learning", "IA", "EdTech"],
-    color: "cyan",
   },
 ]
 
@@ -28,64 +28,60 @@ export function Experience() {
 
   return (
     <section id="experience" className="relative py-20 px-4" ref={ref}>
-      <div className="container mx-auto max-w-6xl z-10 relative">
+      <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 font-mono">
-            <span className="text-cyan-400">&lt;</span>
-            <span className="text-white">Experience</span>
-            <span className="text-magenta-400">/&gt;</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gray-900 dark:text-white">
+            Experience
           </h2>
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-400 via-magenta-500 to-green-400" />
+            <div className="absolute left-0 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-600 via-green-500 to-orange-500" />
 
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                initial={{ opacity: 0, x: -50 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="relative mb-12 md:mb-16"
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="relative mb-12 ml-12 md:ml-20"
               >
-                <div className="md:flex md:items-center">
-                  <div className={`md:w-1/2 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12 md:order-2"}`}>
-                    <div className="border border-cyan-400/30 p-6 rounded-lg bg-black/50 backdrop-blur-sm hover:border-cyan-400 transition-all ml-8 md:ml-0">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-sm text-cyan-400 font-mono">{exp.period}</span>
-                      </div>
-                      <h3 className="text-2xl font-bold text-white mb-1">{exp.title}</h3>
-                      <p className="text-magenta-400 font-mono mb-3">{exp.company}</p>
-                      <p className="text-white mb-4">{exp.description}</p>
+                {/* Timeline dot */}
+                <div className="absolute -left-[3.25rem] md:-left-[3.75rem] top-6 w-4 h-4 bg-blue-600 rounded-full border-4 border-white dark:border-slate-900 shadow-lg" />
 
-                      <ul className="space-y-2 mb-4">
-                        {exp.highlights.map((highlight, i) => (
-                          <li key={i} className="text-sm text-white flex items-start gap-2">
-                            <span className="text-cyan-400 mt-1">▹</span>
-                            <span>{highlight}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      <div className="flex flex-wrap gap-2">
-                        {exp.tags.map((tag, i) => (
-                          <span
-                            key={i}
-                            className="px-3 py-1 text-xs font-mono border border-cyan-400/30 text-cyan-400 rounded"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                <div className="p-6 rounded-xl bg-white dark:bg-slate-800 shadow-lg hover:shadow-xl transition-shadow border border-gray-200 dark:border-slate-700">
+                  <div className="flex items-center gap-2 mb-3 text-sm text-blue-600 dark:text-blue-400 font-medium">
+                    <Calendar className="w-4 h-4" />
+                    {exp.period}
                   </div>
+                  
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{exp.title}</h3>
+                  <p className="text-green-600 dark:text-green-400 font-semibold mb-3">{exp.company}</p>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">{exp.description}</p>
 
-                  {/* Timeline dot */}
-                  <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-cyan-400 rounded-full border-4 border-black" />
+                  <ul className="space-y-2 mb-4">
+                    {exp.highlights.map((highlight, i) => (
+                      <li key={i} className="text-sm text-gray-600 dark:text-gray-300 flex items-start gap-2">
+                        <span className="text-blue-600 dark:text-blue-400 mt-1">▹</span>
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-wrap gap-2">
+                    {exp.tags.map((tag, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             ))}

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { FileDown } from "lucide-react"
 
 const navItems = [
   { id: "hero", label: "Home" },
@@ -51,15 +52,18 @@ export function Navigation() {
       animate={{ y: 0 }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "bg-black/80 backdrop-blur-lg border-b border-cyan-500/20" : "bg-transparent",
+        scrolled 
+          ? "bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-slate-700 shadow-sm" 
+          : "bg-transparent",
       )}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <motion.div className="text-xl font-mono font-bold" whileHover={{ scale: 1.05 }}>
-            <span className="text-cyan-400">&lt;</span>
-            <span className="text-white">MK</span>
-            <span className="text-magenta-400">/&gt;</span>
+          <motion.div 
+            className="text-xl font-bold"
+            whileHover={{ scale: 1.05 }}
+          >
+            <span className="text-blue-600 dark:text-blue-400">MK</span>
           </motion.div>
 
           <div className="hidden md:flex items-center gap-1">
@@ -68,15 +72,17 @@ export function Navigation() {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={cn(
-                  "px-4 py-2 text-sm font-mono transition-all duration-300 relative",
-                  activeSection === item.id ? "text-cyan-400" : "text-white hover:text-cyan-400",
+                  "px-4 py-2 text-sm font-medium transition-all duration-200 relative rounded-lg",
+                  activeSection === item.id 
+                    ? "text-blue-600 dark:text-blue-400" 
+                    : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400",
                 )}
               >
                 {item.label}
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 to-magenta-500"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -85,17 +91,16 @@ export function Navigation() {
           </div>
 
           <motion.a
-             href="/Mohammed_el_kassoiri.pdf"   // ou /cv.pdf selon le nom
-             target="_blank"
-             rel="noopener noreferrer"
-             whileHover={{ scale: 1.05 }}
-             whileTap={{ scale: 0.95 }}
-             className="px-4 py-2 text-sm font-mono border border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 transition-colors inline-block"
+            href="/Mohammed_el_kassoiri.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-4 py-2 text-sm font-medium border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors rounded-lg flex items-center gap-2"
           >
-          Resume
-          </motion.a>          
-
-
+            <FileDown className="w-4 h-4" />
+            <span className="hidden sm:inline">Resume</span>
+          </motion.a>
         </div>
       </div>
     </motion.nav>

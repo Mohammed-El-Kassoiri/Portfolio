@@ -39,7 +39,7 @@ const skillCategories = [
   },
   {
     title: "Frameworks & APIs",
-    color: "purple",
+    color: "orange",
     skills: [
       { name: "PyTorch", icon: Boxes },
       { name: "TensorFlow", icon: Boxes },
@@ -73,7 +73,7 @@ const skillCategories = [
   },
   {
     title: "Math & Theory",
-    color: "purple",
+    color: "orange",
     skills: [
       { name: "Statistics", icon: BarChart3 },
       { name: "Probabilities", icon: BarChart3 },
@@ -95,8 +95,8 @@ export function Skills() {
         return "text-blue-600 dark:text-blue-400"
       case "green":
         return "text-green-600 dark:text-green-400"
-      case "purple":
-        return "text-purple-600 dark:text-purple-400"
+      case "orange":
+        return "text-orange-600 dark:text-orange-400"
       default:
         return "text-blue-600 dark:text-blue-400"
     }

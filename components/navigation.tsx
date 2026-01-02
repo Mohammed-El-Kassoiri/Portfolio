@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
+import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const navItems = [
@@ -17,6 +18,7 @@ const navItems = [
 export function Navigation() {
   const [activeSection, setActiveSection] = useState("hero")
   const [scrolled, setScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,41 +44,45 @@ export function Navigation() {
     const element = document.getElementById(id)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
+      setMobileMenuOpen(false)
     }
   }
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+    <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "bg-black/80 backdrop-blur-lg border-b border-cyan-500/20" : "bg-transparent",
+        scrolled ? "bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200" : "bg-white",
       )}
     >
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <motion.div className="text-xl font-mono font-bold" whileHover={{ scale: 1.05 }}>
-            <span className="text-cyan-400">&lt;</span>
-            <span className="text-white">MK</span>
-            <span className="text-magenta-400">/&gt;</span>
+          {/* Logo */}
+          <motion.div 
+            className="text-xl font-semibold text-gray-900"
+            whileHover={{ scale: 1.02 }}
+          >
+            MK
           </motion.div>
 
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={cn(
-                  "px-4 py-2 text-sm font-mono transition-all duration-300 relative",
-                  activeSection === item.id ? "text-cyan-400" : "text-white hover:text-cyan-400",
+                  "px-4 py-2 text-sm transition-all duration-200 relative",
+                  activeSection === item.id 
+                    ? "text-blue-600 font-medium" 
+                    : "text-gray-600 hover:text-gray-900",
                 )}
               >
                 {item.label}
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 to-magenta-500"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -84,20 +90,60 @@ export function Navigation() {
             ))}
           </div>
 
-          <motion.a
-             href="/Mohammed_el_kassoiri.pdf"   // ou /cv.pdf selon le nom
-             target="_blank"
-             rel="noopener noreferrer"
-             whileHover={{ scale: 1.05 }}
-             whileTap={{ scale: 0.95 }}
-             className="px-4 py-2 text-sm font-mono border border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 transition-colors inline-block"
+          {/* Resume Button */}
+          <a
+            href="/Mohammed_el_kassoiri.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex px-4 py-2 text-sm font-medium border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors duration-200"
           >
-          Resume
-          </motion.a>          
+            Resume
+          </a>
 
-
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 text-gray-600 hover:text-gray-900"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="md:hidden py-4 border-t border-gray-200"
+          >
+            <div className="flex flex-col space-y-2">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={cn(
+                    "px-4 py-2 text-left text-sm transition-colors",
+                    activeSection === item.id 
+                      ? "text-blue-600 font-medium bg-blue-50" 
+                      : "text-gray-600 hover:bg-gray-50",
+                  )}
+                >
+                  {item.label}
+                </button>
+              ))}
+              <a
+                href="/Mohammed_el_kassoiri.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mx-4 mt-2 px-4 py-2 text-sm font-medium text-center border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+              >
+                Resume
+              </a>
+            </div>
+          </motion.div>
+        )}
       </div>
-    </motion.nav>
+    </nav>
   )
 }

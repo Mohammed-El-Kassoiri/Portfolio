@@ -85,9 +85,9 @@ me.say_hi()`}
               <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
                 <Target className="w-6 h-6 text-blue-400" />
               </div>
-              <h3 className="text-xl font-semibold text-slate-100 mb-3">Current Focus</h3>
+              <h3 className="text-xl font-semibold text-slate-100 mb-3">Recent Project</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
-                Contributing to the X-EdTech Platform at XAI Morocco, building intelligent educational tools and AI-powered solutions.
+                 Group project focused on water stress mapping and cartographic analysis to support water resource management and agricultural decision-making.
               </p>
             </motion.div>
 

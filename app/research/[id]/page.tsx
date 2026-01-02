@@ -242,17 +242,6 @@ export default function ResearchDetailPage() {
                   title="Research Paper PDF"
                 />
               </div>
-              <div className="mt-4 text-center">
-                <Button
-                  asChild
-                  className="bg-cyan-400/20 border border-cyan-400/50 text-cyan-400 hover:bg-cyan-400/30"
-                >
-                  <a href={paper.pdf} download className="flex items-center gap-2">
-                    <Download className="w-4 h-4" />
-                    Download Full PDF
-                  </a>
-                </Button>
-              </div>
             </Card>
           </motion.div>
         )}

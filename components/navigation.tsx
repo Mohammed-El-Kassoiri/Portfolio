@@ -51,16 +51,14 @@ export function Navigation() {
       animate={{ y: 0 }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "bg-black/80 backdrop-blur-lg border-b border-cyan-500/20" : "bg-transparent",
+        scrolled ? "bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200" : "bg-white",
       )}
     >
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <motion.div className="text-xl font-mono font-bold" whileHover={{ scale: 1.05 }}>
-            <span className="text-cyan-400">&lt;</span>
-            <span className="text-white">MK</span>
-            <span className="text-magenta-400">/&gt;</span>
-          </motion.div>
+          <div className="text-xl font-bold text-gray-900">
+            MK
+          </div>
 
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
@@ -68,15 +66,15 @@ export function Navigation() {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={cn(
-                  "px-4 py-2 text-sm font-mono transition-all duration-300 relative",
-                  activeSection === item.id ? "text-cyan-400" : "text-white hover:text-cyan-400",
+                  "px-4 py-2 text-sm font-medium transition-colors duration-200 relative",
+                  activeSection === item.id ? "text-blue-600" : "text-gray-600 hover:text-blue-600",
                 )}
               >
                 {item.label}
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 to-magenta-500"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -84,18 +82,14 @@ export function Navigation() {
             ))}
           </div>
 
-          <motion.a
-             href="/Mohammed_el_kassoiri.pdf"   // ou /cv.pdf selon le nom
-             target="_blank"
-             rel="noopener noreferrer"
-             whileHover={{ scale: 1.05 }}
-             whileTap={{ scale: 0.95 }}
-             className="px-4 py-2 text-sm font-mono border border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 transition-colors inline-block"
+          <a
+            href="/Mohammed_el_kassoiri.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 text-sm font-medium border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors duration-200"
           >
-          Resume
-          </motion.a>          
-
-
+            Resume
+          </a>
         </div>
       </div>
     </motion.nav>

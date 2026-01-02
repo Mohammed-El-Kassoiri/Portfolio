@@ -1,4 +1,3 @@
-// Build cache fix - rebuild with fresh cache
 "use client"
 
 import { Hero } from "@/components/hero"
@@ -9,28 +8,24 @@ import { Research } from "@/components/research"
 import { Skills } from "@/components/skills"
 import { Contact } from "@/components/contact"
 import { Navigation } from "@/components/navigation"
-import { MatrixRain } from "@/components/matrix-rain"
-import { DigitalGrid } from "@/components/digital-grid"
-import { NeuralNetworkBackground } from "@/components/neural-network-bg"
-import { FloatingIcons } from "@/components/floating-icons"
+import { Footer } from "@/components/footer"
 
 export default function Portfolio() {
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
-      <MatrixRain />
-      <DigitalGrid />
-      <NeuralNetworkBackground />
-      <FloatingIcons />
+    <div className="min-h-screen bg-white">
       <Navigation />
-      <main>
+      <main className="relative">
         <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Research />
-        <Skills />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <About />
+          <Experience />
+          <Projects />
+          <Research />
+          <Skills />
+        </div>
         <Contact />
       </main>
+      <Footer />
     </div>
   )
 }

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { Terminal, Sparkles, Zap } from "lucide-react"
+import { Target, GraduationCap, Briefcase, Code2 } from "lucide-react"
 
 export function About() {
   const [ref, inView] = useInView({
@@ -11,210 +11,122 @@ export function About() {
   })
 
   return (
-    <section id="about" className="relative py-20 px-4" ref={ref}>
-      <div className="container mx-auto max-w-6xl z-10 relative">
+    <section id="about" className="relative py-20 px-6" ref={ref}>
+      <div className="container mx-auto max-w-7xl z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 font-mono">
-            <span className="text-cyan-400">&lt;</span>
-            <span className="text-white">About Me</span>
-            <span className="text-magenta-400">/&gt;</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-slate-100">
+            About Me
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-6">
-              <motion.div
-                className="border border-cyan-400/30 p-6 rounded-lg bg-black/50 backdrop-blur-sm hover:border-cyan-400 transition-all relative overflow-hidden group"
-                whileHover={{
-                  y: -5,
-                  rotateX: 5,
-                  boxShadow: "0 20px 40px rgba(0, 255, 255, 0.2)",
-                }}
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                <motion.div
-                  className="absolute top-0 right-0 opacity-10"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                >
-                  <Sparkles className="w-32 h-32 text-cyan-400" />
-                </motion.div>
-                <h3 className="text-xl font-mono text-cyan-400 mb-3 flex items-center gap-2">
-                  <motion.div
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                  >
-                    🎯
-                  </motion.div>
-                  Current Focus
-                </h3>
-                <p className="text-white leading-relaxed relative z-10">
-                 Data Scientist & AI Engineer specializing in Machine Learning and Deep Learning. Currently contributing to the X-EdTech Platform at XAI Morocco.
+          {/* Bento Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Main Bio Card - Large */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1 }}
+              className="lg:col-span-2 lg:row-span-2 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-blue-500/50 transition-all duration-300"
+            >
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-400 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Code2 className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-100 mb-2">Mohammed El Kassoiri</h3>
+                  <p className="text-blue-400 font-medium">Data Scientist & AI Engineer</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4 text-slate-300 leading-relaxed">
+                <p>
+                  Data Scientist & AI Engineer specializing in Machine Learning and Deep Learning. 
+                  Currently contributing to the X-EdTech Platform at XAI Morocco.
                 </p>
-              </motion.div>
-
-              <motion.div
-                className="border border-magenta-400/30 p-6 rounded-lg bg-black/50 backdrop-blur-sm hover:border-magenta-400 transition-all relative overflow-hidden group"
-                whileHover={{
-                  y: -5,
-                  rotateX: 5,
-                  boxShadow: "0 20px 40px rgba(255, 0, 255, 0.2)",
-                }}
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                <motion.div
-                  className="absolute top-0 right-0 opacity-10"
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                >
-                  <Terminal className="w-32 h-32 text-magenta-400" />
-                </motion.div>
-                <h3 className="text-xl font-mono text-magenta-400 mb-3 flex items-center gap-2">
-                  <motion.div
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, delay: 0.3 }}
-                  >
-                    🎓
-                  </motion.div>
-                  Education
-                </h3>
-                <p className="text-white leading-relaxed relative z-10">
-                  ENSIASD - Data Science, Big Data & AI
-                  <br />
-                  <span className="text-sm text-white">Taroudant, Morocco 🇲🇦</span>
+                <p>
+                  🌍 <span className="text-slate-100 font-medium">Location:</span> Morocco 🇲🇦
                 </p>
-              </motion.div>
-
-              <motion.div
-                className="border border-green-400/30 p-6 rounded-lg bg-black/50 backdrop-blur-sm hover:border-green-400 transition-all relative overflow-hidden group"
-                whileHover={{
-                  y: -5,
-                  rotateX: 5,
-                  boxShadow: "0 20px 40px rgba(0, 255, 0, 0.2)",
-                }}
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                <motion.div
-                  className="absolute top-0 right-0 opacity-10"
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
-                >
-                  <Zap className="w-32 h-32 text-green-400" />
-                </motion.div>
-                <h3 className="text-xl font-mono text-green-400 mb-3 flex items-center gap-2">
-                  <motion.div
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, delay: 0.6 }}
-                  >
-                    🚀
-                  </motion.div>
-                  Mission
-                </h3>
-                <p className="text-white leading-relaxed relative z-10">
-                  Seeking PFE Internship to apply cutting-edge ML/AI skills in a dynamic environment where innovation
-                  meets impact.
+                <p>
+                  🎓 <span className="text-slate-100 font-medium">Education:</span> ENSIASD - Data Science, Big Data & AI
                 </p>
-              </motion.div>
-            </div>
+              </div>
 
-            <div className="space-y-6">
-              <motion.div
-                className="border border-cyan-400/30 p-6 rounded-lg bg-black/50 backdrop-blur-sm relative overflow-hidden"
-                whileHover={{
-                  boxShadow: "0 0 30px rgba(0, 255, 255, 0.3)",
-                  borderColor: "rgba(0, 255, 255, 0.8)",
-                }}
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-cyan-400/5 to-magenta-400/5"
-                  animate={{
-                    backgroundPosition: ["0% 0%", "100% 100%"],
-                  }}
-                  transition={{
-                    duration: 10,
-                    repeat: Number.POSITIVE_INFINITY,
-                    repeatType: "reverse",
-                  }}
-                />
-                <pre className="text-sm text-green-400 font-mono overflow-x-auto relative z-10">
-                  {`class AI:
+              {/* Code snippet */}
+              <div className="mt-6 bg-slate-900/50 rounded-lg p-4 border border-slate-700/50">
+                <pre className="text-sm text-slate-300 font-mono overflow-x-auto">
+{`class AI:
   def __init__(self):
-      self.name = "Mohammed El Kassoiri"
-      self.role = "Data Scientist 
-                          & AI Engineer"
-      self.location = "Morocco 🇲🇦"
-      self.focus = [
-         "Machine Learning",
-          "Deep Learning",
-          "Data Science",
-          "NLP"
-      ]
-    
+    self.name = "Mohammed El Kassoiri"
+    self.role = "Data Scientist & AI Engineer"
+    self.location = "Morocco 🇲🇦"
+    self.focus = ["Machine Learning", 
+                  "Deep Learning", 
+                  "Data Science", "NLP"]
+  
   def say_hi(self):
-      print("Let's build the future!")
+    print("Let's build the future!")
 
 me = AI()
 me.say_hi()`}
                 </pre>
-              </motion.div>
-{/*
-              <div className="grid grid-cols-2 gap-4">
-                <motion.div
-                  whileHover={{
-                    scale: 1.05,
-                    rotateY: 10,
-                    boxShadow: "0 20px 40px rgba(0, 255, 255, 0.3)",
-                  }}
-                  style={{ transformStyle: "preserve-3d" }}
-                  className="border border-cyan-400/30 p-4 rounded-lg bg-black/50 backdrop-blur-sm text-center relative overflow-hidden group"
-                >
-                  <motion.div className="absolute inset-0 bg-gradient-to-br from-cyan-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <motion.div
-                    className="text-3xl font-bold text-cyan-400 mb-2"
-                    animate={{
-                      textShadow: [
-                        "0 0 10px rgba(0, 255, 255, 0.5)",
-                        "0 0 20px rgba(0, 255, 255, 0.8)",
-                        "0 0 10px rgba(0, 255, 255, 0.5)",
-                      ],
-                    }}
-                    transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                  >
-                    1+
-                  </motion.div>
-                  <div className="text-sm text-white font-mono relative z-10">Years Experience</div>
-                </motion.div>
-                <motion.div
-                  whileHover={{
-                    scale: 1.05,
-                    rotateY: -10,
-                    boxShadow: "0 20px 40px rgba(255, 0, 255, 0.3)",
-                  }}
-                  style={{ transformStyle: "preserve-3d" }}
-                  className="border border-magenta-400/30 p-4 rounded-lg bg-black/50 backdrop-blur-sm text-center relative overflow-hidden group"
-                >
-                  <motion.div className="absolute inset-0 bg-gradient-to-br from-magenta-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <motion.div
-                    className="text-3xl font-bold text-magenta-400 mb-2"
-                    animate={{
-                      textShadow: [
-                        "0 0 10px rgba(255, 0, 255, 0.5)",
-                        "0 0 20px rgba(255, 0, 255, 0.8)",
-                        "0 0 10px rgba(255, 0, 255, 0.5)",
-                      ],
-                    }}
-                    transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, delay: 0.5 }}
-                  >
-                    10+
-                  </motion.div>
-                  <div className="text-sm text-white font-mono relative z-10">Projects</div>
-                </motion.div>
               </div>
-              */}
-            </div>
+            </motion.div>
+
+            {/* Current Focus Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2 }}
+              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
+                <Target className="w-6 h-6 text-blue-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-slate-100 mb-3">Current Focus</h3>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                Contributing to the X-EdTech Platform at XAI Morocco, building intelligent educational tools and AI-powered solutions.
+              </p>
+            </motion.div>
+
+            {/* Education Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3 }}
+              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
+                <GraduationCap className="w-6 h-6 text-blue-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-slate-100 mb-3">Education</h3>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                <span className="font-medium text-slate-100">ENSIASD</span>
+                <br />
+                Data Science, Big Data & AI
+                <br />
+                <span className="text-slate-400">Taroudant, Morocco</span>
+              </p>
+            </motion.div>
+
+            {/* Mission Card - Wide */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.4 }}
+              className="lg:col-span-2 bg-gradient-to-br from-blue-500/10 to-blue-400/5 backdrop-blur-sm border border-blue-500/30 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
+                <Briefcase className="w-6 h-6 text-blue-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-slate-100 mb-3">Mission</h3>
+              <p className="text-slate-300 leading-relaxed">
+                Seeking PFE Internship to apply cutting-edge ML/AI skills in a dynamic environment 
+                where innovation meets impact. Ready to contribute to meaningful projects that shape the future.
+              </p>
+            </motion.div>
           </div>
         </motion.div>
       </div>

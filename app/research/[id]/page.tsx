@@ -81,10 +81,6 @@ export default function ResearchDetailPage() {
                 <Calendar className="w-4 h-4 text-cyan-400" />
                 <span>{paper.date}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <FileText className="w-4 h-4 text-cyan-400" />
-                <span>{paper.venue}</span>
-              </div>
             </div>
 
             {/* Action Buttons */}

@@ -45,20 +45,18 @@ export function Contact() {
   })
 
   return (
-    <section id="contact" className="relative py-20 px-4 min-h-screen flex items-center" ref={ref}>
-      <div className="container mx-auto max-w-4xl z-10 relative text-center">
+    <section id="contact" className="bg-gray-50 py-20" ref={ref}>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-mono">
-            <span className="text-cyan-400">&lt;</span>
-            <span className="text-white">Get In Touch</span>
-            <span className="text-magenta-400">/&gt;</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+            Get In Touch
           </h2>
 
-          <p className="text-xl text-white mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
             I'm currently seeking a PFE internship and open to exciting opportunities in AI and Machine Learning. Let's
             connect and build something amazing together!
           </p>
@@ -72,37 +70,13 @@ export function Contact() {
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                whileHover={{ scale: 1.1, y: -5 }}
-                className="w-16 h-16 border border-cyan-400/30 rounded-lg bg-black/50 backdrop-blur-sm hover:border-cyan-400 transition-all flex items-center justify-center text-cyan-400 hover:text-white"
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="w-14 h-14 border-2 border-gray-300 rounded-lg bg-white hover:border-blue-600 hover:bg-blue-50 transition-all flex items-center justify-center text-gray-700 hover:text-blue-600"
               >
                 {link.icon}
               </motion.a>
             ))}
           </div>
-
-          {/* 
-          <motion.a
-            href="mailto:mohammed.kassoiri@gmail.com"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block px-12 py-4 bg-gradient-to-r from-cyan-400 to-magenta-500 text-black font-mono font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-400/50 transition-all"
-          >
-            Say Hello 👋
-          </motion.a>
-          */}
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-16 pt-8 border-t border-cyan-400/20"
-          >
-            <p className="text-white text-xs mt-2">© 2024 Mohammed El Kassoiri. All rights reserved.</p>
-          </motion.div>
         </motion.div>
       </div>
     </section>

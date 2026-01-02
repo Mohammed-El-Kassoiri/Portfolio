@@ -17,7 +17,7 @@ import {
 const skillCategories = [
   {
     title: "AI & Deep Learning",
-    color: "cyan",
+    color: "blue",
     skills: [
       { name: "Machine Learning", icon: Brain },
       { name: "Deep Learning", icon: Brain },
@@ -29,7 +29,7 @@ const skillCategories = [
   },
   {
     title: "Programming",
-    color: "magenta",
+    color: "blue",
     skills: [
       { name: "Python", icon: FileCode },
       { name: "SQL", icon: Database },
@@ -39,7 +39,7 @@ const skillCategories = [
   },
   {
     title: "Frameworks & APIs",
-    color: "green",
+    color: "blue",
     skills: [
       { name: "PyTorch", icon: Boxes },
       { name: "TensorFlow", icon: Boxes },
@@ -51,7 +51,7 @@ const skillCategories = [
   },
   {
     title: "Data & Databases",
-    color: "cyan",
+    color: "blue",
     skills: [
       { name: "Pandas", icon: Database },
       { name: "NumPy", icon: Database },
@@ -63,7 +63,7 @@ const skillCategories = [
   },
   {
     title: "NLP Stack",
-    color: "magenta",
+    color: "blue",
     skills: [
       { name: "NLTK", icon: MessageSquare },
       { name: "spaCy", icon: MessageSquare },
@@ -73,7 +73,7 @@ const skillCategories = [
   },
   {
     title: "Math & Theory",
-    color: "green",
+    color: "blue",
     skills: [
       { name: "Statistics", icon: BarChart3 },
       { name: "Probabilities", icon: BarChart3 },
@@ -89,47 +89,28 @@ export function Skills() {
     threshold: 0.1,
   })
 
-  const getColorClass = (color: string) => {
-    switch (color) {
-      case "cyan":
-        return "text-cyan-400"
-      case "magenta":
-        return "text-magenta-400"
-      case "green":
-        return "text-green-400"
-      default:
-        return "text-cyan-400"
-    }
-  }
-
   return (
-    <section id="skills" className="relative py-20 px-4" ref={ref}>
-      <div className="container mx-auto max-w-6xl z-10 relative">
+    <section id="skills" className="relative py-20 px-6" ref={ref}>
+      <div className="container mx-auto max-w-7xl z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 font-mono">
-            <span className="text-cyan-400">&lt;</span>
-            <span className="text-white">Skills & Expertise</span>
-            <span className="text-magenta-400">/&gt;</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-slate-100">
+            Skills & Expertise
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillCategories.map((category, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="border border-cyan-400/30 p-6 rounded-lg bg-black/50 backdrop-blur-sm hover:border-cyan-400 transition-all"
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300"
               >
-                <h3
-                  className={`text-xl font-mono mb-6 ${getColorClass(
-                    category.color,
-                  )}`}
-                >
+                <h3 className="text-xl font-semibold mb-6 text-blue-400">
                   {category.title}
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
@@ -142,16 +123,13 @@ export function Skills() {
                         animate={inView ? { opacity: 1, scale: 1 } : {}}
                         transition={{
                           duration: 0.5,
-                          delay: index * 0.2 + i * 0.1,
+                          delay: index * 0.1 + i * 0.05,
                         }}
-                        className="flex flex-col items-center gap-2 p-3 rounded-lg bg-gray-900/50 hover:bg-gray-800/50 transition-all group"
+                        whileHover={{ scale: 1.05 }}
+                        className="flex flex-col items-center gap-2 p-3 rounded-lg bg-slate-700/30 hover:bg-slate-700/50 transition-all group"
                       >
-                        <Icon
-                          className={`w-8 h-8 ${getColorClass(
-                            category.color,
-                          )} group-hover:scale-110 transition-transform`}
-                        />
-                        <span className="text-xs text-gray-300 text-center">
+                        <Icon className="w-8 h-8 text-blue-400 group-hover:scale-110 transition-transform" />
+                        <span className="text-xs text-slate-300 text-center font-medium">
                           {skill.name}
                         </span>
                       </motion.div>

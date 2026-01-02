@@ -19,12 +19,11 @@ const projects = [
       "Environmental impact focus",
       "High accuracy sorting by color",
     ],
-    gradient: "from-cyan-400 to-blue-500",
+    gradient: "from-blue-600 to-blue-400",
     github: "https://github.com/Mohammed-El-Kassoiri/vision-robotic-arm",
     demo: "https://www.youtube.com/watch?v=9RaW4qnF28s",
   },
 
-  //  English → Darija project UPDATED
   {
     title: "English → Darija Translation System",
     description:
@@ -43,7 +42,7 @@ const projects = [
       "Bidirectional English ↔ Darija translation (~83% accuracy)",
       "Context-aware understanding of informal dialect",
     ],
-    gradient: "from-magenta-400 to-purple-500",
+    gradient: "from-purple-600 to-purple-400",
     github: "https://github.com/Mohammed-El-Kassoiri/English-to-Darija-Translator",
     huggingface: "https://huggingface.co/NeoAivara/English_to_Darija_translator",
     demo: "https://huggingface.co/spaces/NeoAivara/English_to_Darija_translator",
@@ -69,7 +68,7 @@ const projects = [
       "User behavior & movie content analysis",
       "Fast & scalable API",
     ],
-    gradient: "from-green-400 to-emerald-500",
+    gradient: "from-green-600 to-green-400",
     github: "https://github.com/Mohammed-El-Kassoiri/Letterboxd-Movie-Analytics-Recommendation-System",
   },
 
@@ -85,12 +84,11 @@ const projects = [
       "Clinical knowledge base",
       "Accurate medical Q&A",
     ],
-    gradient: "from-red-400 to-pink-500",
+    gradient: "from-red-600 to-red-400",
     github: "https://github.com/Mohammed-El-Kassoiri/Medical-Diagnosis-COT-DeepSeek",
     huggingface: "https://huggingface.co/MOHAMMED7M7/AI_Doctor_V1",
   },
 
-  // 🆕 New Agriculture / U-Net project ADDED
   {
     title:
       "Cartographie du Stress Hydrique et du Potentiel d'Adaptation Agricole (Taroudant)",
@@ -113,10 +111,8 @@ const projects = [
       "Attention U-Net (Accuracy: 93.6%, Mean IoU: 0.81)",
       "Pipeline de weak supervision développé sur Google Earth Engine",
     ],
-    gradient: "from-amber-400 to-lime-500",
+    gradient: "from-amber-600 to-amber-400",
     github: "https://github.com/Mohammed-El-Kassoiri/Mapping-Water-Stress-and-Agricultural-Adaptation-Potential",
-    // Si tu veux aussi afficher le lien vers l’article,
-    // tu peux étendre le composant pour gérer un bouton "Article" avec une propriété `paper`.
     paper:
       "https://www.researchgate.net/publication/399089388_Mapping_Water_Stress_and_Agricultural_Adaptation_Potential_Using_Multi-Source_16-Band_Attention_U-Net_Case_of_Taroudant_Morocco",
   },
@@ -142,9 +138,7 @@ const projects = [
       "Strict source-cited legal answers",
       "Optimized for Moroccan legal texts",
     ],
-    gradient: "from-indigo-400 to-blue-600",
-    //github: "https://github.com/Mohammed-El-Kassoiri/MY-LAW",
-    // optional if deployed later
+    gradient: "from-indigo-600 to-indigo-400",
     demo: "https://huggingface.co/spaces/NeoAivara/law",
   },
 ]
@@ -184,16 +178,14 @@ export function Projects() {
 
   return (
     <section id="projects" className="relative py-20 px-4" ref={ref}>
-      <div className="container mx-auto max-w-6xl z-10 relative">
+      <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 font-mono">
-            <span className="text-cyan-400">&lt;</span>
-            <span className="text-white">Featured Projects</span>
-            <span className="text-magenta-400">/&gt;</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gray-900 dark:text-white">
+            Featured Projects
           </h2>
 
           <div className="mb-8 flex flex-wrap gap-2">
@@ -201,12 +193,12 @@ export function Projects() {
               <motion.button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-4 py-2 rounded font-mono text-sm transition-all ${
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                   selectedCategory === category.id
-                    ? "bg-cyan-400 text-black border border-cyan-400"
-                    : "bg-black/50 text-cyan-400 border border-cyan-400/30 hover:border-cyan-400"
+                    ? "bg-blue-600 text-white shadow-md"
+                    : "bg-white dark:bg-slate-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-slate-700 hover:border-blue-600 dark:hover:border-blue-400"
                 }`}
               >
                 {category.label}
@@ -220,36 +212,15 @@ export function Projects() {
               sortedProjects.map((project, index) => (
                 <motion.div
                   key={project.title}
-                  initial={{ opacity: 0, y: 50, rotateX: -15 }}
-                  animate={
-                    inView ? { opacity: 1, y: 0, rotateX: 0 } : {}
-                  }
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                  whileHover={{
-                    y: -15,
-                    rotateX: 5,
-                    rotateY: 5,
-                    scale: 1.02,
-                    transition: { duration: 0.3 },
-                  }}
-                  style={{ transformStyle: "preserve-3d", perspective: 1000 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 >
-                  <Card className="h-full border-cyan-400/30 bg-black/50 backdrop-blur-sm hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-400/30 transition-all p-6 relative overflow-hidden group">
-                    <motion.div
-                      className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-                      animate={{
-                        backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-                      }}
-                      transition={{
-                        duration: 5,
-                        repeat: Number.POSITIVE_INFINITY,
-                        ease: "linear",
-                      }}
-                    />
-
+                  <Card className="h-full bg-white dark:bg-slate-800 shadow-lg hover:shadow-xl transition-shadow border border-gray-200 dark:border-slate-700 p-6 relative overflow-hidden group">
                     <div className="relative z-10">
                       <div className="mb-3">
-                        <span className="inline-block px-2 py-1 text-xs font-mono bg-cyan-400/20 border border-cyan-400/50 text-cyan-400 rounded">
+                        <span className="inline-block px-2 py-1 text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded">
                           {
                             categories.find(
                               (c) => c.id === project.category
@@ -258,10 +229,8 @@ export function Projects() {
                         </span>
                       </div>
 
-                      <motion.div
+                      <div
                         className={`w-12 h-12 rounded-lg bg-gradient-to-br ${project.gradient} mb-4 flex items-center justify-center`}
-                        whileHover={{ rotate: 360, scale: 1.1 }}
-                        transition={{ duration: 0.6 }}
                       >
                         <svg
                           className="w-6 h-6 text-white"
@@ -276,58 +245,52 @@ export function Projects() {
                             d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
                           />
                         </svg>
-                      </motion.div>
+                      </div>
 
-                      <h3 className="text-xl font-bold text-white mb-3">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                         {project.title}
                       </h3>
-                      <p className="text-white text-sm mb-4 leading-relaxed">
+                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 leading-relaxed">
                         {project.description}
                       </p>
 
                       <ul className="space-y-2 mb-4">
                         {project.highlights.map((highlight, i) => (
-                          <motion.li
+                          <li
                             key={i}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={
-                              inView ? { opacity: 1, x: 0 } : {}
-                            }
-                            transition={{
-                              delay: index * 0.2 + i * 0.1,
-                            }}
-                            className="text-xs text-white flex items-start gap-2"
+                            className="text-xs text-gray-600 dark:text-gray-300 flex items-start gap-2"
                           >
-                            <span className="text-cyan-400">▹</span>
+                            <span className="text-blue-600 dark:text-blue-400">▹</span>
                             <span>{highlight}</span>
-                          </motion.li>
+                          </li>
                         ))}
                       </ul>
 
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.tags.map((tag, i) => (
-                          <motion.span
+                          <span
                             key={i}
-                            whileHover={{ scale: 1.1, y: -2 }}
-                            className="px-2 py-1 text-xs font-mono border border-cyan-400/30 text-cyan-400 rounded hover:bg-cyan-400/10 transition-colors"
+                            className="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 rounded"
                           >
                             {tag}
-                          </motion.span>
+                          </span>
                         ))}
                       </div>
 
                       <div className="flex gap-2">
-                        <motion.a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.05, x: 2 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="flex items-center gap-2 px-3 py-2 text-xs font-mono border border-cyan-400/50 text-cyan-400 rounded hover:bg-cyan-400/20 hover:border-cyan-400 transition-all"
-                        >
-                          <Github className="w-4 h-4" />
-                          <span>View Code</span>
-                        </motion.a>
+                        {project.github && (
+                          <motion.a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex items-center gap-2 px-3 py-2 text-xs font-medium border border-gray-200 dark:border-slate-700 text-gray-600 dark:text-gray-300 rounded-lg hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all"
+                          >
+                            <Github className="w-4 h-4" />
+                            <span>Code</span>
+                          </motion.a>
+                        )}
 
                         {/* Show Demo if available; otherwise show Hugging Face if available. Never both. */}
                         {project.demo ? (
@@ -335,9 +298,9 @@ export function Projects() {
                             href={project.demo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            whileHover={{ scale: 1.05, x: 2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 px-3 py-2 text-xs font-mono border border-cyan-400/50 text-cyan-400 rounded hover:bg-cyan-400/20 hover:border-cyan-400 transition-all"
+                            className="flex items-center gap-2 px-3 py-2 text-xs font-medium border border-gray-200 dark:border-slate-700 text-gray-600 dark:text-gray-300 rounded-lg hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all"
                           >
                             <ExternalLink className="w-4 h-4" />
                             <span>Demo</span>
@@ -347,12 +310,12 @@ export function Projects() {
                             href={project.huggingface}
                             target="_blank"
                             rel="noopener noreferrer"
-                            whileHover={{ scale: 1.05, x: 2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 px-3 py-2 text-xs font-mono border border-cyan-400/50 text-cyan-400 rounded hover:bg-cyan-400/20 hover:border-cyan-400 transition-all"
+                            className="flex items-center gap-2 px-3 py-2 text-xs font-medium border border-gray-200 dark:border-slate-700 text-gray-600 dark:text-gray-300 rounded-lg hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all"
                           >
                             <ExternalLink className="w-4 h-4" />
-                            <span>Hugging Face</span>
+                            <span>HF</span>
                           </motion.a>
                         ) : null}
 
@@ -361,9 +324,9 @@ export function Projects() {
                             href={project.paper}
                             target="_blank"
                             rel="noopener noreferrer"
-                            whileHover={{ scale: 1.05, x: 2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 px-3 py-2 text-xs font-mono border border-cyan-400/50 text-cyan-400 rounded hover:bg-cyan-400/20 hover:border-cyan-400 transition-all"
+                            className="flex items-center gap-2 px-3 py-2 text-xs font-medium border border-gray-200 dark:border-slate-700 text-gray-600 dark:text-gray-300 rounded-lg hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all"
                           >
                             <FileText className="w-4 h-4" />
                             <span>Paper</span>
@@ -376,7 +339,7 @@ export function Projects() {
               ))
             ) : (
               <div className="col-span-full text-center py-12">
-                <p className="text-white/60 text-lg">
+                <p className="text-gray-500 dark:text-gray-400 text-lg">
                   No projects found matching your search.
                 </p>
               </div>

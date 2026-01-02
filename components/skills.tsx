@@ -17,7 +17,6 @@ import {
 const skillCategories = [
   {
     title: "AI & Deep Learning",
-    color: "blue",
     skills: [
       { name: "Machine Learning", icon: Brain },
       { name: "Deep Learning", icon: Brain },
@@ -29,7 +28,6 @@ const skillCategories = [
   },
   {
     title: "Programming",
-    color: "green",
     skills: [
       { name: "Python", icon: FileCode },
       { name: "SQL", icon: Database },
@@ -39,7 +37,6 @@ const skillCategories = [
   },
   {
     title: "Frameworks & APIs",
-    color: "orange",
     skills: [
       { name: "PyTorch", icon: Boxes },
       { name: "TensorFlow", icon: Boxes },
@@ -51,7 +48,6 @@ const skillCategories = [
   },
   {
     title: "Data & Databases",
-    color: "blue",
     skills: [
       { name: "Pandas", icon: Database },
       { name: "NumPy", icon: Database },
@@ -63,7 +59,6 @@ const skillCategories = [
   },
   {
     title: "NLP Stack",
-    color: "green",
     skills: [
       { name: "NLTK", icon: MessageSquare },
       { name: "spaCy", icon: MessageSquare },
@@ -73,7 +68,6 @@ const skillCategories = [
   },
   {
     title: "Math & Theory",
-    color: "orange",
     skills: [
       { name: "Statistics", icon: BarChart3 },
       { name: "Probabilities", icon: BarChart3 },
@@ -88,19 +82,6 @@ export function Skills() {
     triggerOnce: true,
     threshold: 0.1,
   })
-
-  const getColorClass = (color: string) => {
-    switch (color) {
-      case "blue":
-        return "text-blue-600 dark:text-blue-400"
-      case "green":
-        return "text-green-600 dark:text-green-400"
-      case "orange":
-        return "text-orange-600 dark:text-orange-400"
-      default:
-        return "text-blue-600 dark:text-blue-400"
-    }
-  }
 
   return (
     <section id="skills" className="relative py-20 px-4" ref={ref}>
@@ -123,11 +104,7 @@ export function Skills() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="p-6 rounded-xl bg-white dark:bg-slate-800 shadow-lg border border-gray-200 dark:border-slate-700"
               >
-                <h3
-                  className={`text-xl font-semibold mb-6 ${getColorClass(
-                    category.color,
-                  )}`}
-                >
+                <h3 className="text-xl font-semibold mb-6 text-blue-600 dark:text-blue-400">
                   {category.title}
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
@@ -145,11 +122,7 @@ export function Skills() {
                         whileHover={{ scale: 1.05 }}
                         className="flex flex-col items-center gap-2 p-3 rounded-lg bg-gray-50 dark:bg-slate-900 hover:bg-gray-100 dark:hover:bg-slate-700 transition-all group"
                       >
-                        <Icon
-                          className={`w-8 h-8 ${getColorClass(
-                            category.color,
-                          )}`}
-                        />
+                        <Icon className="w-8 h-8 text-blue-600 dark:text-blue-400" />
                         <span className="text-xs text-gray-700 dark:text-gray-300 text-center font-medium">
                           {skill.name}
                         </span>

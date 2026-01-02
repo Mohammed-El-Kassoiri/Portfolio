@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { Card } from "@/components/ui/card"
 import Link from "next/link"
+import { FileText, ArrowRight } from "lucide-react"
 import { researchPapers } from "@/lib/research-data"
 
 export function Research() {
@@ -13,51 +13,40 @@ export function Research() {
   })
 
   return (
-    <section id="research" className="relative py-20 px-4" ref={ref}>
-      <div className="container mx-auto max-w-6xl z-10 relative">
+    <section id="research" className="section" ref={ref}>
+      <div className="container mx-auto max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 font-mono">
-            <span className="text-cyan-400">&lt;</span>
-            <span className="text-white">Research &amp; Publications</span>
-            <span className="text-magenta-400">/&gt;</span>
-          </h2>
+          <h2 className="section-title">Research & Publications</h2>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             {researchPapers.map((paper, index) => (
               <motion.div
                 key={paper.id}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                whileHover={{
-                  y: -5,
-                  transition: { duration: 0.3 },
-                }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Link href={`/research/${paper.id}`}>
-                  <Card className="border-cyan-400/30 bg-black/50 backdrop-blur-sm hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-400/30 transition-all p-6 md:p-8 relative overflow-hidden group cursor-pointer">
-                    <motion.div
-                      className={`absolute inset-0 bg-gradient-to-br ${paper.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-                      animate={{
-                        backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-                      }}
-                      transition={{
-                        duration: 5,
-                        repeat: Number.POSITIVE_INFINITY,
-                        ease: "linear",
-                      }}
-                    />
-
-                    <div className="relative z-10">
-                      <h3 className="text-2xl md:text-3xl font-bold text-white">
-                        {paper.title}
-                      </h3>
+                  <div className="card p-6 hover:-translate-y-1 transition-transform duration-200 cursor-pointer group">
+                    <div className="flex items-start gap-4">
+                      <div className="p-2 bg-blue-50 rounded-lg">
+                        <FileText className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                          {paper.title}
+                        </h3>
+                        <div className="flex items-center gap-2 text-blue-600 text-sm font-medium">
+                          <span>Read more</span>
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                      </div>
                     </div>
-                  </Card>
+                  </div>
                 </Link>
               </motion.div>
             ))}

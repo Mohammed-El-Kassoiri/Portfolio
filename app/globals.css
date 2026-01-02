@@ -1,45 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  
   body {
-    @apply bg-white text-gray-900;
     font-feature-settings: "rlig" 1, "calt" 1;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
-  }
-}
-
-@layer components {
-  .section {
-    @apply py-16 md:py-24;
-  }
-  
-  .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-12 text-gray-900;
-  }
-  
-  .card {
-    @apply bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200;
-  }
-  
-  .btn-primary {
-    @apply px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium;
-  }
-  
-  .btn-secondary {
-    @apply px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors duration-200 font-medium;
-  }
-  
-  .badge {
-    @apply px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full;
   }
 }
 
@@ -52,4 +15,78 @@
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
+}
+
+/* Custom classes */
+.section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.section-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: #111827;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 2.25rem;
+  }
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition-property: box-shadow;
+  transition-duration: 200ms;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-primary {
+  padding: 0.75rem 1.5rem;
+  background-color: #2563EB;
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: background-color 200ms;
+}
+
+.btn-primary:hover {
+  background-color: #1D4ED8;
+}
+
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #2563EB;
+  color: #2563EB;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition-property: background-color;
+  transition-duration: 200ms;
+}
+
+.btn-secondary:hover {
+  background-color: #EFF6FF;
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  background-color: #F3F4F6;
+  color: #374151;
+  font-size: 0.875rem;
+  border-radius: 9999px;
 }

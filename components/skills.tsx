@@ -106,7 +106,7 @@ export function Skills() {
                   {category.title}
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                  {category.skills.map((skill, skillIndex) => {
+                  {category.skills.map((skill) => {
                     const Icon = skill.icon
                     return (
                       <div
@@ -118,74 +118,6 @@ export function Skills() {
                           {skill.name}
                         </span>
                       </div>
-                    )
-                  })}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-        return "text-cyan-400"
-    }
-  }
-
-  return (
-    <section id="skills" className="relative py-20 px-4" ref={ref}>
-      <div className="container mx-auto max-w-6xl z-10 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 font-mono">
-            <span className="text-cyan-400">&lt;</span>
-            <span className="text-white">Skills & Expertise</span>
-            <span className="text-magenta-400">/&gt;</span>
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skillCategories.map((category, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="border border-cyan-400/30 p-6 rounded-lg bg-black/50 backdrop-blur-sm hover:border-cyan-400 transition-all"
-              >
-                <h3
-                  className={`text-xl font-mono mb-6 ${getColorClass(
-                    category.color,
-                  )}`}
-                >
-                  {category.title}
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {category.skills.map((skill, i) => {
-                    const Icon = skill.icon
-                    return (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={inView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{
-                          duration: 0.5,
-                          delay: index * 0.2 + i * 0.1,
-                        }}
-                        className="flex flex-col items-center gap-2 p-3 rounded-lg bg-gray-900/50 hover:bg-gray-800/50 transition-all group"
-                      >
-                        <Icon
-                          className={`w-8 h-8 ${getColorClass(
-                            category.color,
-                          )} group-hover:scale-110 transition-transform`}
-                        />
-                        <span className="text-xs text-gray-300 text-center">
-                          {skill.name}
-                        </span>
-                      </motion.div>
                     )
                   })}
                 </div>

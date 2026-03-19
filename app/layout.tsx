@@ -7,6 +7,7 @@ import "./globals.css"
 const siteUrl = "https://mohammed-el-kassoiri.vercel.app"
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Mohammed El Kassoiri | AI Engineer & Data Scientist",
     template: "%s | Mohammed El Kassoiri",
@@ -68,19 +69,19 @@ export const metadata: Metadata = {
       "AI Engineer & Data Scientist from Morocco specializing in Machine Learning, Deep Learning, Computer Vision, NLP, and Agricultural AI.",
     images: [
       {
-        url: `${siteUrl}/apple-icon.png`,
-        width: 180,
-        height: 180,
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
         alt: "Mohammed El Kassoiri – AI Engineer & Data Scientist",
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Mohammed El Kassoiri | AI Engineer & Data Scientist",
     description:
       "AI Engineer & Data Scientist from Morocco specializing in Machine Learning, Deep Learning, Computer Vision, NLP, and Agricultural AI.",
-    images: [`${siteUrl}/apple-icon.png`],
+    images: [`${siteUrl}/opengraph-image`],
   },
   alternates: {
     canonical: siteUrl,

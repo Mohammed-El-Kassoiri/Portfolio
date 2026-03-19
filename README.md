@@ -23,8 +23,8 @@ class AIEngineer:
         self.education = "ENSIASD - Data Science, Big Data & AI"
         self.location = "Morocco 🇲🇦"
         self.current_focus = ["Machine Learning", "Deep Learning", "Computer Vision", "NLP"]
-        self.current_project = "X-EdTech Platform at XAI Morocco"
-        self.seeking = "PFE Internship"
+        self.current_project = "PFE – Parcellisation Automatique des Parcelles Agricoles"
+        self.status = "Completing Engineering Degree (PFE) — Open to Full-Time Roles"
     
     def say_hi(self):
         print("Thanks for dropping by! Let's build the future with AI 🤖")
@@ -253,9 +253,9 @@ English          ███████████████ 75%
   <img src="https://media.giphy.com/media/836HiJc7pgzy8iNXCn/giphy.gif" width="300"/>
 </div>
 
-> **Seeking PFE Internship** 🎯
+> **Open to Full-Time Opportunities** 🎯
 > 
-> Ready to apply cutting-edge ML/AI skills in a dynamic environment where innovation meets impact. Let's build the future together! 
+> AI & Data Engineer completing an Engineering degree — ready to apply cutting-edge ML/AI skills in a dynamic, full-time environment where innovation meets impact. Let's build the future together!
 
 ---
 

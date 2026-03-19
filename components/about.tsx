@@ -85,9 +85,9 @@ me.say_hi()`}
               <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
                 <Target className="w-6 h-6 text-blue-400" />
               </div>
-              <h3 className="text-xl font-semibold text-slate-100 mb-3">Recent Project</h3>
+              <h3 className="text-xl font-semibold text-slate-100 mb-3">Featured Project (PFE)</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
-                 Group project focused on water stress mapping and cartographic analysis to support water resource management and agricultural decision-making.
+                Parcellisation Automatique des Parcelles Agricoles — Deep Learning system for automatic agricultural field delineation from satellite imagery using multi-task segmentation and edge detection.
               </p>
             </motion.div>
 
@@ -123,8 +123,7 @@ me.say_hi()`}
               </div>
               <h3 className="text-xl font-semibold text-slate-100 mb-3">Mission</h3>
               <p className="text-slate-300 leading-relaxed">
-                Seeking PFE Internship to apply cutting-edge ML/AI skills in a dynamic environment 
-                where innovation meets impact. Ready to contribute to meaningful projects that shape the future.
+                AI & Data Engineer ready for the industry — seeking full-time roles in AI, Data Science, or Software Engineering where cutting-edge ML skills meet real-world impact. Ready to contribute to meaningful projects that shape the future.
               </p>
             </motion.div>
           </div>

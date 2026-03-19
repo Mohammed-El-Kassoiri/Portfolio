@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og"
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://mohammed-el-kassoiri.vercel.app"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mohammedelkassoiri.app"
 const siteHost = siteUrl.replace(/^https?:\/\//, "")
 
 export const runtime = "edge"

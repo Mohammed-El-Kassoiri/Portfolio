@@ -23,7 +23,7 @@ export function FeaturedProjectPFE() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-slate-100">
-            Featured Project
+            Projet de Fin d&apos;Études
           </h2>
 
           {/* Card */}

@@ -41,7 +41,7 @@ export function Contact() {
           </h2>
 
           <p className="text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-            I'm currently seeking a PFE internship and open to exciting opportunities in AI and Machine Learning. 
+            I'm an AI & Data Engineer open to exciting full-time opportunities in AI, Data Science, and Machine Learning. 
             Let's connect and build something amazing together!
           </p>
 

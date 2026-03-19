@@ -181,7 +181,7 @@ export function Projects() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-slate-100">
-            Featured Projects
+            Academic and Personal Projects
           </h2>
 
           {/* Filter buttons */}

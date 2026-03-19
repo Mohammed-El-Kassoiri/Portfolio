@@ -4,24 +4,24 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: 15 23 42; /* slate-900 */
-  --foreground: 241 245 249; /* slate-100 */
-  --card: 30 41 59; /* slate-800 */
-  --card-foreground: 241 245 249; /* slate-100 */
-  --popover: 30 41 59; /* slate-800 */
-  --popover-foreground: 241 245 249; /* slate-100 */
+  --background: 248 250 252; /* slate-50 */
+  --foreground: 15 23 42; /* slate-900 */
+  --card: 241 245 249; /* slate-100 */
+  --card-foreground: 15 23 42; /* slate-900 */
+  --popover: 241 245 249; /* slate-100 */
+  --popover-foreground: 15 23 42; /* slate-900 */
   --primary: 59 130 246; /* blue-500 */
-  --primary-foreground: 241 245 249; /* slate-100 */
-  --secondary: 51 65 85; /* slate-700 */
-  --secondary-foreground: 241 245 249; /* slate-100 */
-  --muted: 51 65 85; /* slate-700 */
-  --muted-foreground: 203 213 225; /* slate-300 */
-  --accent: 96 165 250; /* blue-400 */
-  --accent-foreground: 241 245 249; /* slate-100 */
+  --primary-foreground: 255 255 255;
+  --secondary: 226 232 240; /* slate-200 */
+  --secondary-foreground: 15 23 42; /* slate-900 */
+  --muted: 226 232 240; /* slate-200 */
+  --muted-foreground: 100 116 139; /* slate-500 */
+  --accent: 37 99 235; /* blue-600 */
+  --accent-foreground: 255 255 255;
   --destructive: 239 68 68; /* red-500 */
-  --destructive-foreground: 241 245 249; /* slate-100 */
-  --border: 71 85 105; /* slate-600 */
-  --input: 71 85 105; /* slate-600 */
+  --destructive-foreground: 255 255 255;
+  --border: 203 213 225; /* slate-300 */
+  --input: 203 213 225; /* slate-300 */
   --ring: 59 130 246; /* blue-500 */
   --chart-1: 59 130 246; /* blue-500 */
   --chart-2: 96 165 250; /* blue-400 */
@@ -29,13 +29,13 @@
   --chart-4: 191 219 254; /* blue-200 */
   --chart-5: 37 99 235; /* blue-600 */
   --radius: 0.75rem;
-  --sidebar: 30 41 59; /* slate-800 */
-  --sidebar-foreground: 241 245 249; /* slate-100 */
+  --sidebar: 241 245 249; /* slate-100 */
+  --sidebar-foreground: 15 23 42; /* slate-900 */
   --sidebar-primary: 59 130 246; /* blue-500 */
-  --sidebar-primary-foreground: 241 245 249; /* slate-100 */
-  --sidebar-accent: 51 65 85; /* slate-700 */
-  --sidebar-accent-foreground: 241 245 249; /* slate-100 */
-  --sidebar-border: 71 85 105; /* slate-600 */
+  --sidebar-primary-foreground: 255 255 255;
+  --sidebar-accent: 226 232 240; /* slate-200 */
+  --sidebar-accent-foreground: 15 23 42; /* slate-900 */
+  --sidebar-border: 203 213 225; /* slate-300 */
   --sidebar-ring: 59 130 246; /* blue-500 */
 }
 

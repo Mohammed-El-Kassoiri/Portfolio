@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://mohammed-el-kassoiri.vercel.app"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mohammedelkassoiri.app"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

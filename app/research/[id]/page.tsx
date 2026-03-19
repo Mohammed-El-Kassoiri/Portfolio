@@ -21,7 +21,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const siteUrl = "https://mohammed-el-kassoiri.vercel.app"
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mohammedelkassoiri.app"
   const pageUrl = `${siteUrl}/research/${paper.id}`
 
   return {

@@ -12,6 +12,9 @@ import {
   FileCode,
   Boxes,
   Wrench,
+  Satellite,
+  Map,
+  Layers,
 } from "lucide-react"
 
 const skillCategories = [
@@ -25,6 +28,9 @@ const skillCategories = [
       { name: "Hugging Face", icon: Brain },
       { name: "Computer Vision", icon: Eye },
       { name: "NLP", icon: MessageSquare },
+      { name: "Semantic Segmentation", icon: Eye },
+      { name: "Edge Detection", icon: Eye },
+      { name: "Multi-task Learning", icon: Layers },
     ],
   },
   {
@@ -45,6 +51,7 @@ const skillCategories = [
       { name: "TensorFlow", icon: Boxes },
       { name: "Keras", icon: Boxes },
       { name: "Scikit-learn", icon: Boxes },
+      { name: "DeepLabV3+", icon: Boxes },
       { name: "Flask", icon: Wrench },
       { name: "FastAPI", icon: Wrench },
     ],
@@ -79,6 +86,18 @@ const skillCategories = [
       { name: "Probabilities", icon: BarChart3 },
       { name: "Linear Algebra", icon: BarChart3 },
       { name: "Analysis", icon: BarChart3 },
+    ],
+  },
+  {
+    title: "Remote Sensing & GIS",
+    color: "blue",
+    skills: [
+      { name: "Remote Sensing", icon: Satellite },
+      { name: "Google Earth Engine", icon: Satellite },
+      { name: "QGIS", icon: Map },
+      { name: "Sentinel-2", icon: Satellite },
+      { name: "NDVI / Veg. Indices", icon: BarChart3 },
+      { name: "Encoder-Decoder", icon: Layers },
     ],
   },
 ]

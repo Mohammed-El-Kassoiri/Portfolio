@@ -39,7 +39,7 @@ export function FeaturedProjectPFE() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
               </span>
-              Projet de Fin d&apos;Études (Featured)
+              Projet de Fin d&apos;Études · En cours
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">

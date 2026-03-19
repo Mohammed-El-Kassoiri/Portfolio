@@ -89,7 +89,7 @@ export function Experience() {
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
                       </span>
-                      Projet de Fin d&apos;Études (PFE)
+                      Projet de Fin d&apos;Études (PFE) · En cours
                     </div>
                   )}
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">

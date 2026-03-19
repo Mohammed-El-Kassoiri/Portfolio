@@ -85,7 +85,7 @@ export function Contact() {
             className="mt-16 pt-8 border-t border-slate-700"
           >
             <p className="text-slate-400 text-sm">
-              © 2024 Mohammed El Kassoiri. All rights reserved.
+              © 2026 Mohammed El Kassoiri. All rights reserved.
             </p>
           </motion.div>
         </motion.div>

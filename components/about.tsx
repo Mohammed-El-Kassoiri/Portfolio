@@ -43,8 +43,8 @@ export function About() {
               
               <div className="space-y-4 text-slate-300 leading-relaxed">
                 <p>
-                  Data Scientist & AI Engineer specializing in Machine Learning and Deep Learning. 
-                  Currently contributing to the X-EdTech Platform at XAI Morocco.
+                  Data Scientist & AI Engineer specializing in Machine Learning, Deep Learning, and Computer Vision.
+                  Currently working on AI for agricultural parcelization.
                 </p>
                 <p>
                   🌍 <span className="text-slate-100 font-medium">Location:</span> Morocco 🇲🇦
@@ -85,7 +85,16 @@ me.say_hi()`}
               <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
                 <Target className="w-6 h-6 text-blue-400" />
               </div>
-              <h3 className="text-xl font-semibold text-slate-100 mb-3">Featured Project (PFE)</h3>
+              <div className="flex items-center gap-2 mb-3">
+                <h3 className="text-xl font-semibold text-slate-100">Featured Project (PFE)</h3>
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-semibold">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-purple-500"></span>
+                  </span>
+                  En cours
+                </span>
+              </div>
               <p className="text-slate-300 text-sm leading-relaxed">
                 Parcellisation Automatique des Parcelles Agricoles — Deep Learning system for automatic agricultural field delineation from satellite imagery using multi-task segmentation and edge detection.
               </p>

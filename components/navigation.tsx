@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
+import { Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 
 const navItems = [
@@ -18,6 +20,12 @@ const navItems = [
 export function Navigation() {
   const [activeSection, setActiveSection] = useState("hero")
   const [scrolled, setScrolled] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,12 +60,14 @@ export function Navigation() {
       animate={{ y: 0 }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "bg-slate-900/80 backdrop-blur-lg border-b border-slate-700/50" : "bg-transparent",
+        scrolled
+          ? "bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200/50 dark:border-slate-700/50"
+          : "bg-transparent",
       )}
     >
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="flex items-center justify-between h-16">
-          <motion.div 
+          <motion.div
             className="text-xl font-bold"
             whileHover={{ scale: 1.05 }}
           >
@@ -71,9 +81,9 @@ export function Navigation() {
                 onClick={() => scrollToSection(item.id)}
                 className={cn(
                   "px-4 py-2 text-sm font-medium transition-all duration-300 relative rounded-lg",
-                  activeSection === item.id 
-                    ? "text-blue-400" 
-                    : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50",
+                  activeSection === item.id
+                    ? "text-blue-400"
+                    : "text-slate-300 dark:text-slate-300 hover:text-blue-400 hover:bg-slate-800/50",
                 )}
               >
                 {item.label}
@@ -88,16 +98,35 @@ export function Navigation() {
             ))}
           </div>
 
-          <motion.a
-            href="/Mohammed_el_kassoiri.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-6 py-2 text-sm font-medium border-2 border-blue-500 text-blue-400 hover:bg-blue-500/10 transition-all rounded-lg"
-          >
-            Resume
-          </motion.a>
+          <div className="flex items-center gap-3">
+            {/* Theme toggle */}
+            {mounted && (
+              <motion.button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Toggle theme"
+                className="p-2 rounded-lg text-slate-300 hover:text-blue-400 hover:bg-slate-800/50 transition-all duration-300"
+              >
+                {theme === "dark" ? (
+                  <Sun className="w-5 h-5" />
+                ) : (
+                  <Moon className="w-5 h-5" />
+                )}
+              </motion.button>
+            )}
+
+            <motion.a
+              href="/Mohammed_el_kassoiri.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-2 text-sm font-medium border-2 border-blue-500 text-blue-400 hover:bg-blue-500/10 transition-all rounded-lg"
+            >
+              Resume
+            </motion.a>
+          </div>
         </div>
       </div>
     </motion.nav>

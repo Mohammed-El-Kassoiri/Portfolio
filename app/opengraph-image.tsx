@@ -1,5 +1,9 @@
 import { ImageResponse } from "next/og"
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://mohammed-el-kassoiri.vercel.app"
+const siteHost = siteUrl.replace(/^https?:\/\//, "")
+
 export const runtime = "edge"
 
 export const alt = "Mohammed El Kassoiri – AI Engineer & Data Scientist"
@@ -121,7 +125,7 @@ export default function Image() {
               letterSpacing: "0.03em",
             }}
           >
-            mohammed-el-kassoiri.vercel.app
+            {siteHost}
           </div>
         </div>
       </div>

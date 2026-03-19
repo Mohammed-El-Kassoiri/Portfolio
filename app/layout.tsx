@@ -2,9 +2,11 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
-const siteUrl = "https://mohammed-el-kassoiri.vercel.app"
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://mohammed-el-kassoiri.vercel.app"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -122,7 +124,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -130,9 +132,16 @@ export default function RootLayout({
         />
       </head>
       <body className={`font-sans antialiased`}>
-        {children}
-        <Analytics />
-        <SpeedInsights />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          {children}
+          <Analytics />
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -1,7 +1,9 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
+import { useTheme } from "next-themes"
 import { Building2 } from "lucide-react"
 
 const experiences = [
@@ -42,6 +44,10 @@ export function Experience() {
     triggerOnce: true,
     threshold: 0.1,
   })
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  const isCyber = mounted && theme === "cyber"
 
   return (
     <section id="experience" className="relative py-20 px-6" ref={ref}>
@@ -51,13 +57,15 @@ export function Experience() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-slate-100">
+          <h2 className={`text-4xl md:text-5xl font-bold mb-12 ${isCyber ? "text-red-100" : "text-slate-100"}`}>
             Experience
           </h2>
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-0 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-blue-400 to-transparent" />
+            <div className={`absolute left-0 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b ${
+              isCyber ? "from-red-700 via-red-600 to-transparent" : "from-blue-500 via-blue-400 to-transparent"
+            }`} />
 
             {experiences.map((exp, index) => (
               <motion.div
@@ -79,7 +87,11 @@ export function Experience() {
                   whileHover={{ y: -4 }}
                   className={`backdrop-blur-sm rounded-xl p-6 md:p-8 transition-all duration-300 shadow-xl ml-8 md:ml-0 ${
                     exp.type === "pfe"
-                      ? "bg-white/[0.03] border border-purple-500/30 hover:border-purple-500/60 hover:shadow-[0_0_40px_rgba(168,85,247,0.12)]"
+                      ? isCyber
+                        ? "bg-black/60 border border-purple-900/40 hover:border-purple-600/60"
+                        : "bg-white/[0.03] border border-purple-500/30 hover:border-purple-500/60 hover:shadow-[0_0_40px_rgba(168,85,247,0.12)]"
+                      : isCyber
+                      ? "bg-black/60 border border-red-900/40 hover:border-red-600/60"
                       : "bg-slate-800/50 border border-slate-700 hover:border-blue-500/50"
                   }`}
                 >
@@ -94,18 +106,20 @@ export function Experience() {
                   )}
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-slate-100 mb-2">{exp.title}</h3>
-                      <div className={`flex items-center gap-2 font-medium mb-2 ${exp.type === "pfe" ? "text-purple-400" : "text-blue-400"}`}>
+                      <h3 className={`text-2xl font-bold mb-2 ${isCyber ? "text-red-100" : "text-slate-100"}`}>{exp.title}</h3>
+                      <div className={`flex items-center gap-2 font-medium mb-2 ${exp.type === "pfe" ? "text-purple-400" : isCyber ? "text-red-400" : "text-blue-400"}`}>
                         <Building2 className="w-4 h-4" />
                         <span>{exp.company}</span>
                       </div>
                     </div>
-                    <div className="text-sm text-slate-400 font-medium bg-slate-700/50 px-4 py-2 rounded-lg whitespace-nowrap">
+                    <div className={`text-sm font-medium px-4 py-2 rounded-lg whitespace-nowrap ${
+                      isCyber ? "text-red-300/70 bg-red-900/20" : "text-slate-400 bg-slate-700/50"
+                    }`}>
                       {exp.period}
                     </div>
                   </div>
 
-                  <p className="text-slate-300 mb-6 leading-relaxed">{exp.description}</p>
+                  <p className={`mb-6 leading-relaxed ${isCyber ? "text-red-200/70" : "text-slate-300"}`}>{exp.description}</p>
 
                   <ul className="space-y-3 mb-6">
                     {exp.highlights.map((highlight, i) => (
@@ -114,9 +128,9 @@ export function Experience() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={inView ? { opacity: 1, x: 0 } : {}}
                         transition={{ delay: index * 0.2 + i * 0.1 }}
-                        className="text-sm text-slate-300 flex items-start gap-3"
+                        className={`text-sm flex items-start gap-3 ${isCyber ? "text-red-200/70" : "text-slate-300"}`}
                       >
-                        <span className="text-blue-400 mt-1">▹</span>
+                        <span className={`mt-1 ${isCyber ? "text-red-500" : "text-blue-400"}`}>▹</span>
                         <span>{highlight}</span>
                       </motion.li>
                     ))}
@@ -129,6 +143,8 @@ export function Experience() {
                         className={`px-3 py-1 text-xs font-medium rounded-full border ${
                           exp.type === "pfe"
                             ? "bg-purple-500/20 text-purple-300 border-purple-500/30"
+                            : isCyber
+                            ? "bg-red-700/20 text-red-300 border-red-700/30"
                             : "bg-blue-500/20 text-blue-300 border-blue-500/30"
                         }`}
                       >

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -110,39 +110,41 @@ export function Navigation() {
         </div>
 
         {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="md:hidden py-4 border-t border-gray-200"
-          >
-            <div className="flex flex-col space-y-2">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={cn(
-                    "px-4 py-2 text-left text-sm transition-colors",
-                    activeSection === item.id 
-                      ? "text-blue-600 font-medium bg-blue-50" 
-                      : "text-gray-600 hover:bg-gray-50",
-                  )}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="md:hidden py-4 border-t border-gray-200"
+            >
+              <div className="flex flex-col space-y-2">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={cn(
+                      "px-4 py-2 text-left text-sm transition-colors",
+                      activeSection === item.id 
+                        ? "text-blue-600 font-medium bg-blue-50" 
+                        : "text-gray-600 hover:bg-gray-50",
+                    )}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+                <a
+                  href="/Mohammed_el_kassoiri.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mx-4 mt-2 px-4 py-2 text-sm font-medium text-center border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
                 >
-                  {item.label}
-                </button>
-              ))}
-              <a
-                href="/Mohammed_el_kassoiri.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mx-4 mt-2 px-4 py-2 text-sm font-medium text-center border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
-              >
-                Resume
-              </a>
-            </div>
-          </motion.div>
-        )}
+                  Resume
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   )

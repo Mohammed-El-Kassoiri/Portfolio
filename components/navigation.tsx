@@ -17,11 +17,13 @@ const navItems = [
   { id: "contact", label: "Contact" },
 ]
 
+const themeOrder = ["dark", "cyber", "light"] as const
+type Theme = (typeof themeOrder)[number]
+
 /** Cycle: dark → cyber → light → dark */
-function nextTheme(current: string | undefined): string {
-  if (current === "dark") return "cyber"
-  if (current === "cyber") return "light"
-  return "dark"
+function nextTheme(current: string | undefined): Theme {
+  const idx = themeOrder.indexOf((current ?? "dark") as Theme)
+  return themeOrder[(idx + 1) % themeOrder.length]
 }
 
 function ThemeIcon({ theme }: { theme: string | undefined }) {

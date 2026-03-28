@@ -1,7 +1,9 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
+import { useTheme } from "next-themes"
 import { Github, Linkedin, Mail } from "lucide-react"
 
 const socialLinks = [
@@ -23,10 +25,11 @@ const socialLinks = [
 ]
 
 export function Contact() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  const isCyber = mounted && theme === "cyber"
 
   return (
     <section id="contact" className="relative py-20 px-6 min-h-screen flex items-center" ref={ref}>
@@ -36,12 +39,12 @@ export function Contact() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-100">
+          <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${isCyber ? "text-red-100" : "text-slate-100"}`}>
             Get In Touch
           </h2>
 
-          <p className="text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-            I'm an AI & Data Engineer open to exciting full-time opportunities in AI, Data Science, and Machine Learning. 
+          <p className={`text-xl mb-12 max-w-2xl mx-auto leading-relaxed ${isCyber ? "text-red-200/70" : "text-slate-300"}`}>
+            I'm an AI & Data Engineer open to exciting full-time opportunities in AI, Data Science, and Machine Learning.
             Let's connect and build something amazing together!
           </p>
 
@@ -54,11 +57,16 @@ export function Contact() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={link.name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="w-16 h-16 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-lg hover:border-blue-500/50 transition-all flex items-center justify-center text-slate-400 hover:text-blue-400"
+                  whileHover={{ scale: 1.12, y: -3 }}
+                  className={`w-16 h-16 backdrop-blur-sm border rounded-lg transition-all flex items-center justify-center ${
+                    isCyber
+                      ? "bg-black/60 border-red-900/40 hover:border-red-600/60 text-red-400/60 hover:text-red-400"
+                      : "bg-slate-800/50 border-slate-700 hover:border-blue-500/50 text-slate-400 hover:text-blue-400"
+                  }`}
                 >
                   <Icon className="w-6 h-6" />
                 </motion.a>
@@ -73,7 +81,11 @@ export function Contact() {
             transition={{ duration: 0.8, delay: 0.4 }}
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-block px-12 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all shadow-lg shadow-blue-500/30"
+            className={`inline-block px-12 py-4 font-medium rounded-lg transition-all shadow-lg ${
+              isCyber
+                ? "bg-red-700 hover:bg-red-600 text-white shadow-red-900/50"
+                : "bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/30"
+            }`}
           >
             Say Hello 👋
           </motion.a>
@@ -82,9 +94,9 @@ export function Contact() {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-16 pt-8 border-t border-slate-700"
+            className={`mt-16 pt-8 border-t ${isCyber ? "border-red-900/40" : "border-slate-700"}`}
           >
-            <p className="text-slate-400 text-sm">
+            <p className={`text-sm ${isCyber ? "text-red-400/50" : "text-slate-400"}`}>
               © 2026 Mohammed El Kassoiri. All rights reserved.
             </p>
           </motion.div>

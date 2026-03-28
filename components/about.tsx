@@ -57,8 +57,7 @@ export function About() {
             <motion.div
               variants={cardVariant}
               whileHover={{ scale: 1.01 }}
-              className={`lg:col-span-2 lg:row-span-2 ${cardBase}`}
-              style={{ padding: "2rem" }}
+              className={`lg:col-span-2 lg:row-span-2 ${cardBase} p-8`}
             >
               <div className="flex items-start gap-4 mb-6">
                 <div className={`w-12 h-12 bg-gradient-to-br ${isCyber ? "from-red-700 to-red-500" : "from-blue-500 to-blue-400"} rounded-lg flex items-center justify-center flex-shrink-0`}>

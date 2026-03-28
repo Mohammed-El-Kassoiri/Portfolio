@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
+import { useTheme } from "next-themes"
 import { Card } from "@/components/ui/card"
 import { Github, ExternalLink, FileText } from "lucide-react"
 
@@ -155,6 +156,15 @@ export function Projects() {
   })
 
   const [selectedCategory, setSelectedCategory] = useState("all")
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  const isCyber = mounted && theme === "cyber"
+
+  const accentColor = isCyber ? "text-red-400" : "text-blue-400"
+  const accentBorder = isCyber ? "border-red-600/50" : "border-blue-500/50"
+  const accentHoverBg = isCyber ? "hover:bg-red-600/10" : "hover:bg-blue-500/10"
+  const badgeBg = isCyber ? "bg-red-700/20 text-red-300 border-red-700/30" : "bg-blue-500/20 text-blue-300 border-blue-500/30"
 
   const filteredProjects = projects.filter((project) => {
     const matchesCategory =
@@ -180,7 +190,7 @@ export function Projects() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-slate-100">
+          <h2 className={`text-4xl md:text-5xl font-bold mb-12 ${isCyber ? "text-red-100" : "text-slate-100"}`}>
             Academic and Personal Projects
           </h2>
 
@@ -194,7 +204,11 @@ export function Projects() {
                 whileTap={{ scale: 0.95 }}
                 className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
                   selectedCategory === category.id
-                    ? "bg-blue-600 text-white border-2 border-blue-600"
+                    ? isCyber
+                      ? "bg-red-700 text-white border-2 border-red-700"
+                      : "bg-blue-600 text-white border-2 border-blue-600"
+                    : isCyber
+                    ? "bg-black/40 text-red-200/70 border-2 border-red-900/40 hover:border-red-600/50"
                     : "bg-slate-800/50 text-slate-300 border-2 border-slate-700 hover:border-blue-500/50"
                 }`}
               >
@@ -214,14 +228,18 @@ export function Projects() {
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                   whileHover={{ y: -4 }}
                 >
-                  <Card className="h-full bg-slate-800/50 backdrop-blur-sm border border-slate-700 hover:border-blue-500/50 transition-all duration-300 p-6 relative overflow-hidden group">
+                  <Card className={`h-full backdrop-blur-sm border transition-all duration-300 p-6 relative overflow-hidden group ${
+                    isCyber
+                      ? "bg-black/60 border-red-900/40 hover:border-red-600/60"
+                      : "bg-slate-800/50 border-slate-700 hover:border-blue-500/50"
+                  }`}>
                     {/* Gradient background on hover */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
 
                     <div className="relative z-10 flex flex-col h-full">
                       {/* Category badge */}
                       <div className="mb-4">
-                        <span className="inline-block px-3 py-1 text-xs font-medium bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/30">
+                        <span className={`inline-block px-3 py-1 text-xs font-medium rounded-full border ${badgeBg}`}>
                           {categories.find((c) => c.id === project.category)?.label}
                         </span>
                       </div>
@@ -234,20 +252,24 @@ export function Projects() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-xl font-bold text-slate-100 mb-3">{project.title}</h3>
+                      <h3 className={`text-xl font-bold mb-3 ${isCyber ? "text-red-100" : "text-slate-100"}`}>{project.title}</h3>
                       
                       {/* Description */}
-                      <p className="text-slate-300 text-sm mb-4 leading-relaxed flex-grow">{project.description}</p>
+                      <p className={`text-sm mb-4 leading-relaxed flex-grow ${isCyber ? "text-red-200/70" : "text-slate-300"}`}>{project.description}</p>
 
                       {/* Tags */}
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.tags.slice(0, 4).map((tag, i) => (
-                          <span key={i} className="px-2 py-1 text-xs font-medium bg-slate-700/50 text-slate-300 rounded border border-slate-600">
+                          <span key={i} className={`px-2 py-1 text-xs font-medium rounded border ${
+                            isCyber
+                              ? "bg-red-900/20 text-red-300/80 border-red-900/40"
+                              : "bg-slate-700/50 text-slate-300 border-slate-600"
+                          }`}>
                             {tag}
                           </span>
                         ))}
                         {project.tags.length > 4 && (
-                          <span className="px-2 py-1 text-xs font-medium text-slate-400">
+                          <span className={`px-2 py-1 text-xs font-medium ${isCyber ? "text-red-400/60" : "text-slate-400"}`}>
                             +{project.tags.length - 4} more
                           </span>
                         )}
@@ -262,7 +284,7 @@ export function Projects() {
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 px-3 py-2 text-xs font-medium border border-blue-500/50 text-blue-400 rounded hover:bg-blue-500/10 transition-all"
+                            className={`flex items-center gap-2 px-3 py-2 text-xs font-medium border rounded transition-all ${accentColor} ${accentBorder} ${accentHoverBg}`}
                           >
                             <Github className="w-4 h-4" />
                             <span>Code</span>
@@ -276,7 +298,7 @@ export function Projects() {
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 px-3 py-2 text-xs font-medium border border-blue-500/50 text-blue-400 rounded hover:bg-blue-500/10 transition-all"
+                            className={`flex items-center gap-2 px-3 py-2 text-xs font-medium border rounded transition-all ${accentColor} ${accentBorder} ${accentHoverBg}`}
                           >
                             <ExternalLink className="w-4 h-4" />
                             <span>Demo</span>
@@ -288,7 +310,7 @@ export function Projects() {
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 px-3 py-2 text-xs font-medium border border-blue-500/50 text-blue-400 rounded hover:bg-blue-500/10 transition-all"
+                            className={`flex items-center gap-2 px-3 py-2 text-xs font-medium border rounded transition-all ${accentColor} ${accentBorder} ${accentHoverBg}`}
                           >
                             <ExternalLink className="w-4 h-4" />
                             <span>HF</span>
@@ -302,7 +324,7 @@ export function Projects() {
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 px-3 py-2 text-xs font-medium border border-blue-500/50 text-blue-400 rounded hover:bg-blue-500/10 transition-all"
+                            className={`flex items-center gap-2 px-3 py-2 text-xs font-medium border rounded transition-all ${accentColor} ${accentBorder} ${accentHoverBg}`}
                           >
                             <FileText className="w-4 h-4" />
                             <span>Paper</span>
@@ -315,7 +337,7 @@ export function Projects() {
               ))
             ) : (
               <div className="col-span-full text-center py-12">
-                <p className="text-slate-400 text-lg">No projects found matching your search.</p>
+                <p className={`text-lg ${isCyber ? "text-red-400/60" : "text-slate-400"}`}>No projects found matching your search.</p>
               </div>
             )}
           </div>

@@ -135,8 +135,8 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
+          themes={["light", "dark", "cyber"]}
           enableSystem={false}
-          disableTransitionOnChange
         >
           {children}
           <Analytics />

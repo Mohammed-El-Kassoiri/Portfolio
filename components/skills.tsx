@@ -1,7 +1,9 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
+import { useTheme } from "next-themes"
 import {
   Brain,
   Code2,
@@ -107,6 +109,10 @@ export function Skills() {
     triggerOnce: true,
     threshold: 0.1,
   })
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  const isCyber = mounted && theme === "cyber"
 
   return (
     <section id="skills" className="relative py-20 px-6" ref={ref}>
@@ -116,7 +122,7 @@ export function Skills() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-slate-100">
+          <h2 className={`text-4xl md:text-5xl font-bold mb-12 ${isCyber ? "text-red-100" : "text-slate-100"}`}>
             Skills & Expertise
           </h2>
 
@@ -127,9 +133,14 @@ export function Skills() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                className={`backdrop-blur-sm border rounded-xl p-6 transition-all duration-300 ${
+                  isCyber
+                    ? "bg-black/60 border-red-900/40 hover:border-red-600/60"
+                    : "bg-slate-800/50 border-slate-700 hover:border-blue-500/50"
+                }`}
               >
-                <h3 className="text-xl font-semibold mb-6 text-blue-400">
+                <h3 className={`text-xl font-semibold mb-6 ${isCyber ? "text-red-400" : "text-blue-400"}`}>
                   {category.title}
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
@@ -144,11 +155,15 @@ export function Skills() {
                           duration: 0.5,
                           delay: index * 0.1 + i * 0.05,
                         }}
-                        whileHover={{ scale: 1.05 }}
-                        className="flex flex-col items-center gap-2 p-3 rounded-lg bg-slate-700/30 hover:bg-slate-700/50 transition-all group"
+                        whileHover={{ scale: 1.08 }}
+                        className={`flex flex-col items-center gap-2 p-3 rounded-lg transition-all group ${
+                          isCyber
+                            ? "bg-red-900/10 hover:bg-red-900/20"
+                            : "bg-slate-700/30 hover:bg-slate-700/50"
+                        }`}
                       >
-                        <Icon className="w-8 h-8 text-blue-400 group-hover:scale-110 transition-transform" />
-                        <span className="text-xs text-slate-300 text-center font-medium">
+                        <Icon className={`w-8 h-8 group-hover:scale-110 transition-transform ${isCyber ? "text-red-400" : "text-blue-400"}`} />
+                        <span className={`text-xs text-center font-medium ${isCyber ? "text-red-200/70" : "text-slate-300"}`}>
                           {skill.name}
                         </span>
                       </motion.div>

@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant cyber (&:is(.cyber *));
 
 :root {
   --background: 248 250 252; /* slate-50 */
@@ -74,6 +75,44 @@
   --sidebar-ring: 59 130 246; /* blue-500 */
 }
 
+/* ============================================================
+   CYBER HACKER THEME — red/black palette
+   ============================================================ */
+.cyber {
+  --background: 5 0 0;          /* near-black */
+  --foreground: 255 200 200;    /* readable light red-white */
+  --card: 18 4 4;               /* dark charcoal-red */
+  --card-foreground: 255 200 200;
+  --popover: 18 4 4;
+  --popover-foreground: 255 200 200;
+  --primary: 220 38 38;         /* red-600 */
+  --primary-foreground: 255 255 255;
+  --secondary: 45 8 8;          /* very dark red */
+  --secondary-foreground: 255 200 200;
+  --muted: 45 8 8;
+  --muted-foreground: 200 100 100; /* muted red */
+  --accent: 239 68 68;          /* red-500 */
+  --accent-foreground: 255 255 255;
+  --destructive: 220 38 38;
+  --destructive-foreground: 255 255 255;
+  --border: 127 29 29;          /* red-900 */
+  --input: 45 8 8;
+  --ring: 220 38 38;
+  --chart-1: 220 38 38;
+  --chart-2: 239 68 68;
+  --chart-3: 252 165 165;
+  --chart-4: 254 202 202;
+  --chart-5: 185 28 28;
+  --sidebar: 18 4 4;
+  --sidebar-foreground: 255 200 200;
+  --sidebar-primary: 220 38 38;
+  --sidebar-primary-foreground: 255 255 255;
+  --sidebar-accent: 45 8 8;
+  --sidebar-accent-foreground: 255 200 200;
+  --sidebar-border: 127 29 29;
+  --sidebar-ring: 220 38 38;
+}
+
 @theme inline {
   --color-background: rgb(var(--background));
   --color-foreground: rgb(var(--foreground));
@@ -120,6 +159,7 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   html {
@@ -142,5 +182,29 @@
   .animate-gradient {
     background-size: 200% 200%;
     animation: gradient 8s ease infinite;
+  }
+
+  /* Cyber theme: scanline overlay effect */
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+
+  /* Cyber theme: flicker glow */
+  @keyframes cyber-glow {
+    0%, 100% { text-shadow: 0 0 4px rgb(220 38 38 / 0.8), 0 0 10px rgb(220 38 38 / 0.4); }
+    50% { text-shadow: 0 0 8px rgb(239 68 68 / 1), 0 0 20px rgb(239 68 68 / 0.6), 0 0 40px rgb(239 68 68 / 0.2); }
+  }
+
+  .cyber-glow {
+    animation: cyber-glow 2s ease-in-out infinite;
+  }
+
+  /* Reduced motion override */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-gradient,
+    .cyber-glow {
+      animation: none;
+    }
   }
 }

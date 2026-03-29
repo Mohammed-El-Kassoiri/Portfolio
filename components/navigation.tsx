@@ -57,8 +57,8 @@ function nextTheme(current: string | undefined): Theme {
 }
 
 function ThemeIcon({ theme }: { theme: string | undefined }) {
-  if (theme === "cyber") return <Moon className="w-5 h-5" />
-  return <Zap className="w-5 h-5" />
+  if (theme === "cyber") return <Moon className="w-4 h-4" />
+  return <Zap className="w-4 h-4" />
 }
 
 export function Navigation() {
@@ -103,7 +103,6 @@ export function Navigation() {
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-    // NAV_IDS is a module-level constant; setState setters from useState are stable
   }, [])
 
   const scrollToSection = (id: string) => {
@@ -121,35 +120,51 @@ export function Navigation() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
           ? isCyber
-            ? "bg-black/90 backdrop-blur-lg border-b border-red-900/50"
-            : "bg-slate-900/90 backdrop-blur-lg border-b border-slate-700/50"
+            ? "bg-black/95 backdrop-blur-xl border-b border-red-900/40"
+            : "bg-[#060910]/95 backdrop-blur-xl border-b border-[rgba(197,165,90,0.15)]"
           : "bg-transparent",
       )}
     >
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="flex items-center justify-between h-16">
-          <motion.div
-            className="text-xl font-bold"
-            whileHover={{ scale: 1.05 }}
+          {/* Logo mark */}
+          <motion.button
+            onClick={() => scrollToSection("hero")}
+            className="flex items-center gap-3 group"
+            whileHover={{ scale: 1.02 }}
           >
-            <span className={isCyber ? "text-red-500 cyber-glow" : "text-blue-400"}>MK</span>
-          </motion.div>
+            <div className={cn(
+              "w-8 h-8 border flex items-center justify-center text-xs font-bold tracking-wider transition-all",
+              isCyber
+                ? "border-red-600/60 text-red-400 group-hover:bg-red-600/10"
+                : "border-[rgba(197,165,90,0.5)] text-[#c5a55a] group-hover:bg-[rgba(197,165,90,0.08)]"
+            )}>
+              MK
+            </div>
+            <span className={cn(
+              "hidden sm:block text-xs tracking-[0.2em] uppercase font-medium transition-colors",
+              isCyber ? "text-red-400/60" : "text-[rgba(197,165,90,0.5)]"
+            )}>
+              Portfolio
+            </span>
+          </motion.button>
 
-          <div className="hidden md:flex items-center gap-1">
+          {/* Nav links */}
+          <div className="hidden lg:flex items-center gap-0.5">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={cn(
-                  "px-4 py-2 text-sm font-medium transition-all duration-300 relative rounded-lg",
+                  "px-3 py-2 text-xs font-medium tracking-wider uppercase transition-all duration-300 relative",
                   activeSection === item.id
-                    ? isCyber ? "text-red-400" : "text-blue-400"
+                    ? isCyber ? "text-red-400" : "text-[#c5a55a]"
                     : isCyber
-                    ? "text-red-200/70 hover:text-red-400 hover:bg-red-900/20"
-                    : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50",
+                    ? "text-red-200/50 hover:text-red-400"
+                    : "text-[rgba(232,234,245,0.5)] hover:text-[#e8eaf5]",
                 )}
               >
                 {item.label}
@@ -157,8 +172,8 @@ export function Navigation() {
                   <motion.div
                     layoutId="activeSection"
                     className={cn(
-                      "absolute bottom-0 left-0 right-0 h-0.5",
-                      isCyber ? "bg-red-500" : "bg-blue-500",
+                      "absolute bottom-0 left-0 right-0 h-px",
+                      isCyber ? "bg-red-500" : "bg-[#c5a55a]",
                     )}
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
@@ -167,39 +182,38 @@ export function Navigation() {
             ))}
           </div>
 
+          {/* Right controls */}
           <div className="flex items-center gap-2">
-            {/* EN / FR language toggle */}
             {mounted && (
               <motion.button
                 onClick={toggleLanguage}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 aria-label={language === "en" ? "Switch to French" : "Switch to English"}
                 title={language === "en" ? "Switch to French" : "Switch to English"}
                 className={cn(
-                  "px-3 py-1.5 text-xs font-bold rounded-lg border transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 tracking-wider",
+                  "px-2.5 py-1 text-xs font-bold tracking-widest border transition-all duration-300",
                   isCyber
-                    ? "border-red-700/50 text-red-400 hover:bg-red-900/30 focus-visible:outline-red-500"
-                    : "border-slate-600 text-slate-300 hover:text-blue-400 hover:border-blue-500/50 hover:bg-slate-800/50 focus-visible:outline-blue-500",
+                    ? "border-red-700/50 text-red-400 hover:bg-red-900/30"
+                    : "border-[rgba(197,165,90,0.3)] text-[rgba(197,165,90,0.7)] hover:text-[#c5a55a] hover:border-[rgba(197,165,90,0.6)] hover:bg-[rgba(197,165,90,0.05)]",
                 )}
               >
                 {language === "en" ? "FR" : "EN"}
               </motion.button>
             )}
 
-            {/* Theme toggle — cycles dark ↔ cyber */}
             {mounted && (
               <motion.button
                 onClick={() => setTheme(nextTheme(theme))}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 aria-label={themeLabel}
                 title={themeLabel}
                 className={cn(
-                  "p-2 rounded-lg transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2",
+                  "p-2 border transition-all duration-300",
                   isCyber
-                    ? "text-red-400 hover:text-red-300 hover:bg-red-900/30 focus-visible:outline-red-500"
-                    : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50 focus-visible:outline-blue-500",
+                    ? "border-red-700/50 text-red-400 hover:bg-red-900/30"
+                    : "border-[rgba(197,165,90,0.3)] text-[rgba(197,165,90,0.7)] hover:text-[#c5a55a] hover:border-[rgba(197,165,90,0.6)] hover:bg-[rgba(197,165,90,0.05)]",
                 )}
               >
                 <ThemeIcon theme={theme} />
@@ -210,13 +224,13 @@ export function Navigation() {
               href="/Mohammed_el_kassoiri.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               className={cn(
-                "px-5 py-2 text-sm font-semibold border-2 transition-all rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2",
+                "px-4 py-1.5 text-xs font-bold tracking-widest uppercase border transition-all duration-300",
                 isCyber
-                  ? "border-red-600 text-red-400 hover:bg-red-600/10 focus-visible:outline-red-500"
-                  : "border-blue-500 text-blue-400 hover:bg-blue-500/10 focus-visible:outline-blue-500",
+                  ? "border-red-600 text-red-400 hover:bg-red-600/10"
+                  : "border-[#c5a55a] text-[#c5a55a] hover:bg-[rgba(197,165,90,0.1)]",
               )}
             >
               {mounted ? t.resume : "Resume"}
@@ -227,3 +241,4 @@ export function Navigation() {
     </motion.nav>
   )
 }
+

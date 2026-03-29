@@ -4,76 +4,84 @@
 @custom-variant dark (&:is(.dark *));
 @custom-variant cyber (&:is(.cyber *));
 
-/* Default to dark palette — light theme is not supported */
+/* Default to architectural dark palette */
 :root {
-  --background: 15 23 42; /* slate-900 */
-  --foreground: 241 245 249; /* slate-100 */
-  --card: 30 41 59; /* slate-800 */
-  --card-foreground: 241 245 249; /* slate-100 */
-  --popover: 30 41 59; /* slate-800 */
-  --popover-foreground: 241 245 249; /* slate-100 */
-  --primary: 59 130 246; /* blue-500 */
-  --primary-foreground: 241 245 249; /* slate-100 */
-  --secondary: 51 65 85; /* slate-700 */
-  --secondary-foreground: 241 245 249; /* slate-100 */
-  --muted: 51 65 85; /* slate-700 */
-  --muted-foreground: 203 213 225; /* slate-300 */
-  --accent: 96 165 250; /* blue-400 */
-  --accent-foreground: 241 245 249; /* slate-100 */
-  --destructive: 239 68 68; /* red-500 */
-  --destructive-foreground: 241 245 249; /* slate-100 */
-  --border: 71 85 105; /* slate-600 */
-  --input: 71 85 105; /* slate-600 */
-  --ring: 59 130 246; /* blue-500 */
-  --chart-1: 59 130 246; /* blue-500 */
-  --chart-2: 96 165 250; /* blue-400 */
-  --chart-3: 147 197 253; /* blue-300 */
-  --chart-4: 191 219 254; /* blue-200 */
-  --chart-5: 37 99 235; /* blue-600 */
-  --radius: 0.75rem;
-  --sidebar: 30 41 59; /* slate-800 */
-  --sidebar-foreground: 241 245 249; /* slate-100 */
-  --sidebar-primary: 59 130 246; /* blue-500 */
-  --sidebar-primary-foreground: 241 245 249; /* slate-100 */
-  --sidebar-accent: 51 65 85; /* slate-700 */
-  --sidebar-accent-foreground: 241 245 249; /* slate-100 */
-  --sidebar-border: 71 85 105; /* slate-600 */
-  --sidebar-ring: 59 130 246; /* blue-500 */
+  --background: 6 9 16; /* #060910 deep dark */
+  --foreground: 232 234 245; /* #e8eaf5 crisp white */
+  --card: 11 21 37; /* #0b1525 deep navy card */
+  --card-foreground: 232 234 245;
+  --popover: 11 21 37;
+  --popover-foreground: 232 234 245;
+  --primary: 197 165 90; /* #c5a55a architectural gold */
+  --primary-foreground: 6 9 16;
+  --secondary: 18 30 52; /* #121e34 */
+  --secondary-foreground: 232 234 245;
+  --muted: 18 30 52;
+  --muted-foreground: 123 138 171; /* #7b8aab */
+  --accent: 226 201 128; /* #e2c980 gold light */
+  --accent-foreground: 6 9 16;
+  --destructive: 239 68 68;
+  --destructive-foreground: 241 245 249;
+  --border: 30 45 72; /* #1e2d48 dark navy border */
+  --input: 30 45 72;
+  --ring: 197 165 90; /* gold ring */
+  --chart-1: 197 165 90;
+  --chart-2: 226 201 128;
+  --chart-3: 91 158 201; /* ice blue */
+  --chart-4: 168 85 247;
+  --chart-5: 34 197 94;
+  --radius: 0.5rem; /* tighter radius for architectural feel */
+  --sidebar: 11 21 37;
+  --sidebar-foreground: 232 234 245;
+  --sidebar-primary: 197 165 90;
+  --sidebar-primary-foreground: 6 9 16;
+  --sidebar-accent: 18 30 52;
+  --sidebar-accent-foreground: 232 234 245;
+  --sidebar-border: 30 45 72;
+  --sidebar-ring: 197 165 90;
+
+  /* Architectural design tokens */
+  --gold: 197 165 90;
+  --gold-light: 226 201 128;
+  --gold-dim: 120 100 55;
+  --ice: 91 158 201;
+  --arch-surface: 11 21 37;
+  --arch-surface-2: 16 28 50;
 }
 
 .dark {
-  --background: 15 23 42; /* slate-900 */
-  --foreground: 241 245 249; /* slate-100 */
-  --card: 30 41 59; /* slate-800 */
-  --card-foreground: 241 245 249; /* slate-100 */
-  --popover: 30 41 59; /* slate-800 */
-  --popover-foreground: 241 245 249; /* slate-100 */
-  --primary: 59 130 246; /* blue-500 */
-  --primary-foreground: 241 245 249; /* slate-100 */
-  --secondary: 51 65 85; /* slate-700 */
-  --secondary-foreground: 241 245 249; /* slate-100 */
-  --muted: 51 65 85; /* slate-700 */
-  --muted-foreground: 203 213 225; /* slate-300 */
-  --accent: 96 165 250; /* blue-400 */
-  --accent-foreground: 241 245 249; /* slate-100 */
-  --destructive: 239 68 68; /* red-500 */
-  --destructive-foreground: 241 245 249; /* slate-100 */
-  --border: 71 85 105; /* slate-600 */
-  --input: 71 85 105; /* slate-600 */
-  --ring: 59 130 246; /* blue-500 */
-  --chart-1: 59 130 246; /* blue-500 */
-  --chart-2: 96 165 250; /* blue-400 */
-  --chart-3: 147 197 253; /* blue-300 */
-  --chart-4: 191 219 254; /* blue-200 */
-  --chart-5: 37 99 235; /* blue-600 */
-  --sidebar: 30 41 59; /* slate-800 */
-  --sidebar-foreground: 241 245 249; /* slate-100 */
-  --sidebar-primary: 59 130 246; /* blue-500 */
-  --sidebar-primary-foreground: 241 245 249; /* slate-100 */
-  --sidebar-accent: 51 65 85; /* slate-700 */
-  --sidebar-accent-foreground: 241 245 249; /* slate-100 */
-  --sidebar-border: 71 85 105; /* slate-600 */
-  --sidebar-ring: 59 130 246; /* blue-500 */
+  --background: 6 9 16;
+  --foreground: 232 234 245;
+  --card: 11 21 37;
+  --card-foreground: 232 234 245;
+  --popover: 11 21 37;
+  --popover-foreground: 232 234 245;
+  --primary: 197 165 90;
+  --primary-foreground: 6 9 16;
+  --secondary: 18 30 52;
+  --secondary-foreground: 232 234 245;
+  --muted: 18 30 52;
+  --muted-foreground: 123 138 171;
+  --accent: 226 201 128;
+  --accent-foreground: 6 9 16;
+  --destructive: 239 68 68;
+  --destructive-foreground: 241 245 249;
+  --border: 30 45 72;
+  --input: 30 45 72;
+  --ring: 197 165 90;
+  --chart-1: 197 165 90;
+  --chart-2: 226 201 128;
+  --chart-3: 91 158 201;
+  --chart-4: 168 85 247;
+  --chart-5: 34 197 94;
+  --sidebar: 11 21 37;
+  --sidebar-foreground: 232 234 245;
+  --sidebar-primary: 197 165 90;
+  --sidebar-primary-foreground: 6 9 16;
+  --sidebar-accent: 18 30 52;
+  --sidebar-accent-foreground: 232 234 245;
+  --sidebar-border: 30 45 72;
+  --sidebar-ring: 197 165 90;
 }
 
 /* ============================================================
@@ -151,6 +159,11 @@
   --color-sidebar-accent-foreground: rgb(var(--sidebar-accent-foreground));
   --color-sidebar-border: rgb(var(--sidebar-border));
   --color-sidebar-ring: rgb(var(--sidebar-ring));
+  /* Architectural custom colors */
+  --color-gold: rgb(var(--gold));
+  --color-gold-light: rgb(var(--gold-light));
+  --color-gold-dim: rgb(var(--gold-dim));
+  --color-ice: rgb(var(--ice));
 }
 
 @layer base {
@@ -169,6 +182,19 @@
 }
 
 @layer utilities {
+  /* Architectural grid background */
+  .arch-grid {
+    background-image:
+      linear-gradient(rgba(197, 165, 90, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(197, 165, 90, 0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  /* Gold glow for accent elements */
+  .gold-glow {
+    text-shadow: 0 0 20px rgba(197, 165, 90, 0.4), 0 0 40px rgba(197, 165, 90, 0.15);
+  }
+
   /* Simple gradient animation for modern design */
   @keyframes gradient {
     0%,
@@ -183,6 +209,14 @@
   .animate-gradient {
     background-size: 200% 200%;
     animation: gradient 8s ease infinite;
+  }
+
+  /* Architectural line scan */
+  @keyframes line-scan {
+    0% { transform: translateY(-100%); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
   }
 
   /* Cyber theme: scanline overlay effect */

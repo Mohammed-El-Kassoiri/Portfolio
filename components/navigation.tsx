@@ -7,6 +7,18 @@ import { useTheme } from "next-themes"
 import { useLanguage } from "@/components/language-provider"
 import { cn } from "@/lib/utils"
 
+/** Section IDs are language-independent — kept as a stable constant. */
+const NAV_IDS = [
+  "hero",
+  "about",
+  "experience",
+  "pfe",
+  "projects",
+  "research",
+  "skills",
+  "contact",
+] as const
+
 const navLabels = {
   en: {
     home: "Home",
@@ -77,13 +89,13 @@ export function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
 
-      const sections = navItems.map((item) => document.getElementById(item.id))
+      const sections = NAV_IDS.map((id) => document.getElementById(id))
       const scrollPosition = window.scrollY + 200
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i]
         if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navItems[i].id)
+          setActiveSection(NAV_IDS[i])
           break
         }
       }
@@ -91,8 +103,8 @@ export function Navigation() {
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language])
+    // NAV_IDS is a module-level constant; setState setters from useState are stable
+  }, [])
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)

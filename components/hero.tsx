@@ -121,6 +121,8 @@ export function Hero() {
                 isCyber ? "text-red-400" : "text-blue-400"
               }`}
             >
+              {/* key=language forces a remount when language toggles so the
+                  new language's sequence starts immediately — intentional. */}
               <TypeAnimation
                 key={language}
                 sequence={t.roles}

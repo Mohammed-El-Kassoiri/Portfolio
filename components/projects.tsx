@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
+import { Card } from "@/components/ui/card"
 import { Github, ExternalLink, FileText } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 
@@ -175,6 +176,13 @@ export function Projects() {
   const projects = language === "en" ? projectsEn : projectsFr
   const categories = language === "en" ? categoriesEn : categoriesFr
 
+  const accentColor = isCyber ? "text-red-400" : "text-blue-400"
+  const accentBorder = isCyber ? "border-red-600/50" : "border-blue-500/50"
+  const accentHoverBg = isCyber ? "hover:bg-red-600/10" : "hover:bg-blue-500/10"
+  const badgeBg = isCyber
+    ? "bg-red-700/20 text-red-300 border-red-700/30"
+    : "bg-blue-500/20 text-blue-300 border-blue-500/30"
+
   const filteredProjects = projects.filter(
     (p) => selectedCategory === "all" || p.category === selectedCategory,
   )
@@ -193,13 +201,7 @@ export function Projects() {
       : "Aucun projet correspondant à votre recherche."
 
   return (
-    <section id="projects" className="relative py-28 px-6" ref={ref}>
-      {/* Section number */}
-      {!isCyber && (
-        <div className="absolute right-[3%] top-20 text-[15vw] font-black leading-none select-none pointer-events-none text-[rgba(197,165,90,0.025)] tracking-tighter">
-          05
-        </div>
-      )}
+    <section id="projects" className="relative py-24 px-6" ref={ref}>
       <div className="container mx-auto max-w-7xl z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -207,42 +209,37 @@ export function Projects() {
           transition={{ duration: 0.8 }}
         >
           {/* Section header */}
-          <div className="mb-16 flex items-end gap-6">
-            <div>
-              <p className={`text-xs font-mono tracking-[0.3em] uppercase mb-3 ${
-                isCyber ? "text-red-400" : "text-[#c5a55a]"
-              }`}>
-                {language === "en" ? "// portfolio" : "// portfolio"}
-              </p>
-              <h2 className={`text-4xl md:text-5xl font-black tracking-tight ${
-                isCyber ? "text-red-100" : "text-[#e8eaf5]"
-              }`}>
-                {language === "en" ? "Academic & Personal Projects" : "Projets Académiques & Personnels"}
-              </h2>
-            </div>
-            <div className={`flex-1 h-px mb-3 hidden md:block ${
-              isCyber
-                ? "bg-gradient-to-r from-red-900/40 to-transparent"
-                : "bg-gradient-to-r from-[rgba(197,165,90,0.3)] to-transparent"
-            }`} />
+          <div className="mb-14">
+            <p
+              className={`text-sm font-semibold tracking-widest uppercase mb-3 ${accentColor}`}
+            >
+              {language === "en" ? "Portfolio" : "Portfolio"}
+            </p>
+            <h2
+              className={`text-4xl md:text-5xl font-extrabold tracking-tight ${
+                isCyber ? "text-red-100" : "text-slate-100"
+              }`}
+            >
+              {language === "en" ? "Academic & Personal Projects" : "Projets Académiques & Personnels"}
+            </h2>
           </div>
 
           {/* Filter buttons */}
-          <div className="mb-12 flex flex-wrap gap-2">
+          <div className="mb-10 flex flex-wrap gap-2">
             {categories.map((category) => (
               <motion.button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                whileHover={{ y: -1 }}
-                whileTap={{ scale: 0.97 }}
-                className={`px-4 py-2 text-xs font-bold tracking-widest uppercase transition-all border ${
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-4 py-2 rounded-lg font-medium text-sm transition-all border-2 ${
                   selectedCategory === category.id
                     ? isCyber
                       ? "bg-red-700 text-white border-red-700"
-                      : "bg-[#c5a55a] text-[#060910] border-[#c5a55a]"
+                      : "bg-blue-600 text-white border-blue-600"
                     : isCyber
-                    ? "bg-black/40 text-red-200/60 border-red-900/40 hover:border-red-600/40 hover:text-red-300"
-                    : "bg-transparent text-[rgba(232,234,245,0.5)] border-[rgba(197,165,90,0.15)] hover:border-[rgba(197,165,90,0.4)] hover:text-[#c5a55a]"
+                    ? "bg-black/40 text-red-200/70 border-red-900/40 hover:border-red-600/50"
+                    : "bg-slate-800/50 text-slate-300 border-slate-700 hover:border-blue-500/50"
                 }`}
               >
                 {category.label}
@@ -251,153 +248,164 @@ export function Projects() {
           </div>
 
           {/* Projects grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sortedProjects.length > 0 ? (
               sortedProjects.map((project, index) => (
                 <motion.div
                   key={project.title}
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: 50 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.7, delay: index * 0.08 }}
-                  whileHover={{ y: -3 }}
-                  className={`group relative border transition-all duration-300 flex flex-col ${
-                    isCyber
-                      ? "bg-black/60 border-red-900/40 hover:border-red-600/50"
-                      : "bg-[rgba(11,21,37,0.8)] border-[rgba(197,165,90,0.1)] hover:border-[rgba(197,165,90,0.35)]"
-                  }`}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  whileHover={{ y: -4 }}
                 >
-                  {/* Top color accent using gradient */}
-                  <div className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r ${project.gradient} opacity-60`} />
+                  <Card
+                    className={`h-full backdrop-blur-sm border transition-all duration-300 p-6 relative overflow-hidden group ${
+                      isCyber
+                        ? "bg-black/60 border-red-900/40 hover:border-red-600/60"
+                        : "bg-slate-800/50 border-slate-700/60 hover:border-blue-500/50"
+                    }`}
+                  >
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                    />
 
-                  {/* Hover overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`} />
+                    <div className="relative z-10 flex flex-col h-full">
+                      {/* Category badge */}
+                      <div className="mb-4">
+                        <span
+                          className={`inline-block px-3 py-1 text-xs font-medium rounded-full border ${badgeBg}`}
+                        >
+                          {categories.find((c) => c.id === project.category)?.label}
+                        </span>
+                      </div>
 
-                  <div className="relative p-6 flex flex-col h-full">
-                    {/* Category + icon row */}
-                    <div className="flex items-center justify-between mb-4">
-                      <span className={`px-2.5 py-0.5 text-[10px] font-bold tracking-widest uppercase border ${
-                        isCyber
-                          ? "bg-red-700/15 text-red-300/70 border-red-700/25"
-                          : "bg-[rgba(197,165,90,0.07)] text-[rgba(197,165,90,0.7)] border-[rgba(197,165,90,0.2)]"
-                      }`}>
-                        {categories.find((c) => c.id === project.category)?.label}
-                      </span>
-                      <div className={`w-8 h-8 flex items-center justify-center bg-gradient-to-br ${project.gradient} flex-shrink-0`}>
-                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                      {/* Icon */}
+                      <div
+                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${project.gradient} mb-4 flex items-center justify-center shadow-lg`}
+                      >
+                        <svg
+                          className="w-6 h-6 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                          />
                         </svg>
                       </div>
+
+                      <h3
+                        className={`text-lg font-bold mb-3 leading-snug ${
+                          isCyber ? "text-red-100" : "text-slate-100"
+                        }`}
+                      >
+                        {project.title}
+                      </h3>
+
+                      <p
+                        className={`text-sm mb-4 leading-relaxed flex-grow ${
+                          isCyber ? "text-red-200/70" : "text-slate-300"
+                        }`}
+                      >
+                        {project.description}
+                      </p>
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tags.slice(0, 4).map((tag, i) => (
+                          <span
+                            key={i}
+                            className={`px-2 py-1 text-xs font-medium rounded border ${
+                              isCyber
+                                ? "bg-red-900/20 text-red-300/80 border-red-900/40"
+                                : "bg-slate-700/50 text-slate-300 border-slate-600"
+                            }`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {project.tags.length > 4 && (
+                          <span
+                            className={`px-2 py-1 text-xs font-medium ${
+                              isCyber ? "text-red-400/60" : "text-slate-400"
+                            }`}
+                          >
+                            +{project.tags.length - 4}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Action buttons */}
+                      <div className="flex gap-2 mt-auto flex-wrap">
+                        {project.github && (
+                          <motion.a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border rounded-lg transition-all ${accentColor} ${accentBorder} ${accentHoverBg}`}
+                          >
+                            <Github className="w-3.5 h-3.5" />
+                            <span>Code</span>
+                          </motion.a>
+                        )}
+
+                        {project.demo ? (
+                          <motion.a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border rounded-lg transition-all ${accentColor} ${accentBorder} ${accentHoverBg}`}
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            <span>Demo</span>
+                          </motion.a>
+                        ) : project.huggingface ? (
+                          <motion.a
+                            href={project.huggingface}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border rounded-lg transition-all ${accentColor} ${accentBorder} ${accentHoverBg}`}
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            <span>HF</span>
+                          </motion.a>
+                        ) : null}
+
+                        {project.paper && (
+                          <motion.a
+                            href={project.paper}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border rounded-lg transition-all ${accentColor} ${accentBorder} ${accentHoverBg}`}
+                          >
+                            <FileText className="w-3.5 h-3.5" />
+                            <span>Paper</span>
+                          </motion.a>
+                        )}
+                      </div>
                     </div>
-
-                    <h3 className={`text-base font-bold mb-2 leading-snug ${
-                      isCyber ? "text-red-100" : "text-[#e8eaf5]"
-                    }`}>
-                      {project.title}
-                    </h3>
-
-                    <p className={`text-xs mb-4 leading-relaxed flex-grow ${
-                      isCyber ? "text-red-200/60" : "text-[rgba(232,234,245,0.55)]"
-                    }`}>
-                      {project.description}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {project.tags.slice(0, 4).map((tag, i) => (
-                        <span
-                          key={i}
-                          className={`px-2 py-0.5 text-[10px] font-medium border ${
-                            isCyber
-                              ? "bg-red-900/15 text-red-300/60 border-red-900/30"
-                              : "bg-[rgba(11,21,37,0.6)] text-[rgba(232,234,245,0.45)] border-[rgba(197,165,90,0.1)]"
-                          }`}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                      {project.tags.length > 4 && (
-                        <span className={`px-2 py-0.5 text-[10px] font-medium ${
-                          isCyber ? "text-red-400/50" : "text-[rgba(197,165,90,0.4)]"
-                        }`}>
-                          +{project.tags.length - 4}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Action buttons */}
-                    <div className="flex gap-2 mt-auto flex-wrap">
-                      {project.github && (
-                        <motion.a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ y: -1 }}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-bold tracking-wider uppercase border transition-all ${
-                            isCyber
-                              ? "border-red-700/40 text-red-400/70 hover:text-red-400 hover:border-red-600/60"
-                              : "border-[rgba(197,165,90,0.2)] text-[rgba(197,165,90,0.6)] hover:text-[#c5a55a] hover:border-[rgba(197,165,90,0.5)]"
-                          }`}
-                        >
-                          <Github className="w-3 h-3" />
-                          <span>Code</span>
-                        </motion.a>
-                      )}
-
-                      {project.demo ? (
-                        <motion.a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ y: -1 }}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-bold tracking-wider uppercase border transition-all ${
-                            isCyber
-                              ? "border-red-700/40 text-red-400/70 hover:text-red-400 hover:border-red-600/60"
-                              : "border-[rgba(197,165,90,0.2)] text-[rgba(197,165,90,0.6)] hover:text-[#c5a55a] hover:border-[rgba(197,165,90,0.5)]"
-                          }`}
-                        >
-                          <ExternalLink className="w-3 h-3" />
-                          <span>Demo</span>
-                        </motion.a>
-                      ) : project.huggingface ? (
-                        <motion.a
-                          href={project.huggingface}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ y: -1 }}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-bold tracking-wider uppercase border transition-all ${
-                            isCyber
-                              ? "border-red-700/40 text-red-400/70 hover:text-red-400 hover:border-red-600/60"
-                              : "border-[rgba(197,165,90,0.2)] text-[rgba(197,165,90,0.6)] hover:text-[#c5a55a] hover:border-[rgba(197,165,90,0.5)]"
-                          }`}
-                        >
-                          <ExternalLink className="w-3 h-3" />
-                          <span>HF</span>
-                        </motion.a>
-                      ) : null}
-
-                      {project.paper && (
-                        <motion.a
-                          href={project.paper}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ y: -1 }}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-bold tracking-wider uppercase border transition-all ${
-                            isCyber
-                              ? "border-red-700/40 text-red-400/70 hover:text-red-400 hover:border-red-600/60"
-                              : "border-[rgba(197,165,90,0.2)] text-[rgba(197,165,90,0.6)] hover:text-[#c5a55a] hover:border-[rgba(197,165,90,0.5)]"
-                          }`}
-                        >
-                          <FileText className="w-3 h-3" />
-                          <span>Paper</span>
-                        </motion.a>
-                      )}
-                    </div>
-                  </div>
+                  </Card>
                 </motion.div>
               ))
             ) : (
-              <div className="col-span-full text-center py-16">
-                <p className={`text-sm ${isCyber ? "text-red-400/60" : "text-[rgba(197,165,90,0.4)]"}`}>
+              <div className="col-span-full text-center py-12">
+                <p
+                  className={`text-lg ${
+                    isCyber ? "text-red-400/60" : "text-slate-400"
+                  }`}
+                >
                   {noResultsMsg}
                 </p>
               </div>
@@ -407,17 +415,4 @@ export function Projects() {
       </div>
     </section>
   )
-}
-
-
-interface Project {
-  title: string
-  description: string
-  category: string
-  tags: string[]
-  gradient: string
-  github?: string
-  demo?: string
-  huggingface?: string
-  paper?: string
 }

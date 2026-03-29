@@ -2,40 +2,51 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Moon, Sun, Zap } from "lucide-react"
+import { Moon, Zap } from "lucide-react"
 import { useTheme } from "next-themes"
+import { useLanguage } from "@/components/language-provider"
 import { cn } from "@/lib/utils"
 
-const navItems = [
-  { id: "hero", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
-  { id: "pfe", label: "PFE" },
-  { id: "projects", label: "Projects" },
-  { id: "research", label: "Research" },
-  { id: "skills", label: "Skills" },
-  { id: "contact", label: "Contact" },
-]
+const navLabels = {
+  en: {
+    home: "Home",
+    about: "About",
+    experience: "Experience",
+    pfe: "PFE",
+    projects: "Projects",
+    research: "Research",
+    skills: "Skills",
+    contact: "Contact",
+    resume: "Resume",
+    switchToCyber: "Switch to cyber theme",
+    switchToDark: "Switch to dark theme",
+  },
+  fr: {
+    home: "Accueil",
+    about: "À propos",
+    experience: "Expérience",
+    pfe: "PFE",
+    projects: "Projets",
+    research: "Recherche",
+    skills: "Compétences",
+    contact: "Contact",
+    resume: "CV",
+    switchToCyber: "Passer au thème cyber",
+    switchToDark: "Passer au thème sombre",
+  },
+}
 
-const themeOrder = ["dark", "cyber", "light"] as const
+const themeOrder = ["dark", "cyber"] as const
 type Theme = (typeof themeOrder)[number]
 
-/** Cycle: dark → cyber → light → dark */
 function nextTheme(current: string | undefined): Theme {
   const idx = themeOrder.indexOf((current ?? "dark") as Theme)
   return themeOrder[(idx + 1) % themeOrder.length]
 }
 
 function ThemeIcon({ theme }: { theme: string | undefined }) {
-  if (theme === "cyber") return <Zap className="w-5 h-5" />
-  if (theme === "dark") return <Sun className="w-5 h-5" />
-  return <Moon className="w-5 h-5" />
-}
-
-function themeLabel(current: string | undefined): string {
-  if (current === "dark") return "Switch to cyber theme"
-  if (current === "cyber") return "Switch to light theme"
-  return "Switch to dark theme"
+  if (theme === "cyber") return <Moon className="w-5 h-5" />
+  return <Zap className="w-5 h-5" />
 }
 
 export function Navigation() {
@@ -43,6 +54,20 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
+  const { language, toggleLanguage } = useLanguage()
+
+  const t = navLabels[language]
+
+  const navItems = [
+    { id: "hero", label: t.home },
+    { id: "about", label: t.about },
+    { id: "experience", label: t.experience },
+    { id: "pfe", label: t.pfe },
+    { id: "projects", label: t.projects },
+    { id: "research", label: t.research },
+    { id: "skills", label: t.skills },
+    { id: "contact", label: t.contact },
+  ]
 
   useEffect(() => {
     setMounted(true)
@@ -66,7 +91,8 @@ export function Navigation() {
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language])
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
@@ -75,7 +101,8 @@ export function Navigation() {
     }
   }
 
-  const isCyber = theme === "cyber"
+  const isCyber = mounted && theme === "cyber"
+  const themeLabel = isCyber ? t.switchToDark : t.switchToCyber
 
   return (
     <motion.nav
@@ -86,7 +113,7 @@ export function Navigation() {
         scrolled
           ? isCyber
             ? "bg-black/90 backdrop-blur-lg border-b border-red-900/50"
-            : "bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200/50 dark:border-slate-700/50"
+            : "bg-slate-900/90 backdrop-blur-lg border-b border-slate-700/50"
           : "bg-transparent",
       )}
     >
@@ -96,7 +123,7 @@ export function Navigation() {
             className="text-xl font-bold"
             whileHover={{ scale: 1.05 }}
           >
-            <span className={isCyber ? "text-red-500 cyber-glow" : "text-blue-500"}>MK</span>
+            <span className={isCyber ? "text-red-500 cyber-glow" : "text-blue-400"}>MK</span>
           </motion.div>
 
           <div className="hidden md:flex items-center gap-1">
@@ -110,7 +137,7 @@ export function Navigation() {
                     ? isCyber ? "text-red-400" : "text-blue-400"
                     : isCyber
                     ? "text-red-200/70 hover:text-red-400 hover:bg-red-900/20"
-                    : "text-slate-300 dark:text-slate-300 hover:text-blue-400 hover:bg-slate-800/50",
+                    : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50",
                 )}
               >
                 {item.label}
@@ -128,15 +155,34 @@ export function Navigation() {
             ))}
           </div>
 
-          <div className="flex items-center gap-3">
-            {/* Theme toggle — cycles dark → cyber → light → dark */}
+          <div className="flex items-center gap-2">
+            {/* EN / FR language toggle */}
+            {mounted && (
+              <motion.button
+                onClick={toggleLanguage}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label={language === "en" ? "Switch to French" : "Switch to English"}
+                title={language === "en" ? "Switch to French" : "Switch to English"}
+                className={cn(
+                  "px-3 py-1.5 text-xs font-bold rounded-lg border transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 tracking-wider",
+                  isCyber
+                    ? "border-red-700/50 text-red-400 hover:bg-red-900/30 focus-visible:outline-red-500"
+                    : "border-slate-600 text-slate-300 hover:text-blue-400 hover:border-blue-500/50 hover:bg-slate-800/50 focus-visible:outline-blue-500",
+                )}
+              >
+                {language === "en" ? "FR" : "EN"}
+              </motion.button>
+            )}
+
+            {/* Theme toggle — cycles dark ↔ cyber */}
             {mounted && (
               <motion.button
                 onClick={() => setTheme(nextTheme(theme))}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                aria-label={themeLabel(theme)}
-                title={themeLabel(theme)}
+                aria-label={themeLabel}
+                title={themeLabel}
                 className={cn(
                   "p-2 rounded-lg transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2",
                   isCyber
@@ -155,13 +201,13 @@ export function Navigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={cn(
-                "px-6 py-2 text-sm font-medium border-2 transition-all rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2",
+                "px-5 py-2 text-sm font-semibold border-2 transition-all rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2",
                 isCyber
                   ? "border-red-600 text-red-400 hover:bg-red-600/10 focus-visible:outline-red-500"
                   : "border-blue-500 text-blue-400 hover:bg-blue-500/10 focus-visible:outline-blue-500",
               )}
             >
-              Resume
+              {mounted ? t.resume : "Resume"}
             </motion.a>
           </div>
         </div>

@@ -12,7 +12,7 @@ import { Navigation } from "@/components/navigation"
 
 export default function Portfolio() {
   return (
-    <div className="relative min-h-screen bg-white dark:bg-gradient-to-b dark:from-slate-900 dark:via-blue-950 dark:to-slate-900 cyber:bg-black text-slate-900 dark:text-slate-100 cyber:text-[rgb(255,200,200)] overflow-x-hidden transition-colors duration-300">
+    <div className="relative min-h-screen bg-gradient-to-b from-slate-900 via-blue-950 to-slate-900 cyber:bg-black text-slate-100 cyber:text-[rgb(255,200,200)] overflow-x-hidden transition-colors duration-300">
       <Navigation />
       <main>
         <Hero />

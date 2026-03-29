@@ -4,8 +4,9 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
+import { Card } from "@/components/ui/card"
 import Link from "next/link"
-import { FileText, ArrowRight } from "lucide-react"
+import { FileText } from "lucide-react"
 import { researchPapers } from "@/lib/research-data"
 import { useLanguage } from "@/components/language-provider"
 
@@ -13,12 +14,12 @@ const translations = {
   en: {
     subheading: "Publications",
     sectionTitle: "Research & Publications",
-    readMore: "Read full paper",
+    readMore: "Read full paper →",
   },
   fr: {
     subheading: "Publications",
     sectionTitle: "Recherche & Publications",
-    readMore: "Lire l'article complet",
+    readMore: "Lire l'article complet →",
   },
 }
 
@@ -32,13 +33,7 @@ export function Research() {
   const t = translations[language]
 
   return (
-    <section id="research" className="relative py-28 px-6" ref={ref}>
-      {/* Section number */}
-      {!isCyber && (
-        <div className="absolute left-[3%] top-20 text-[15vw] font-black leading-none select-none pointer-events-none text-[rgba(197,165,90,0.025)] tracking-tighter">
-          06
-        </div>
-      )}
+    <section id="research" className="relative py-24 px-6" ref={ref}>
       <div className="container mx-auto max-w-7xl z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -46,86 +41,79 @@ export function Research() {
           transition={{ duration: 0.8 }}
         >
           {/* Section header */}
-          <div className="mb-16 flex items-end gap-6">
-            <div>
-              <p className={`text-xs font-mono tracking-[0.3em] uppercase mb-3 ${
-                isCyber ? "text-red-400" : "text-[#c5a55a]"
-              }`}>
-                {`// ${t.subheading.toLowerCase()}`}
-              </p>
-              <h2 className={`text-4xl md:text-5xl font-black tracking-tight ${
-                isCyber ? "text-red-100" : "text-[#e8eaf5]"
-              }`}>
-                {t.sectionTitle}
-              </h2>
-            </div>
-            <div className={`flex-1 h-px mb-3 hidden md:block ${
-              isCyber
-                ? "bg-gradient-to-r from-red-900/40 to-transparent"
-                : "bg-gradient-to-r from-[rgba(197,165,90,0.3)] to-transparent"
-            }`} />
+          <div className="mb-14">
+            <p
+              className={`text-sm font-semibold tracking-widest uppercase mb-3 ${
+                isCyber ? "text-red-400" : "text-blue-400"
+              }`}
+            >
+              {t.subheading}
+            </p>
+            <h2
+              className={`text-4xl md:text-5xl font-extrabold tracking-tight ${
+                isCyber ? "text-red-100" : "text-slate-100"
+              }`}
+            >
+              {t.sectionTitle}
+            </h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-6">
             {researchPapers.map((paper, index) => (
               <motion.div
                 key={paper.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: index * 0.15 }}
-                whileHover={{ x: 4 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                whileHover={{ y: -4 }}
               >
                 <Link href={`/research/${paper.id}`}>
-                  <div className={`group relative border transition-all duration-300 p-6 md:p-8 cursor-pointer ${
-                    isCyber
-                      ? "bg-black/60 border-red-900/40 hover:border-red-600/50"
-                      : "bg-[rgba(11,21,37,0.8)] border-[rgba(197,165,90,0.1)] hover:border-[rgba(197,165,90,0.35)]"
-                  }`}>
-                    {/* Top accent */}
-                    <div className={`absolute top-0 left-0 right-0 h-px transition-all duration-300 ${
+                  <Card
+                    className={`backdrop-blur-sm border transition-all duration-300 p-6 md:p-8 relative overflow-hidden group cursor-pointer ${
                       isCyber
-                        ? "bg-gradient-to-r from-red-700/40 to-transparent group-hover:from-red-600/70"
-                        : "bg-gradient-to-r from-[rgba(197,165,90,0.3)] to-transparent group-hover:from-[rgba(197,165,90,0.6)]"
-                    }`} />
+                        ? "bg-black/60 border-red-900/40 hover:border-red-600/60"
+                        : "bg-slate-800/50 border-slate-700/60 hover:border-blue-500/50"
+                    }`}
+                  >
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${paper.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                    />
 
-                    {/* Hover overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${paper.gradient} opacity-0 group-hover:opacity-[0.025] transition-opacity duration-500`} />
-
-                    <div className="relative flex gap-5 items-start">
-                      <div className={`w-12 h-12 flex items-center justify-center border flex-shrink-0 transition-colors ${
-                        isCyber
-                          ? "border-red-700/40 bg-red-900/10 group-hover:border-red-600/60"
-                          : "border-[rgba(197,165,90,0.2)] bg-[rgba(197,165,90,0.05)] group-hover:border-[rgba(197,165,90,0.4)]"
-                      }`}>
-                        <FileText className={`w-5 h-5 ${
-                          isCyber ? "text-red-400" : "text-[#c5a55a]"
-                        }`} />
-                      </div>
-
-                      <div className="flex-1">
-                        <h3 className={`text-lg md:text-xl font-bold mb-2 leading-snug transition-colors ${
-                          isCyber
-                            ? "text-red-100 group-hover:text-red-300"
-                            : "text-[#e8eaf5] group-hover:text-[#c5a55a]"
-                        }`}>
-                          {paper.title}
-                        </h3>
-                        <div className={`flex items-center gap-2 text-xs font-mono tracking-wider uppercase ${
-                          isCyber ? "text-red-400/50" : "text-[rgba(197,165,90,0.45)]"
-                        }`}>
-                          <span>{t.readMore}</span>
-                          <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                    <div className="relative z-10 flex gap-6">
+                      <div className="flex-shrink-0">
+                        <div
+                          className={`w-16 h-16 rounded-xl flex items-center justify-center ${
+                            isCyber ? "bg-red-700/20" : "bg-blue-500/20"
+                          }`}
+                        >
+                          <FileText
+                            className={`w-8 h-8 ${
+                              isCyber ? "text-red-400" : "text-blue-400"
+                            }`}
+                          />
                         </div>
                       </div>
 
-                      {/* Index number */}
-                      <div className={`text-4xl font-black opacity-10 select-none ${
-                        isCyber ? "text-red-400" : "text-[#c5a55a]"
-                      }`}>
-                        {String(index + 1).padStart(2, "0")}
+                      <div className="flex-1">
+                        <h3
+                          className={`text-xl md:text-2xl font-bold mb-3 transition-colors ${
+                            isCyber
+                              ? "text-red-100 group-hover:text-red-400"
+                              : "text-slate-100 group-hover:text-blue-400"
+                          }`}
+                        >
+                          {paper.title}
+                        </h3>
+                        <p
+                          className={`text-sm font-medium ${
+                            isCyber ? "text-red-400/60" : "text-slate-400"
+                          }`}
+                        >
+                          {t.readMore}
+                        </p>
                       </div>
                     </div>
-                  </div>
+                  </Card>
                 </Link>
               </motion.div>
             ))}
@@ -135,4 +123,3 @@ export function Research() {
     </section>
   )
 }
-

@@ -24,7 +24,6 @@ const experienceData = {
         "Sentinel-2 imagery with GIS integration (Google Earth Engine, QGIS)",
         "Vegetation indices: NDVI, GNDVI, OSAVI",
         "End-to-end pipeline: extraction → preprocessing → training → evaluation → fine-tuning",
-        "Results: IoU ≈ 0.87 · Dice Score ≈ 0.92",
       ],
       tags: [
         "Deep Learning",
@@ -69,7 +68,6 @@ const experienceData = {
         "Exploitation d'images Sentinel-2 avec intégration GIS (Google Earth Engine, QGIS)",
         "Utilisation d'indices de végétation : NDVI, GNDVI, OSAVI",
         "Pipeline complet : extraction → prétraitement → entraînement → évaluation → fine-tuning",
-        "Résultats : IoU ≈ 0.87 · Dice Score ≈ 0.92",
       ],
       tags: [
         "Deep Learning",

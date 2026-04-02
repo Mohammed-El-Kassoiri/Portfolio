@@ -10,7 +10,14 @@ export const alt = "Mohammed El Kassoiri – AI Engineer & Data Scientist"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
-export default function Image() {
+export default async function Image() {
+  let logoSrc: ArrayBuffer | null = null
+  try {
+    logoSrc = await fetch(`${siteUrl}/logo.png`).then((r) => r.arrayBuffer())
+  } catch {
+    // logo unavailable — render without it
+  }
+
   return new ImageResponse(
     (
       <div
@@ -54,78 +61,96 @@ export default function Image() {
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
+            flexDirection: "row",
             alignItems: "center",
-            gap: "20px",
+            gap: "48px",
             zIndex: 1,
             padding: "0 80px",
-            textAlign: "center",
           }}
         >
-          {/* Badge */}
+          {/* Logo */}
+          {logoSrc && (
+            // @ts-expect-error — arrayBuffer is valid as src in ImageResponse
+            <img
+              src={logoSrc}
+              width={160}
+              height={160}
+              style={{ borderRadius: "50%", border: "3px solid rgba(59,130,246,0.5)" }}
+            />
+          )}
+
+          {/* Text block */}
           <div
             style={{
               display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              background: "rgba(59,130,246,0.15)",
-              border: "1px solid rgba(59,130,246,0.4)",
-              borderRadius: "999px",
-              padding: "6px 20px",
-              color: "#93c5fd",
-              fontSize: "18px",
-              fontWeight: 500,
-              letterSpacing: "0.05em",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              gap: "16px",
             }}
           >
-            AI Engineer · Data Scientist · Morocco
-          </div>
+            {/* Badge */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                background: "rgba(59,130,246,0.15)",
+                border: "1px solid rgba(59,130,246,0.4)",
+                borderRadius: "999px",
+                padding: "6px 20px",
+                color: "#93c5fd",
+                fontSize: "18px",
+                fontWeight: 500,
+                letterSpacing: "0.05em",
+              }}
+            >
+              AI Engineer · Data Scientist · Morocco
+            </div>
 
-          {/* Name */}
-          <div
-            style={{
-              fontSize: "80px",
-              fontWeight: 800,
-              color: "#f1f5f9",
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            Mohammed El Kassoiri
-          </div>
+            {/* Name */}
+            <div
+              style={{
+                fontSize: "68px",
+                fontWeight: 800,
+                color: "#f1f5f9",
+                lineHeight: 1.1,
+                letterSpacing: "-0.02em",
+              }}
+            >
+              Mohammed El Kassoiri
+            </div>
 
-          {/* Tagline */}
-          <div
-            style={{
-              fontSize: "26px",
-              color: "#94a3b8",
-              maxWidth: "860px",
-              lineHeight: 1.5,
-            }}
-          >
-            Machine Learning · Deep Learning · Computer Vision · NLP · Agricultural AI
-          </div>
+            {/* Tagline */}
+            <div
+              style={{
+                fontSize: "22px",
+                color: "#94a3b8",
+                lineHeight: 1.5,
+              }}
+            >
+              Machine Learning · Deep Learning · Computer Vision · NLP
+            </div>
 
-          {/* Divider */}
-          <div
-            style={{
-              width: "80px",
-              height: "3px",
-              background: "linear-gradient(90deg, #3b82f6, #60a5fa)",
-              borderRadius: "2px",
-              marginTop: "4px",
-            }}
-          />
+            {/* Divider */}
+            <div
+              style={{
+                width: "80px",
+                height: "3px",
+                background: "linear-gradient(90deg, #3b82f6, #60a5fa)",
+                borderRadius: "2px",
+              }}
+            />
 
-          {/* URL */}
-          <div
-            style={{
-              fontSize: "20px",
-              color: "#60a5fa",
-              letterSpacing: "0.03em",
-            }}
-          >
-            {siteHost}
+            {/* URL */}
+            <div
+              style={{
+                fontSize: "20px",
+                color: "#60a5fa",
+                letterSpacing: "0.03em",
+              }}
+            >
+              {siteHost}
+            </div>
           </div>
         </div>
       </div>

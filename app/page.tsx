@@ -9,10 +9,12 @@ import { Research } from "@/components/research"
 import { Skills } from "@/components/skills"
 import { Contact } from "@/components/contact"
 import { Navigation } from "@/components/navigation"
+import { AIBackground } from "@/components/ai-background"
 
 export default function Portfolio() {
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-slate-900 via-blue-950 to-slate-900 cyber:bg-black text-slate-100 cyber:text-[rgb(255,200,200)] overflow-x-hidden transition-colors duration-300">
+    <div className="relative min-h-screen text-slate-100 cyber:text-[rgb(255,200,200)] overflow-x-hidden transition-colors duration-300">
+      <AIBackground />
       <Navigation />
       <main>
         <Hero />

@@ -19,12 +19,16 @@ export const metadata: Metadata = {
     "AI Engineer & Data Scientist from Morocco specializing in Machine Learning, Deep Learning, Computer Vision, NLP, and Agricultural AI. Building intelligent systems that make a real difference.",
   keywords: [
     "Mohammed El Kassoiri",
+    "Mohammed El Kassoiri portfolio",
+    "Mohammed El Kassoiri AI",
+    "Mohammed El Kassoiri engineer",
+    "El Kassoiri Mohammed",
     "AI Engineer",
     "Data Scientist",
     "Machine Learning Engineer",
-    "Deep Learning",
-    "Computer Vision",
-    "NLP",
+    "Deep Learning Engineer",
+    "Computer Vision Engineer",
+    "NLP Engineer",
     "Natural Language Processing",
     "PyTorch",
     "TensorFlow",
@@ -42,6 +46,8 @@ export const metadata: Metadata = {
     "Fraud Detection",
     "Darija NLP",
     "Robot Arm",
+    "mohammedelkassoiri.app",
+    "Mohammed Kassoiri",
   ],
   authors: [
     {
@@ -97,7 +103,9 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Mohammed El Kassoiri",
+  alternateName: ["Mohammed Kassoiri", "El Kassoiri Mohammed"],
   url: siteUrl,
+  image: `${siteUrl}/logo.png`,
   jobTitle: "AI Engineer & Data Scientist",
   description:
     "AI Engineer & Data Scientist from Morocco specializing in Machine Learning, Deep Learning, Computer Vision, NLP, and Agricultural AI.",
@@ -115,8 +123,15 @@ const jsonLd = {
     "TensorFlow",
     "Agricultural AI",
     "Remote Sensing",
+    "Data Science",
+    "Artificial Intelligence",
   ],
   nationality: "Moroccan",
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": siteUrl,
+    name: "Mohammed El Kassoiri – AI Engineer & Data Scientist Portfolio",
+  },
 }
 
 export default function RootLayout({

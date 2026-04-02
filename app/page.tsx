@@ -3,7 +3,6 @@
 import { Hero } from "@/components/hero"
 import { About } from "@/components/about"
 import { Experience } from "@/components/experience"
-import { FeaturedProjectPFE } from "@/components/featured-project-pfe"
 import { Projects } from "@/components/projects"
 import { Research } from "@/components/research"
 import { Skills } from "@/components/skills"
@@ -20,7 +19,6 @@ export default function Portfolio() {
         <Hero />
         <About />
         <Experience />
-        <FeaturedProjectPFE />
         <Projects />
         <Research />
         <Skills />

@@ -58,6 +58,7 @@ Portfolio/
 ├── hooks/                   # Custom React hooks
 ├── lib/                     # Utilities & data (research-data.ts)
 └── public/                  # Static assets (CV PDF, icons, figures)
+│       ├── logo.png             # Primary logo (source for favicon)
 ```
 
 ---
@@ -98,6 +99,18 @@ Copy `.env.example` to `.env.local` and set your site URL:
 ```env
 NEXT_PUBLIC_SITE_URL=https://www.mohammedelkassoiri.app
 ```
+
+---
+
+## Favicon
+
+The site uses `public/logo.png` as the primary icon (served via Next.js App Router's `app/icon.png`).  
+To also serve a traditional `favicon.ico` (recommended for Google Search favicon indexing):
+
+1. Convert `public/logo.png` to a `.ico` file using an online tool such as [favicon.io](https://favicon.io/favicon-converter/) or [realfavicongenerator.net](https://realfavicongenerator.net/).
+2. Place the generated file at **`public/favicon.ico`** (or `app/favicon.ico`).
+3. Redeploy the site.
+4. Request re-indexing in **Google Search Console → URL Inspection** to refresh the cached favicon.
 
 ---
 

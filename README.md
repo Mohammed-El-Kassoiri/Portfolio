@@ -114,7 +114,7 @@ To also serve a traditional `favicon.ico` (recommended for Google Search favicon
 
 ---
 
-
+## Contact & Links
 
 | | |
 |---|---|

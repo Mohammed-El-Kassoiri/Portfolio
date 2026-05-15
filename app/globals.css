@@ -6,6 +6,14 @@
 
 /* Default to dark palette — light theme is not supported */
 :root {
+  --font-size-display: clamp(2.25rem, 4vw + 1rem, 4.5rem);
+  --font-size-heading: clamp(1.875rem, 2.4vw + 1rem, 3rem);
+  --font-size-title: clamp(1.25rem, 1.2vw + 1rem, 1.75rem);
+  --section-spacing-y: clamp(4rem, 9vw, 7rem);
+  --container-padding-x: clamp(1rem, 2.5vw, 1.75rem);
+  --focus-outline-width: 2px;
+  --focus-outline-offset: 2px;
+  --focus-outline-color: rgb(96 165 250);
   --background: 15 23 42; /* slate-900 */
   --foreground: 241 245 249; /* slate-100 */
   --card: 30 41 59; /* slate-800 */
@@ -80,6 +88,7 @@
    CYBER HACKER THEME — red/black palette
    ============================================================ */
 .cyber {
+  --focus-outline-color: rgb(239 68 68);
   --background: 5 0 0;          /* near-black */
   --foreground: 255 200 200;    /* readable light red-white */
   --card: 18 4 4;               /* dark charcoal-red */
@@ -166,9 +175,47 @@
   html {
     scroll-behavior: smooth;
   }
+
+  :focus-visible {
+    outline: var(--focus-outline-width) solid var(--focus-outline-color);
+    outline-offset: var(--focus-outline-offset);
+  }
 }
 
 @layer utilities {
+  .section-container {
+    padding-block: var(--section-spacing-y);
+    padding-inline: var(--container-padding-x);
+  }
+
+  .container-padding {
+    padding-inline: var(--container-padding-x);
+  }
+
+  .section-title {
+    font-size: var(--font-size-heading);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .display-title {
+    font-size: var(--font-size-display);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .card-surface {
+    @apply backdrop-blur-sm border rounded-2xl transition-all duration-300;
+  }
+
+  .skip-link {
+    @apply sr-only focus:not-sr-only fixed top-4 left-4 z-[100] rounded-md px-4 py-2 font-semibold;
+    @apply bg-slate-100 text-slate-950 border border-slate-300 shadow-lg;
+    @apply cyber:bg-red-100 cyber:text-red-950 cyber:border-red-300;
+  }
+
   /* Simple gradient animation for modern design */
   @keyframes gradient {
     0%,
@@ -203,6 +250,10 @@
 
   /* Reduced motion override */
   @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
     .animate-gradient,
     .cyber-glow {
       animation: none;

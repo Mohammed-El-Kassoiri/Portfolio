@@ -3,9 +3,10 @@
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
-import { useState, useEffect } from "react"
 import { Target, GraduationCap, Briefcase, Code2 } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+import { useMounted } from "@/hooks/use-mounted"
+import { SectionHeader } from "@/components/section-header"
 
 const translations = {
   en: {
@@ -58,8 +59,7 @@ export function About() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const { theme } = useTheme()
   const { language } = useLanguage()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const mounted = useMounted()
   const isCyber = mounted && theme === "cyber"
   const t = translations[language]
 
@@ -85,7 +85,7 @@ export function About() {
   }
 
   return (
-    <section id="about" className="relative py-24 px-6" ref={ref}>
+    <section id="about" className="relative section-container" ref={ref}>
       <div className="container mx-auto max-w-7xl z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -93,14 +93,11 @@ export function About() {
           transition={{ duration: 0.8 }}
         >
           {/* Section header */}
-          <div className="mb-14">
-            <p className={`text-sm font-semibold tracking-widest uppercase mb-3 ${accentColor}`}>
-              {language === "en" ? "Who I am" : "Qui je suis"}
-            </p>
-            <h2 className={`text-4xl md:text-5xl font-extrabold tracking-tight ${titleColor}`}>
-              {t.sectionTitle}
-            </h2>
-          </div>
+          <SectionHeader
+            eyebrow={language === "en" ? "Who I am" : "Qui je suis"}
+            title={t.sectionTitle}
+            isCyber={isCyber}
+          />
 
           {/* Bento Grid */}
           <motion.div

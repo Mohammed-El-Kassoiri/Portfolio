@@ -6,7 +6,7 @@ import {
   Cpu,
   Calendar,
   Building2,
-  ExternalLink,
+  ChevronDown,
   CheckCircle2,
   Target,
   BarChart3,
@@ -15,8 +15,9 @@ import {
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
-import { useState, useEffect } from "react"
 import { useLanguage } from "@/components/language-provider"
+import { useMounted } from "@/hooks/use-mounted"
+import { SectionHeader } from "@/components/section-header"
 
 const translations = {
   en: {
@@ -69,13 +70,12 @@ export function FeaturedProjectPFE() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const { theme } = useTheme()
   const { language } = useLanguage()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const mounted = useMounted()
   const isCyber = mounted && theme === "cyber"
   const t = translations[language]
 
   return (
-    <section id="pfe" className="relative py-24 px-6" ref={ref}>
+    <section id="pfe" className="relative section-container" ref={ref}>
       <div className="container mx-auto max-w-7xl z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -83,18 +83,11 @@ export function FeaturedProjectPFE() {
           transition={{ duration: 0.8 }}
         >
           {/* Section header */}
-          <div className="mb-14">
-            <p className={`text-sm font-semibold tracking-widest uppercase mb-3 text-purple-400`}>
-              {language === "en" ? "Thesis work" : "Travail de thèse"}
-            </p>
-            <h2
-              className={`text-4xl md:text-5xl font-extrabold tracking-tight ${
-                isCyber ? "text-red-100" : "text-slate-100"
-              }`}
-            >
-              {t.sectionTitle}
-            </h2>
-          </div>
+          <SectionHeader
+            eyebrow={language === "en" ? "Thesis work" : "Travail de thèse"}
+            title={t.sectionTitle}
+            isCyber={isCyber}
+          />
 
           {/* Main card */}
           <div
@@ -121,7 +114,11 @@ export function FeaturedProjectPFE() {
               {/* Left column */}
               <div className="lg:col-span-7 flex flex-col space-y-6">
                 <div>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-400 tracking-tight">
+                  <h3
+                    className={`text-3xl md:text-4xl font-bold mb-4 tracking-tight ${
+                      isCyber ? "text-red-100" : "text-slate-100"
+                    }`}
+                  >
                     {t.projectTitle}
                   </h3>
 
@@ -302,11 +299,17 @@ export function FeaturedProjectPFE() {
                 </div>
 
                 {/* CTA */}
-                <button className="group relative w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-semibold rounded-xl overflow-hidden transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                <a
+                  href="#projects"
+                  className={`
+                    group relative w-full inline-flex items-center justify-center gap-3 px-8 py-4 font-semibold rounded-xl overflow-hidden transition-transform hover:scale-[1.02] active:scale-[0.98]
+                    ${isCyber ? "bg-red-700 text-white hover:bg-red-600" : "bg-blue-600 text-white hover:bg-blue-500"}
+                  `}
+                >
                   <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span className="relative">{t.ctaLabel}</span>
-                  <ExternalLink className="w-5 h-5 relative group-hover:translate-x-1 transition-transform" />
-                </button>
+                  <ChevronDown className="w-5 h-5 relative group-hover:translate-y-0.5 transition-transform" />
+                </a>
               </div>
             </div>
           </div>

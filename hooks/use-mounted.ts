@@ -8,11 +8,11 @@ import { useEffect, useState } from "react";
  * to avoid hydration mismatch between server and client rendering.
  */
 export function useMounted() {
-  const [mounted, setMounted] = useState<boolean>(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  return mounted
+  return mounted;
 }

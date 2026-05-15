@@ -226,7 +226,7 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
                 PDF Preview
               </h2>
               <p className={`text-sm mb-4 ${isCyber ? "text-red-200/70" : "text-slate-300"}`}>
-                load the embedded viewer only when needed to improve performance on slower devices.
+                Load the embedded viewer only when needed to improve performance on slower devices.
               </p>
               {!showPdfPreview ? (
                 <Button

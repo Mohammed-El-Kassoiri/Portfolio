@@ -234,6 +234,7 @@ export function Projects() {
   const badgeBg = isCyber
     ? "bg-red-700/20 text-red-300 border-red-700/30"
     : "bg-blue-500/20 text-blue-300 border-blue-500/30"
+  const detailLabelClass = `font-semibold ${isCyber ? "text-red-200" : "text-slate-200"}`
 
   const sortedProjects = useMemo(() => {
     const filteredProjects = projects.filter(
@@ -349,11 +350,11 @@ export function Projects() {
                         {project.title}
                       </h3>
 
-                       <div className={`text-sm space-y-2.5 mb-4 leading-relaxed flex-grow ${isCyber ? "text-red-200/70" : "text-slate-300"}`}>
-                         <p><span className={`font-semibold ${isCyber ? "text-red-200" : "text-slate-200"}`}>{labels.problem}:</span> {project.description}</p>
-                         <p><span className={`font-semibold ${isCyber ? "text-red-200" : "text-slate-200"}`}>{labels.approach}:</span> {project.approach}</p>
-                         <p><span className={`font-semibold ${isCyber ? "text-red-200" : "text-slate-200"}`}>{labels.result}:</span> {project.outcome}</p>
-                       </div>
+                      <div className={`text-sm space-y-2.5 mb-4 leading-relaxed flex-grow ${isCyber ? "text-red-200/70" : "text-slate-300"}`}>
+                        <p><span className={detailLabelClass}>{labels.problem}:</span> {project.description}</p>
+                        <p><span className={detailLabelClass}>{labels.approach}:</span> {project.approach}</p>
+                        <p><span className={detailLabelClass}>{labels.result}:</span> {project.outcome}</p>
+                      </div>
 
                       {/* Tags */}
                       <div className="flex flex-wrap gap-2 mb-4">

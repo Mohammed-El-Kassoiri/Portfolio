@@ -1,11 +1,11 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
 import { Github, Linkedin, Mail, ChevronDown } from "lucide-react"
 import { useTheme } from "next-themes"
-import { useState, useEffect } from "react"
 import { useLanguage } from "@/components/language-provider"
+import { useMounted } from "@/hooks/use-mounted"
 
 const translations = {
   en: {
@@ -45,14 +45,14 @@ const translations = {
 export function Hero() {
   const { theme } = useTheme()
   const { language } = useLanguage()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const mounted = useMounted()
+  const prefersReducedMotion = useReducedMotion()
 
   const isCyber = mounted && theme === "cyber"
   const t = translations[language]
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center px-6 pt-16">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center section-shell pt-16">
       {/* Subtle background pattern — adapts to theme */}
       <div
         className={
@@ -77,7 +77,7 @@ export function Hero() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left side — text content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="space-y-7"
@@ -98,7 +98,7 @@ export function Hero() {
             </motion.div>
 
             <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight"
+              className="display-title"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -128,7 +128,7 @@ export function Hero() {
                 sequence={t.roles}
                 wrapper="span"
                 speed={50}
-                repeat={Infinity}
+                repeat={prefersReducedMotion ? 0 : Infinity}
               />
             </div>
 
@@ -229,7 +229,7 @@ export function Hero() {
 
           {/* Right side — code window mockup */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="hidden lg:flex items-center justify-center"
@@ -242,8 +242,8 @@ export function Hero() {
                     ? "bg-gradient-to-br from-red-700/25 to-red-900/10"
                     : "bg-gradient-to-br from-blue-600/20 to-cyan-400/10"
                 }`}
-                animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                animate={prefersReducedMotion ? { opacity: 0.3 } : { scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+                transition={{ duration: 8, repeat: prefersReducedMotion ? 0 : Infinity, ease: "easeInOut" }}
               />
 
               {/* Code window */}
@@ -304,8 +304,8 @@ export function Hero() {
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          animate={prefersReducedMotion ? undefined : { y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: prefersReducedMotion ? 0 : Infinity }}
           className={isCyber ? "text-red-500" : "text-blue-400"}
         >
           <ChevronDown className="w-6 h-6" />

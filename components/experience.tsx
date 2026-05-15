@@ -1,11 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
 import { Building2 } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+import { useMounted } from "@/hooks/use-mounted"
+import { SectionHeader } from "@/components/section-header"
 
 const experienceData = {
   en: [
@@ -104,14 +105,13 @@ export function Experience() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const { theme } = useTheme()
   const { language } = useLanguage()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const mounted = useMounted()
   const isCyber = mounted && theme === "cyber"
 
   const experiences = experienceData[language]
 
   return (
-    <section id="experience" className="relative py-24 px-6" ref={ref}>
+    <section id="experience" className="relative section-shell" ref={ref}>
       <div className="container mx-auto max-w-7xl z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -119,14 +119,11 @@ export function Experience() {
           transition={{ duration: 0.8 }}
         >
           {/* Section header */}
-          <div className="mb-14">
-            <p className={`text-sm font-semibold tracking-widest uppercase mb-3 ${isCyber ? "text-red-400" : "text-blue-400"}`}>
-              {language === "en" ? "My journey" : "Mon parcours"}
-            </p>
-            <h2 className={`text-4xl md:text-5xl font-extrabold tracking-tight ${isCyber ? "text-red-100" : "text-slate-100"}`}>
-              {sectionTitle[language]}
-            </h2>
-          </div>
+          <SectionHeader
+            eyebrow={language === "en" ? "My journey" : "Mon parcours"}
+            title={sectionTitle[language]}
+            isCyber={isCyber}
+          />
 
           <div className="relative">
             {/* Timeline line */}

@@ -1,6 +1,5 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
@@ -19,6 +18,8 @@ import {
   Layers,
 } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+import { useMounted } from "@/hooks/use-mounted"
+import { SectionHeader } from "@/components/section-header"
 
 const skillCategoriesEn = [
   {
@@ -180,14 +181,13 @@ export function Skills() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const { theme } = useTheme()
   const { language } = useLanguage()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const mounted = useMounted()
   const isCyber = mounted && theme === "cyber"
 
   const skillCategories = language === "en" ? skillCategoriesEn : skillCategoriesFr
 
   return (
-    <section id="skills" className="relative py-24 px-6" ref={ref}>
+    <section id="skills" className="relative section-shell" ref={ref}>
       <div className="container mx-auto max-w-7xl z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -195,22 +195,11 @@ export function Skills() {
           transition={{ duration: 0.8 }}
         >
           {/* Section header */}
-          <div className="mb-14">
-            <p
-              className={`text-sm font-semibold tracking-widest uppercase mb-3 ${
-                isCyber ? "text-red-400" : "text-blue-400"
-              }`}
-            >
-              {language === "en" ? "Tech stack" : "Technologies"}
-            </p>
-            <h2
-              className={`text-4xl md:text-5xl font-extrabold tracking-tight ${
-                isCyber ? "text-red-100" : "text-slate-100"
-              }`}
-            >
-              {language === "en" ? "Skills & Expertise" : "Compétences & Expertise"}
-            </h2>
-          </div>
+          <SectionHeader
+            eyebrow={language === "en" ? "Tech stack" : "Technologies"}
+            title={language === "en" ? "Skills & Expertise" : "Compétences & Expertise"}
+            isCyber={isCyber}
+          />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillCategories.map((category, index) => (

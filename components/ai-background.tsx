@@ -1,8 +1,10 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 import { useTheme } from "next-themes"
-import { useState, useEffect } from "react"
+import { useMemo } from "react"
+import { useMounted } from "@/hooks/use-mounted"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 // ── Dot grid constants ───────────────────────────────────────────────────────
 const DOT_GRID_SIZE = "52px 52px"     // spacing between dots
@@ -68,9 +70,23 @@ const PARTICLES = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
 // ── Component ────────────────────────────────────────────────────────────────
 export function AIBackground() {
   const { theme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const mounted = useMounted()
+  const isMobile = useIsMobile()
+  const prefersReducedMotion = useReducedMotion()
   const isCyber = mounted && theme === "cyber"
+  const reducedDecor = isMobile || prefersReducedMotion
+  const particles = useMemo(
+    () => (reducedDecor ? PARTICLES.slice(0, 6) : PARTICLES),
+    [reducedDecor],
+  )
+  const nodes = useMemo(
+    () => (reducedDecor ? NEURAL_NODES.filter((_, i) => i % 2 === 0) : NEURAL_NODES),
+    [reducedDecor],
+  )
+  const edges = useMemo(
+    () => (reducedDecor ? NEURAL_EDGES.filter((_, i) => i % 3 === 0) : NEURAL_EDGES),
+    [reducedDecor],
+  )
 
   const primary = isCyber ? "220,38,38" : "59,130,246"
   const accent = isCyber ? "239,68,68" : "96,165,250"
@@ -102,8 +118,8 @@ export function AIBackground() {
       />
 
       {/* ── Neural network SVG ── */}
-      <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.07 }}>
-        {NEURAL_EDGES.map((e, i) => (
+      <svg className="absolute inset-0 w-full h-full" style={{ opacity: reducedDecor ? 0.04 : 0.07 }}>
+        {edges.map((e, i) => (
           <line
             key={`e-${i}`}
             x1={`${e.x1}%`}
@@ -114,7 +130,7 @@ export function AIBackground() {
             strokeWidth="0.45"
           />
         ))}
-        {NEURAL_NODES.map((n, i) => (
+        {nodes.map((n, i) => (
           <circle
             key={`n-${i}`}
             cx={`${n.x}%`}
@@ -137,8 +153,8 @@ export function AIBackground() {
           top: "-15%",
           left: "-5%",
         }}
-        animate={{ x: [0, 45, 0], y: [0, 28, 0] }}
-        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+        animate={reducedDecor ? { opacity: 0.8 } : { x: [0, 45, 0], y: [0, 28, 0] }}
+        transition={{ duration: 24, repeat: reducedDecor ? 0 : Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute rounded-full"
@@ -150,8 +166,8 @@ export function AIBackground() {
           bottom: "-10%",
           right: "-5%",
         }}
-        animate={{ x: [0, -40, 0], y: [0, -22, 0] }}
-        transition={{ duration: 28, repeat: Infinity, ease: "easeInOut", delay: 6 }}
+        animate={reducedDecor ? { opacity: 0.7 } : { x: [0, -40, 0], y: [0, -22, 0] }}
+        transition={{ duration: 28, repeat: reducedDecor ? 0 : Infinity, ease: "easeInOut", delay: 6 }}
       />
       <motion.div
         className="absolute rounded-full"
@@ -163,12 +179,12 @@ export function AIBackground() {
           top: "35%",
           left: "55%",
         }}
-        animate={{ x: [0, 28, 0], y: [0, -38, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 13 }}
+        animate={reducedDecor ? { opacity: 0.7 } : { x: [0, 28, 0], y: [0, -38, 0] }}
+        transition={{ duration: 20, repeat: reducedDecor ? 0 : Infinity, ease: "easeInOut", delay: 13 }}
       />
 
       {/* ── Floating particles ── */}
-      {PARTICLES.map((p) => (
+      {particles.map((p) => (
         <motion.div
           key={p.id}
           className="absolute rounded-full"
@@ -180,10 +196,10 @@ export function AIBackground() {
             left: p.left,
             boxShadow: `0 0 6px rgba(${accent},0.4)`,
           }}
-          animate={{ y: [0, -30, 0], opacity: [0.2, 0.75, 0.2] }}
+          animate={reducedDecor ? { opacity: 0.35 } : { y: [0, -30, 0], opacity: [0.2, 0.75, 0.2] }}
           transition={{
             duration: p.duration,
-            repeat: Infinity,
+            repeat: reducedDecor ? 0 : Infinity,
             ease: "easeInOut",
             delay: p.delay,
           }}
@@ -191,7 +207,7 @@ export function AIBackground() {
       ))}
 
       {/* ── Corner tech-line accent (top-left) ── */}
-      <svg
+      {!reducedDecor && <svg
         className="absolute top-0 left-0"
         width="260"
         height="180"
@@ -203,10 +219,10 @@ export function AIBackground() {
         <line x1="88" y1="0" x2="88" y2="140" stroke={`rgb(${primary})`} strokeWidth="0.5" />
         <rect x="32" y="32" width="24" height="24" fill="none" stroke={`rgb(${accent})`} strokeWidth="0.6" />
         <rect x="76" y="76" width="16" height="16" fill="none" stroke={`rgb(${accent})`} strokeWidth="0.6" />
-      </svg>
+      </svg>}
 
       {/* ── Corner tech-line accent (bottom-right) ── */}
-      <svg
+      {!reducedDecor && <svg
         className="absolute bottom-0 right-0"
         width="260"
         height="180"
@@ -218,7 +234,7 @@ export function AIBackground() {
         <line x1="88" y1="0" x2="88" y2="140" stroke={`rgb(${primary})`} strokeWidth="0.5" />
         <rect x="32" y="32" width="24" height="24" fill="none" stroke={`rgb(${accent})`} strokeWidth="0.6" />
         <rect x="76" y="76" width="16" height="16" fill="none" stroke={`rgb(${accent})`} strokeWidth="0.6" />
-      </svg>
+      </svg>}
     </div>
   )
 }

@@ -1,11 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
 import { Github, Linkedin, Mail } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+import { useMounted } from "@/hooks/use-mounted"
+import { SectionHeader } from "@/components/section-header"
 
 const socialLinks = [
   {
@@ -48,15 +49,14 @@ export function Contact() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const { theme } = useTheme()
   const { language } = useLanguage()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const mounted = useMounted()
   const isCyber = mounted && theme === "cyber"
   const t = translations[language]
 
   return (
     <section
       id="contact"
-      className="relative py-24 px-6 min-h-screen flex items-center"
+      className="relative section-shell min-h-screen flex items-center"
       ref={ref}
     >
       <div className="container mx-auto max-w-4xl z-10 relative text-center">
@@ -66,21 +66,12 @@ export function Contact() {
           transition={{ duration: 0.8 }}
         >
           {/* Section header */}
-          <p
-            className={`text-sm font-semibold tracking-widest uppercase mb-4 ${
-              isCyber ? "text-red-400" : "text-blue-400"
-            }`}
-          >
-            {t.subheading}
-          </p>
-
-          <h2
-            className={`text-4xl md:text-5xl font-extrabold tracking-tight mb-6 ${
-              isCyber ? "text-red-100" : "text-slate-100"
-            }`}
-          >
-            {t.sectionTitle}
-          </h2>
+          <SectionHeader
+            eyebrow={t.subheading}
+            title={t.sectionTitle}
+            isCyber={isCyber}
+            className="mb-6"
+          />
 
           <p
             className={`text-xl mb-14 max-w-2xl mx-auto leading-relaxed ${
@@ -135,7 +126,7 @@ export function Contact() {
           </motion.a>
 
           {/* Footer */}
-          <motion.div
+          <motion.footer
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -150,7 +141,7 @@ export function Contact() {
             >
               {t.copyright}
             </p>
-          </motion.div>
+          </motion.footer>
         </motion.div>
       </div>
     </section>

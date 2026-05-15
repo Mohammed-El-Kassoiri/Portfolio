@@ -1,16 +1,21 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
 import { Card } from "@/components/ui/card"
 import { Github, ExternalLink, FileText } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+import { useMounted } from "@/hooks/use-mounted"
+import { SectionHeader } from "@/components/section-header"
 
 interface Project {
   title: string
   description: string
+  approach: string
+  outcome: string
+  impactBadge: string
   category: string
   tags: string[]
   gradient: string
@@ -24,7 +29,11 @@ const projectsEn: Project[] = [
   {
     title: "Robot Arm Object Sorting System",
     description:
-      "Real-time object detection and automated sorting system using advanced CV algorithms for color-based sorting.",
+      "Manual color sorting was slow and error-prone for repetitive industrial workflows.",
+    approach:
+      "Built a real-time CV-driven robotic workflow that detects objects and triggers automated arm-based color sorting.",
+    outcome: "Delivered an end-to-end prototype combining detection, control, and user interface in one loop.",
+    impactBadge: "Real-time automation",
     category: "industrial",
     tags: ["Python", "OpenCV", "Tkinter", "Arduino", "Computer Vision"],
     gradient: "from-blue-500 to-blue-600",
@@ -34,7 +43,11 @@ const projectsEn: Project[] = [
   {
     title: "English → Darija Translation System",
     description:
-      "Bidirectional neural machine translation between English and Moroccan Darija (Moroccan Arabic dialect), built on a state-of-the-art Transformer architecture.",
+      "High-quality translation support for Moroccan Darija is limited in mainstream NLP tooling.",
+    approach:
+      "Trained and fine-tuned a Transformer-based NMT pipeline with bilingual data and Hugging Face deployment.",
+    outcome: "Published both model and interactive demo for practical translation usage and evaluation.",
+    impactBadge: "Model + live demo",
     category: "other",
     tags: ["NLP", "Transformers", "Deep Learning", "Moroccan Darija", "Machine Translation"],
     gradient: "from-purple-500 to-pink-500",
@@ -45,7 +58,11 @@ const projectsEn: Project[] = [
   {
     title: "Letterboxd Movie Analytics & Recommendation System",
     description:
-      "Analyzed Letterboxd user data and built a personalized movie recommendation system combining past ratings with movie content.",
+      "Users struggle to find relevant films when ratings and metadata are scattered across profiles.",
+    approach:
+      "Combined collaborative and content-based modeling using TF-IDF, LDA, and matrix factorization techniques.",
+    outcome: "Produced personalized recommendations grounded in historical ratings and content similarity.",
+    impactBadge: "Personalized recommendations",
     category: "other",
     tags: ["Data Science", "Python", "NLP", "Scikit-learn", "TF-IDF", "LDA", "SVD"],
     gradient: "from-green-500 to-emerald-600",
@@ -54,7 +71,11 @@ const projectsEn: Project[] = [
   {
     title: "Medical-Diagnosis-COT-DeepSeek V1",
     description:
-      "Advanced medical language model fine-tuned for evidence-based medical question answering using a state-of-the-art transformer architecture.",
+      "General LLM outputs in medical contexts can be unreliable without task-specific tuning.",
+    approach:
+      "Fine-tuned a transformer model for medical Q&A with evidence-oriented prompting and domain adaptation.",
+    outcome: "Released a specialized medical assistant checkpoint focused on safer diagnostic support.",
+    impactBadge: "Domain-adapted LLM",
     category: "medical",
     tags: ["Deep Learning", "Transformers", "Medical AI", "Healthcare", "LLM"],
     gradient: "from-red-500 to-orange-500",
@@ -64,7 +85,11 @@ const projectsEn: Project[] = [
   {
     title: "Water Stress & Agricultural Adaptation Mapping (Taroudant)",
     description:
-      "Semantic segmentation system based on Attention U-Net for mapping water stress and agricultural adaptation potential using multi-source remote sensing data.",
+      "Traditional monitoring misses spatial water-stress patterns critical for agricultural planning.",
+    approach:
+      "Built a multi-source Attention U-Net segmentation pipeline with Sentinel and environmental indicators.",
+    outcome: "Generated detailed stress and adaptation maps to support data-informed resource decisions.",
+    impactBadge: "Research-backed mapping",
     category: "agriculture",
     tags: ["Remote Sensing", "Attention U-Net", "Semantic Segmentation", "Sentinel-1", "Sentinel-2", "SMAP", "Google Earth Engine"],
     gradient: "from-amber-500 to-yellow-500",
@@ -75,7 +100,11 @@ const projectsEn: Project[] = [
   {
     title: "MY LAW – Moroccan Legal RAG System",
     description:
-      "Retrieval-Augmented Generation (RAG) system for Moroccan legal texts, enabling accurate multilingual (Arabic/French) legal question answering with strict source citation.",
+      "Legal search is slow when statutes are fragmented across multilingual documents.",
+    approach:
+      "Implemented a multilingual RAG stack with semantic retrieval and citation-first response generation.",
+    outcome: "Enabled faster legal QA with traceable source references for higher trust.",
+    impactBadge: "Citation-first answers",
     category: "legal",
     tags: ["RAG", "NLP", "Arabic NLP", "Legal AI", "FAISS", "Sentence Transformers", "FastAPI"],
     gradient: "from-indigo-500 to-blue-600",
@@ -87,7 +116,11 @@ const projectsFr: Project[] = [
   {
     title: "Système de Tri Robotique par Vision",
     description:
-      "Système de détection d'objets en temps réel et de tri automatisé basé sur des algorithmes CV avancés de tri par couleur.",
+      "Le tri manuel par couleur est lent et peu fiable dans des flux répétitifs.",
+    approach:
+      "Conception d'un pipeline temps réel de vision par ordinateur pilotant un bras robotisé pour le tri automatique.",
+    outcome: "Prototype fonctionnel intégrant détection, contrôle matériel et interface utilisateur.",
+    impactBadge: "Automatisation temps réel",
     category: "industrial",
     tags: ["Python", "OpenCV", "Tkinter", "Arduino", "Computer Vision"],
     gradient: "from-blue-500 to-blue-600",
@@ -97,7 +130,11 @@ const projectsFr: Project[] = [
   {
     title: "Système de Traduction Anglais → Darija",
     description:
-      "Système de traduction automatique bidirectionnel entre l'anglais et le Darija marocain (dialecte arabe marocain), basé sur une architecture Transformer de pointe.",
+      "Les ressources NLP pour le Darija marocain restent limitées dans les outils standards.",
+    approach:
+      "Fine-tuning d'un modèle Transformer NMT avec déploiement sur Hugging Face (modèle + interface).",
+    outcome: "Publication d'un modèle exploitable et d'une démo interactive pour l'évaluation.",
+    impactBadge: "Modèle + démo",
     category: "other",
     tags: ["NLP", "Transformers", "Deep Learning", "Darija Marocain", "Traduction Automatique"],
     gradient: "from-purple-500 to-pink-500",
@@ -108,7 +145,11 @@ const projectsFr: Project[] = [
   {
     title: "Analyse de Films Letterboxd & Système de Recommandation",
     description:
-      "Analyse des données Letterboxd et construction d'un système de recommandation personnalisé combinant historique de notes et contenu des films.",
+      "Découvrir des films pertinents est difficile avec des préférences utilisateurs hétérogènes.",
+    approach:
+      "Combinaison d'approches content-based et collaboratives (TF-IDF, LDA, factorisation matricielle).",
+    outcome: "Recommandations personnalisées alignées sur l'historique de notes et le contenu.",
+    impactBadge: "Recommandation personnalisée",
     category: "other",
     tags: ["Data Science", "Python", "NLP", "Scikit-learn", "TF-IDF", "LDA", "SVD"],
     gradient: "from-green-500 to-emerald-600",
@@ -117,7 +158,11 @@ const projectsFr: Project[] = [
   {
     title: "Medical-Diagnosis-COT-DeepSeek V1",
     description:
-      "Modèle de langage médical avancé fine-tuné pour le diagnostic médical basé sur des preuves, utilisant une architecture Transformer de pointe.",
+      "Les réponses médicales génériques peuvent manquer de fiabilité clinique.",
+    approach:
+      "Adaptation d'un modèle Transformer au question-réponse médical avec stratégie orientée preuves.",
+    outcome: "Modèle spécialisé pour assistance diagnostique avec meilleure pertinence métier.",
+    impactBadge: "LLM spécialisé",
     category: "medical",
     tags: ["Deep Learning", "Transformers", "IA Médicale", "Santé", "LLM"],
     gradient: "from-red-500 to-orange-500",
@@ -127,7 +172,11 @@ const projectsFr: Project[] = [
   {
     title: "Cartographie du Stress Hydrique et Potentiel d'Adaptation Agricole (Taroudant)",
     description:
-      "Système de segmentation sémantique basé sur Attention U-Net pour cartographier le stress hydrique et le potentiel d'adaptation agricole à partir de données de télédétection multi-sources.",
+      "Le suivi classique du stress hydrique ne reflète pas la variabilité spatiale des parcelles.",
+    approach:
+      "Pipeline Attention U-Net multi-sources combinant données Sentinel et variables environnementales.",
+    outcome: "Cartes opérationnelles pour appuyer les décisions d'adaptation agricole.",
+    impactBadge: "Cartographie orientée décision",
     category: "agriculture",
     tags: ["Télédétection", "Attention U-Net", "Segmentation Sémantique", "Sentinel-1", "Sentinel-2", "SMAP", "Google Earth Engine"],
     gradient: "from-amber-500 to-yellow-500",
@@ -138,7 +187,11 @@ const projectsFr: Project[] = [
   {
     title: "MY LAW – Système RAG de Droit Marocain",
     description:
-      "Système RAG (Retrieval-Augmented Generation) pour les textes juridiques marocains, permettant des réponses juridiques précises et multilingues (arabe/français) avec citation des sources.",
+      "La recherche juridique multilingue est longue et peu contextualisée pour les utilisateurs.",
+    approach:
+      "Mise en place d'une architecture RAG multilingue avec recherche sémantique et citations explicites.",
+    outcome: "Réponses juridiques plus rapides et vérifiables grâce au traçage des sources.",
+    impactBadge: "Réponses avec sources",
     category: "legal",
     tags: ["RAG", "NLP", "NLP Arabe", "IA Juridique", "FAISS", "Sentence Transformers", "FastAPI"],
     gradient: "from-indigo-500 to-blue-600",
@@ -169,8 +222,7 @@ export function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const { theme } = useTheme()
   const { language } = useLanguage()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const mounted = useMounted()
   const isCyber = mounted && theme === "cyber"
 
   const projects = language === "en" ? projectsEn : projectsFr
@@ -183,25 +235,31 @@ export function Projects() {
     ? "bg-red-700/20 text-red-300 border-red-700/30"
     : "bg-blue-500/20 text-blue-300 border-blue-500/30"
 
-  const filteredProjects = projects.filter(
-    (p) => selectedCategory === "all" || p.category === selectedCategory,
-  )
+  const sortedProjects = useMemo(() => {
+    const filteredProjects = projects.filter(
+      (p) => selectedCategory === "all" || p.category === selectedCategory,
+    )
 
-  const sortedProjects = [...filteredProjects].sort((a, b) => {
-    if (selectedCategory !== "all") {
-      if (a.category === selectedCategory && b.category !== selectedCategory) return -1
-      if (a.category !== selectedCategory && b.category === selectedCategory) return 1
-    }
-    return 0
-  })
+    return [...filteredProjects].sort((a, b) => {
+      if (selectedCategory !== "all") {
+        if (a.category === selectedCategory && b.category !== selectedCategory) return -1
+        if (a.category !== selectedCategory && b.category === selectedCategory) return 1
+      }
+      return 0
+    })
+  }, [projects, selectedCategory])
 
   const noResultsMsg =
     language === "en"
       ? "No projects found matching your search."
       : "Aucun projet correspondant à votre recherche."
+  const labels =
+    language === "en"
+      ? { section: "Portfolio", title: "Academic & Personal Projects", problem: "Problem", approach: "Approach", result: "Result" }
+      : { section: "Portfolio", title: "Projets Académiques & Personnels", problem: "Problème", approach: "Approche", result: "Résultat" }
 
   return (
-    <section id="projects" className="relative py-24 px-6" ref={ref}>
+    <section id="projects" className="relative section-shell" ref={ref}>
       <div className="container mx-auto max-w-7xl z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -209,20 +267,7 @@ export function Projects() {
           transition={{ duration: 0.8 }}
         >
           {/* Section header */}
-          <div className="mb-14">
-            <p
-              className={`text-sm font-semibold tracking-widest uppercase mb-3 ${accentColor}`}
-            >
-              {language === "en" ? "Portfolio" : "Portfolio"}
-            </p>
-            <h2
-              className={`text-4xl md:text-5xl font-extrabold tracking-tight ${
-                isCyber ? "text-red-100" : "text-slate-100"
-              }`}
-            >
-              {language === "en" ? "Academic & Personal Projects" : "Projets Académiques & Personnels"}
-            </h2>
-          </div>
+          <SectionHeader eyebrow={labels.section} title={labels.title} isCyber={isCyber} />
 
           {/* Filter buttons */}
           <div className="mb-10 flex flex-wrap gap-2">
@@ -272,10 +317,8 @@ export function Projects() {
                     <div className="relative z-10 flex flex-col h-full">
                       {/* Category badge */}
                       <div className="mb-4">
-                        <span
-                          className={`inline-block px-3 py-1 text-xs font-medium rounded-full border ${badgeBg}`}
-                        >
-                          {categories.find((c) => c.id === project.category)?.label}
+                        <span className={`inline-block px-3 py-1 text-xs font-medium rounded-full border ${badgeBg}`}>
+                          {project.impactBadge}
                         </span>
                       </div>
 
@@ -306,13 +349,11 @@ export function Projects() {
                         {project.title}
                       </h3>
 
-                      <p
-                        className={`text-sm mb-4 leading-relaxed flex-grow ${
-                          isCyber ? "text-red-200/70" : "text-slate-300"
-                        }`}
-                      >
-                        {project.description}
-                      </p>
+                       <div className={`text-sm space-y-2.5 mb-4 leading-relaxed flex-grow ${isCyber ? "text-red-200/70" : "text-slate-300"}`}>
+                         <p><span className={`font-semibold ${isCyber ? "text-red-200" : "text-slate-200"}`}>{labels.problem}:</span> {project.description}</p>
+                         <p><span className={`font-semibold ${isCyber ? "text-red-200" : "text-slate-200"}`}>{labels.approach}:</span> {project.approach}</p>
+                         <p><span className={`font-semibold ${isCyber ? "text-red-200" : "text-slate-200"}`}>{labels.result}:</span> {project.outcome}</p>
+                       </div>
 
                       {/* Tags */}
                       <div className="flex flex-wrap gap-2 mb-4">

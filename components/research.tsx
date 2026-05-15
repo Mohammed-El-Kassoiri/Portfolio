@@ -1,6 +1,5 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
@@ -9,6 +8,8 @@ import Link from "next/link"
 import { FileText } from "lucide-react"
 import { researchPapers } from "@/lib/research-data"
 import { useLanguage } from "@/components/language-provider"
+import { useMounted } from "@/hooks/use-mounted"
+import { SectionHeader } from "@/components/section-header"
 
 const translations = {
   en: {
@@ -27,13 +28,12 @@ export function Research() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const { theme } = useTheme()
   const { language } = useLanguage()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const mounted = useMounted()
   const isCyber = mounted && theme === "cyber"
   const t = translations[language]
 
   return (
-    <section id="research" className="relative py-24 px-6" ref={ref}>
+    <section id="research" className="relative section-shell" ref={ref}>
       <div className="container mx-auto max-w-7xl z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -41,22 +41,7 @@ export function Research() {
           transition={{ duration: 0.8 }}
         >
           {/* Section header */}
-          <div className="mb-14">
-            <p
-              className={`text-sm font-semibold tracking-widest uppercase mb-3 ${
-                isCyber ? "text-red-400" : "text-blue-400"
-              }`}
-            >
-              {t.subheading}
-            </p>
-            <h2
-              className={`text-4xl md:text-5xl font-extrabold tracking-tight ${
-                isCyber ? "text-red-100" : "text-slate-100"
-              }`}
-            >
-              {t.sectionTitle}
-            </h2>
-          </div>
+          <SectionHeader eyebrow={t.subheading} title={t.sectionTitle} isCyber={isCyber} />
 
           <div className="space-y-6">
             {researchPapers.map((paper, index) => (

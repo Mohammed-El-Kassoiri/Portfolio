@@ -2,10 +2,20 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Moon, Zap } from "lucide-react"
+import { Moon, Zap, Menu } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useLanguage } from "@/components/language-provider"
 import { cn } from "@/lib/utils"
+import { useMounted } from "@/hooks/use-mounted"
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 /** Section IDs are language-independent — kept as a stable constant. */
 const NAV_IDS = [
@@ -61,7 +71,8 @@ function ThemeIcon({ theme }: { theme: string | undefined }) {
 export function Navigation() {
   const [activeSection, setActiveSection] = useState("hero")
   const [scrolled, setScrolled] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const [openMobileMenu, setOpenMobileMenu] = useState(false)
+  const mounted = useMounted()
   const { theme, setTheme } = useTheme()
   const { language, toggleLanguage } = useLanguage()
 
@@ -76,10 +87,6 @@ export function Navigation() {
     { id: "skills", label: t.skills },
     { id: "contact", label: t.contact },
   ]
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -102,10 +109,11 @@ export function Navigation() {
     // NAV_IDS is a module-level constant; setState setters from useState are stable
   }, [])
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id: string, closeMenu?: boolean) => {
     const element = document.getElementById(id)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
+      if (closeMenu) setOpenMobileMenu(false)
     }
   }
 
@@ -113,19 +121,21 @@ export function Navigation() {
   const themeLabel = isCyber ? t.switchToDark : t.switchToCyber
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? isCyber
-            ? "bg-black/90 backdrop-blur-lg border-b border-red-900/50"
-            : "bg-slate-900/90 backdrop-blur-lg border-b border-slate-700/50"
-          : "bg-transparent",
-      )}
-    >
-      <div className="container mx-auto px-6 max-w-7xl">
+    <header>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        aria-label="Main navigation"
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          scrolled
+            ? isCyber
+              ? "bg-black/90 backdrop-blur-lg border-b border-red-900/50"
+              : "bg-slate-900/90 backdrop-blur-lg border-b border-slate-700/50"
+            : "bg-transparent",
+        )}
+      >
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="flex items-center justify-between h-16">
           <motion.div
             className="text-xl font-bold"
@@ -136,9 +146,14 @@ export function Navigation() {
 
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                href={`#${item.id}`}
+                onClick={(event) => {
+                  event.preventDefault()
+                  scrollToSection(item.id)
+                }}
+                aria-current={activeSection === item.id ? "page" : undefined}
                 className={cn(
                   "px-4 py-2 text-sm font-medium transition-all duration-300 relative rounded-lg",
                   activeSection === item.id
@@ -159,11 +174,70 @@ export function Navigation() {
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
-              </button>
+              </a>
             ))}
           </div>
 
           <div className="flex items-center gap-2">
+            <Sheet open={openMobileMenu} onOpenChange={setOpenMobileMenu}>
+              <SheetTrigger asChild>
+                <button
+                  className={cn(
+                    "md:hidden p-2 rounded-lg transition-all duration-300",
+                    isCyber
+                      ? "text-red-300 hover:text-red-200 hover:bg-red-900/30"
+                      : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50",
+                  )}
+                  aria-label={language === "en" ? "Open menu" : "Ouvrir le menu"}
+                >
+                  <Menu className="w-5 h-5" />
+                </button>
+              </SheetTrigger>
+              <SheetContent
+                side="left"
+                className={cn(
+                  "w-[85vw] border-r",
+                  isCyber
+                    ? "bg-black text-red-100 border-red-900/50"
+                    : "bg-slate-900 text-slate-100 border-slate-700/60",
+                )}
+              >
+                <SheetHeader>
+                  <SheetTitle className={isCyber ? "text-red-100" : "text-slate-100"}>
+                    {language === "en" ? "Navigation" : "Navigation"}
+                  </SheetTitle>
+                  <SheetDescription className={isCyber ? "text-red-300/70" : "text-slate-400"}>
+                    {language === "en" ? "Jump to a section" : "Aller à une section"}
+                  </SheetDescription>
+                </SheetHeader>
+                <div className="px-4 pb-4 space-y-2">
+                  {navItems.map((item) => (
+                    <SheetClose asChild key={item.id}>
+                      <a
+                        href={`#${item.id}`}
+                        onClick={(event) => {
+                          event.preventDefault()
+                          scrollToSection(item.id, true)
+                        }}
+                        aria-current={activeSection === item.id ? "page" : undefined}
+                        className={cn(
+                          "flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold transition-all",
+                          activeSection === item.id
+                            ? isCyber
+                              ? "bg-red-900/30 text-red-300"
+                              : "bg-blue-500/15 text-blue-300"
+                            : isCyber
+                            ? "text-red-200/80 hover:bg-red-900/20"
+                            : "text-slate-300 hover:bg-slate-800/50",
+                        )}
+                      >
+                        {item.label}
+                      </a>
+                    </SheetClose>
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
             {/* EN / FR language toggle */}
             {mounted && (
               <motion.button
@@ -209,7 +283,7 @@ export function Navigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={cn(
-                "px-5 py-2 text-sm font-semibold border-2 transition-all rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2",
+                "hidden sm:inline-flex px-5 py-2 text-sm font-semibold border-2 transition-all rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2",
                 isCyber
                   ? "border-red-600 text-red-400 hover:bg-red-600/10 focus-visible:outline-red-500"
                   : "border-blue-500 text-blue-400 hover:bg-blue-500/10 focus-visible:outline-blue-500",
@@ -220,6 +294,7 @@ export function Navigation() {
           </div>
         </div>
       </div>
-    </motion.nav>
+      </motion.nav>
+    </header>
   )
 }

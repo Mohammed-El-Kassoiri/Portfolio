@@ -137,10 +137,10 @@ export function Navigation() {
 
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                aria-current={activeSection === item.id ? "location" : undefined}
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  aria-current={activeSection === item.id ? "page" : undefined}
                 className={cn(
                   "px-4 py-2 text-sm font-medium transition-all duration-300 relative rounded-lg",
                   activeSection === item.id
@@ -202,7 +202,7 @@ export function Navigation() {
                     <SheetClose asChild key={item.id}>
                       <a
                         href={`#${item.id}`}
-                        aria-current={activeSection === item.id ? "location" : undefined}
+                        aria-current={activeSection === item.id ? "page" : undefined}
                         className={cn(
                           "flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold transition-all",
                           activeSection === item.id

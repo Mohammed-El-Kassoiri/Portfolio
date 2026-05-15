@@ -188,6 +188,10 @@
     padding-inline: var(--container-padding-x);
   }
 
+  .container-padding {
+    padding-inline: var(--container-padding-x);
+  }
+
   .section-title {
     font-size: var(--font-size-heading);
     font-weight: 800;

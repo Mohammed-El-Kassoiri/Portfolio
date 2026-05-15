@@ -7,9 +7,12 @@ type SectionHeaderProps = {
   title: string
   isCyber: boolean
   className?: string
+  as?: "h1" | "h2" | "h3"
 }
 
-export function SectionHeader({ eyebrow, title, isCyber, className }: SectionHeaderProps) {
+export function SectionHeader({ eyebrow, title, isCyber, className, as = "h2" }: SectionHeaderProps) {
+  const HeadingTag = as
+
   return (
     <div className={cn("mb-14", className)}>
       <p
@@ -20,7 +23,9 @@ export function SectionHeader({ eyebrow, title, isCyber, className }: SectionHea
       >
         {eyebrow}
       </p>
-      <h2 className={cn("section-title", isCyber ? "text-red-100" : "text-slate-100")}>{title}</h2>
+      <HeadingTag className={cn("section-title", isCyber ? "text-red-100" : "text-slate-100")}>
+        {title}
+      </HeadingTag>
     </div>
   )
 }

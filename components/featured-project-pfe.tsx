@@ -6,7 +6,7 @@ import {
   Cpu,
   Calendar,
   Building2,
-  ExternalLink,
+  ChevronDown,
   CheckCircle2,
   Target,
   BarChart3,
@@ -308,7 +308,7 @@ export function FeaturedProjectPFE() {
                 >
                   <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span className="relative">{t.ctaLabel}</span>
-                  <ExternalLink className="w-5 h-5 relative group-hover:translate-x-1 transition-transform" />
+                  <ChevronDown className="w-5 h-5 relative group-hover:translate-y-0.5 transition-transform" />
                 </a>
               </div>
             </div>

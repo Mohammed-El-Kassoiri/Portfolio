@@ -109,14 +109,6 @@ export function Navigation() {
     // NAV_IDS is a module-level constant; setState setters from useState are stable
   }, [])
 
-  const scrollToSection = (id: string, closeMenu?: boolean) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-      if (closeMenu) setOpenMobileMenu(false)
-    }
-  }
-
   const isCyber = mounted && theme === "cyber"
   const themeLabel = isCyber ? t.switchToDark : t.switchToCyber
 
@@ -135,7 +127,7 @@ export function Navigation() {
             : "bg-transparent",
         )}
       >
-      <div className="container mx-auto px-[var(--container-padding-x)] max-w-7xl">
+      <div className="container mx-auto container-padding max-w-7xl">
         <div className="flex items-center justify-between h-16">
           <motion.div
             className="text-xl font-bold"
@@ -149,8 +141,7 @@ export function Navigation() {
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                onClick={() => scrollToSection(item.id)}
-                aria-current={activeSection === item.id ? "page" : undefined}
+                aria-current={activeSection === item.id ? "location" : undefined}
                 className={cn(
                   "px-4 py-2 text-sm font-medium transition-all duration-300 relative rounded-lg",
                   activeSection === item.id
@@ -212,8 +203,7 @@ export function Navigation() {
                     <SheetClose asChild key={item.id}>
                       <a
                         href={`#${item.id}`}
-                        onClick={() => scrollToSection(item.id, true)}
-                        aria-current={activeSection === item.id ? "page" : undefined}
+                        aria-current={activeSection === item.id ? "location" : undefined}
                         className={cn(
                           "flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold transition-all",
                           activeSection === item.id

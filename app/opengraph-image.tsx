@@ -73,6 +73,7 @@ export default async function Image() {
             // @ts-expect-error — arrayBuffer is valid as src in ImageResponse
             <img
               src={logoSrc}
+              alt=""
               width={160}
               height={160}
               style={{ borderRadius: "50%", border: "3px solid rgba(59,130,246,0.5)" }}

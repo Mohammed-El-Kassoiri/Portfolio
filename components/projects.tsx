@@ -259,7 +259,7 @@ export function Projects() {
       : { section: "Portfolio", title: "Projets Académiques & Personnels", problem: "Problème", approach: "Approche", result: "Résultat" }
 
   return (
-    <section id="projects" className="relative section-shell" ref={ref}>
+    <section id="projects" className="relative section-container" ref={ref}>
       <div className="container mx-auto max-w-7xl z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

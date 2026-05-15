@@ -75,7 +75,7 @@ export function FeaturedProjectPFE() {
   const t = translations[language]
 
   return (
-    <section id="pfe" className="relative section-shell" ref={ref}>
+    <section id="pfe" className="relative section-container" ref={ref}>
       <div className="container mx-auto max-w-7xl z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

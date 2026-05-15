@@ -135,7 +135,7 @@ export function Navigation() {
             : "bg-transparent",
         )}
       >
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+      <div className="container mx-auto px-[var(--container-padding-x)] max-w-7xl">
         <div className="flex items-center justify-between h-16">
           <motion.div
             className="text-xl font-bold"
@@ -149,10 +149,7 @@ export function Navigation() {
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                onClick={(event) => {
-                  event.preventDefault()
-                  scrollToSection(item.id)
-                }}
+                onClick={() => scrollToSection(item.id)}
                 aria-current={activeSection === item.id ? "page" : undefined}
                 className={cn(
                   "px-4 py-2 text-sm font-medium transition-all duration-300 relative rounded-lg",
@@ -204,7 +201,7 @@ export function Navigation() {
               >
                 <SheetHeader>
                   <SheetTitle className={isCyber ? "text-red-100" : "text-slate-100"}>
-                    {language === "en" ? "Navigation" : "Navigation"}
+                    Navigation
                   </SheetTitle>
                   <SheetDescription className={isCyber ? "text-red-300/70" : "text-slate-400"}>
                     {language === "en" ? "Jump to a section" : "Aller à une section"}
@@ -215,10 +212,7 @@ export function Navigation() {
                     <SheetClose asChild key={item.id}>
                       <a
                         href={`#${item.id}`}
-                        onClick={(event) => {
-                          event.preventDefault()
-                          scrollToSection(item.id, true)
-                        }}
+                        onClick={() => scrollToSection(item.id, true)}
                         aria-current={activeSection === item.id ? "page" : undefined}
                         className={cn(
                           "flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold transition-all",

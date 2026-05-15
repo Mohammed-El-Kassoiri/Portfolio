@@ -52,7 +52,7 @@ export function Hero() {
   const t = translations[language]
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center section-shell pt-16">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center section-container pt-16">
       {/* Subtle background pattern — adapts to theme */}
       <div
         className={

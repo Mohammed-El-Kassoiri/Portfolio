@@ -183,7 +183,7 @@
 }
 
 @layer utilities {
-  .section-shell {
+  .section-container {
     padding-block: var(--section-spacing-y);
     padding-inline: var(--container-padding-x);
   }
@@ -208,7 +208,8 @@
 
   .skip-link {
     @apply sr-only focus:not-sr-only fixed top-4 left-4 z-[100] rounded-md px-4 py-2 font-semibold;
-    @apply bg-background text-foreground border border-border shadow-lg;
+    @apply bg-slate-100 text-slate-950 border border-slate-300 shadow-lg;
+    @apply cyber:bg-red-100 cyber:text-red-950 cyber:border-red-300;
   }
 
   /* Simple gradient animation for modern design */

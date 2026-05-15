@@ -187,7 +187,7 @@ export function Skills() {
   const skillCategories = language === "en" ? skillCategoriesEn : skillCategoriesFr
 
   return (
-    <section id="skills" className="relative section-shell" ref={ref}>
+    <section id="skills" className="relative section-container" ref={ref}>
       <div className="container mx-auto max-w-7xl z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

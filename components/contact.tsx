@@ -56,7 +56,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative section-shell min-h-screen flex items-center"
+      className="relative section-container min-h-screen flex items-center"
       ref={ref}
     >
       <div className="container mx-auto max-w-4xl z-10 relative text-center">

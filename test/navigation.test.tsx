@@ -21,15 +21,13 @@ vi.mock("@/hooks/use-mounted", () => ({
 }))
 
 function sanitizeMotionProps<T extends Record<string, unknown>>(props: T): T {
-  const {
-    whileHover: _whileHover,
-    whileTap: _whileTap,
-    animate: _animate,
-    initial: _initial,
-    transition: _transition,
-    layoutId: _layoutId,
-    ...rest
-  } = props
+  const rest = { ...props } as Record<string, unknown>
+  delete rest.whileHover
+  delete rest.whileTap
+  delete rest.animate
+  delete rest.initial
+  delete rest.transition
+  delete rest.layoutId
   return rest as T
 }
 

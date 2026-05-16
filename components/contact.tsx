@@ -74,7 +74,7 @@ export function Contact() {
           />
 
           <p
-            className={`text-xl mb-14 max-w-2xl mx-auto leading-relaxed ${
+            className={`text-xl mb-12 max-w-2xl mx-auto leading-relaxed ${
               isCyber ? "text-red-200/70" : "text-slate-300"
             }`}
           >
@@ -82,7 +82,7 @@ export function Contact() {
           </p>
 
           {/* Social links */}
-          <div className="flex justify-center gap-5 mb-14">
+          <div className="flex justify-center gap-5 mb-12">
             {socialLinks.map((link, index) => {
               const Icon = link.icon
               return (
@@ -95,8 +95,8 @@ export function Contact() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.12, y: -3 }}
-                  className={`w-16 h-16 backdrop-blur-sm border rounded-2xl transition-all flex items-center justify-center ${
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  className={`w-16 h-16 glass-surface border rounded-2xl transition-all flex items-center justify-center interactive-lift ${
                     isCyber
                       ? "bg-black/60 border-red-900/40 hover:border-red-600/60 text-red-400/60 hover:text-red-400"
                       : "bg-slate-800/50 border-slate-700/60 hover:border-blue-500/50 text-slate-400 hover:text-blue-400"
@@ -116,7 +116,7 @@ export function Contact() {
             transition={{ duration: 0.8, delay: 0.4 }}
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
-            className={`inline-block px-12 py-4 font-semibold rounded-xl transition-all shadow-lg ${
+            className={`inline-block px-12 py-4 font-semibold rounded-xl transition-all shadow-lg interactive-lift ${
               isCyber
                 ? "bg-red-700 hover:bg-red-600 text-white shadow-red-900/50"
                 : "bg-blue-600 hover:bg-blue-500 text-white shadow-blue-500/30"

@@ -1,0 +1,13 @@
+name: "portfolio-codeql-config"
+
+paths:
+  - app
+  - components
+  - hooks
+  - lib
+
+paths-ignore:
+  - node_modules
+  - .next
+  - public
+  - test

@@ -12,7 +12,13 @@
   --font-size-heading: clamp(1.95rem, 2.7vw + 1rem, 3.25rem);
   --font-size-title: clamp(1.25rem, 1.2vw + 1rem, 1.8rem);
   --font-size-body: clamp(1rem, 0.25vw + 0.95rem, 1.08rem);
-  --section-spacing-y: clamp(4.2rem, 9.5vw, 8rem);
+  /* Reduced intentionally to tighten large vertical gaps between sections. */
+  --section-spacing-y: clamp(2.2rem, 5.5vw, 4.5rem);
+  --hero-min-height: 72vh;
+  --hero-min-height-md: 82vh;
+  --hero-padding-top: 3.5rem;
+  --hero-padding-top-md: 5rem;
+  --hero-padding-bottom: 2rem;
   --container-padding-x: clamp(1rem, 2.5vw, 1.75rem);
   --focus-outline-width: 2px;
   --focus-outline-offset: 2px;

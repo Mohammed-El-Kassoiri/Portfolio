@@ -7,6 +7,7 @@ import { useTheme } from "next-themes"
 import { useLanguage } from "@/components/language-provider"
 import { cn } from "@/lib/utils"
 import { useMounted } from "@/hooks/use-mounted"
+import { useCommandPalette } from "@/components/command-palette-provider"
 import {
   Sheet,
   SheetClose,
@@ -81,6 +82,7 @@ export function Navigation() {
   const mounted = useMounted()
   const { theme, setTheme } = useTheme()
   const { language, toggleLanguage } = useLanguage()
+  const { openPalette } = useCommandPalette()
 
   const t = navLabels[language]
 
@@ -250,11 +252,7 @@ export function Navigation() {
               </SheetContent>
             </Sheet>
             <button
-              onClick={() =>
-                window.dispatchEvent(
-                  new KeyboardEvent("keydown", { key: "k", metaKey: true }),
-                )
-              }
+              onClick={openPalette}
               className={cn(
                 "hidden lg:inline-flex px-2.5 py-1.5 text-[11px] font-semibold rounded-lg border transition-all",
                 isCyber

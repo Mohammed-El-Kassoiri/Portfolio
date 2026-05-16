@@ -19,6 +19,7 @@ import { CustomCursor } from "@/components/custom-cursor"
 import { AIChatbot } from "@/components/ai-chatbot"
 import { PortfolioCommandPalette } from "@/components/command-palette"
 import { ScrollOrchestrator } from "@/components/scroll-orchestrator"
+import { CommandPaletteProvider } from "@/components/command-palette-provider"
 
 export default function Portfolio() {
   const [loading, setLoading] = useState(true)
@@ -29,57 +30,59 @@ export default function Portfolio() {
   }, [])
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden text-slate-100">
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
+    <CommandPaletteProvider>
+      <div className="relative min-h-screen overflow-x-hidden text-slate-100">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
 
-      <PageLoader loading={loading} />
-      <CustomCursor />
-      <ScrollProgress />
-      <AIBackground />
-      <ScrollOrchestrator />
-      <Navigation />
-      <PortfolioCommandPalette />
-      <AIChatbot />
+        <PageLoader loading={loading} />
+        <CustomCursor />
+        <ScrollProgress />
+        <AIBackground />
+        <ScrollOrchestrator />
+        <Navigation />
+        <PortfolioCommandPalette />
+        <AIChatbot />
 
-      <main id="main-content" className="relative isolate">
-        <AnimatePresence mode="wait">
-          {!loading && (
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-            >
-              <Hero />
-              <div className="section-divider">
-                <About />
-              </div>
-              <div className="section-divider">
-                <Education />
-              </div>
-              <div className="section-divider">
-                <Experience />
-              </div>
-              <div className="section-divider">
-                <Projects />
-              </div>
-              <div className="section-divider">
-                <Research />
-              </div>
-              <div className="section-divider">
-                <Skills />
-              </div>
-              <div className="section-divider">
-                <Certifications />
-              </div>
-              <div className="section-divider">
-                <Contact />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </main>
-    </div>
+        <main id="main-content" className="relative isolate">
+          <AnimatePresence mode="wait">
+            {!loading && (
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55 }}
+              >
+                <Hero />
+                <div className="section-divider">
+                  <About />
+                </div>
+                <div className="section-divider">
+                  <Education />
+                </div>
+                <div className="section-divider">
+                  <Experience />
+                </div>
+                <div className="section-divider">
+                  <Projects />
+                </div>
+                <div className="section-divider">
+                  <Research />
+                </div>
+                <div className="section-divider">
+                  <Skills />
+                </div>
+                <div className="section-divider">
+                  <Certifications />
+                </div>
+                <div className="section-divider">
+                  <Contact />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </main>
+      </div>
+    </CommandPaletteProvider>
   )
 }

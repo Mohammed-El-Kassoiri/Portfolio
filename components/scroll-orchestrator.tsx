@@ -29,6 +29,7 @@ export function ScrollOrchestrator() {
     })
 
     const magnetButtons = document.querySelectorAll<HTMLElement>("[data-magnetic]")
+    const cleanupListeners: Array<() => void> = []
 
     magnetButtons.forEach((button) => {
       const handleMove = (e: MouseEvent) => {
@@ -44,13 +45,14 @@ export function ScrollOrchestrator() {
       button.addEventListener("mousemove", handleMove)
       button.addEventListener("mouseleave", handleLeave)
 
-      return () => {
+      cleanupListeners.push(() => {
         button.removeEventListener("mousemove", handleMove)
         button.removeEventListener("mouseleave", handleLeave)
-      }
+      })
     })
 
     return () => {
+      cleanupListeners.forEach((cleanup) => cleanup())
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
     }
   }, [])

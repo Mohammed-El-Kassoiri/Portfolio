@@ -241,7 +241,7 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
             <Card className={`${cardClass} p-8 mb-8`}>
               <h2 className={`text-2xl font-bold ${accentClass} mb-4`}>PDF Preview</h2>
               <div
-                className={`relative w-full h-[600px] rounded-lg overflow-hidden border ${isCyber ? "bg-red-950/20 border-red-900/30" : "bg-white border-slate-700/60"}`}
+                className={`relative w-full h-[600px] rounded-lg overflow-hidden border ${isCyber ? "bg-red-950/20 border-red-900/30" : "bg-slate-900/50 border-slate-700/60"}`}
               >
                 <iframe
                   src={paper.pdf}

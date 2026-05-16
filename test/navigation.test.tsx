@@ -54,7 +54,9 @@ vi.mock("@/components/ui/sheet", () => ({
   SheetContent: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
   SheetHeader: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
   SheetTitle: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  SheetDescription: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  SheetDescription: ({ children }: { children: React.ReactNode }) => (
+    <div>{children}</div>
+  ),
   SheetClose: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }))
 
@@ -88,8 +90,13 @@ describe("Navigation", () => {
     fireEvent.scroll(window)
 
     await waitFor(() => {
-      expect(screen.getByRole("navigation", { name: "Main navigation" })).toBeInTheDocument()
-      expect(screen.getAllByRole("link", { name: "About" })[0]).toHaveAttribute("aria-current", "page")
+      expect(
+        screen.getByRole("navigation", { name: "Main navigation" }),
+      ).toBeInTheDocument()
+      expect(screen.getAllByRole("link", { name: "About" })[0]).toHaveAttribute(
+        "aria-current",
+        "page",
+      )
     })
   })
 

@@ -55,7 +55,8 @@ const experienceData = {
   ],
   fr: [
     {
-      title: "Projet de Fin d'Études (PFE) — Parcellisation Automatique des Parcelles Agricoles",
+      title:
+        "Projet de Fin d'Études (PFE) — Parcellisation Automatique des Parcelles Agricoles",
       company:
         "Pôle Digital de l'Agriculture, de la Forêt et Observatoire de la Sécheresse",
       period: "Fév 2026 – Juin 2026",
@@ -161,8 +162,8 @@ export function Experience() {
                         ? "bg-black/60 border-purple-900/40 hover:border-purple-600/60"
                         : "bg-white/[0.03] border-purple-500/30 hover:border-purple-500/60 hover:shadow-[0_0_40px_rgba(168,85,247,0.12)]"
                       : isCyber
-                      ? "bg-black/60 border-red-900/40 hover:border-red-600/60"
-                      : "bg-slate-800/50 border-slate-700/60 hover:border-blue-500/50"
+                        ? "bg-black/60 border-red-900/40 hover:border-red-600/60"
+                        : "bg-slate-800/50 border-slate-700/60 hover:border-blue-500/50"
                   }`}
                 >
                   {exp.badge && (
@@ -189,8 +190,8 @@ export function Experience() {
                           exp.type === "pfe"
                             ? "text-purple-400"
                             : isCyber
-                            ? "text-red-400"
-                            : "text-blue-400"
+                              ? "text-red-400"
+                              : "text-blue-400"
                         }`}
                       >
                         <Building2 className="w-4 h-4 shrink-0" />
@@ -247,8 +248,8 @@ export function Experience() {
                           exp.type === "pfe"
                             ? "bg-purple-500/20 text-purple-300 border-purple-500/30"
                             : isCyber
-                            ? "bg-red-700/20 text-red-300 border-red-700/30"
-                            : "bg-blue-500/20 text-blue-300 border-blue-500/30"
+                              ? "bg-red-700/20 text-red-300 border-red-700/30"
+                              : "bg-blue-500/20 text-blue-300 border-blue-500/30"
                         }`}
                       >
                         {tag}

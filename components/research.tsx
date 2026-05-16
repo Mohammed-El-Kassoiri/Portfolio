@@ -41,7 +41,11 @@ export function Research() {
           transition={{ duration: 0.8 }}
         >
           {/* Section header */}
-          <SectionHeader eyebrow={t.subheading} title={t.sectionTitle} isCyber={isCyber} />
+          <SectionHeader
+            eyebrow={t.subheading}
+            title={t.sectionTitle}
+            isCyber={isCyber}
+          />
 
           <div className="space-y-6">
             {researchPapers.map((paper, index) => (

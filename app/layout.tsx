@@ -4,10 +4,10 @@ import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
+import { SmoothScrollProvider } from "@/components/smooth-scroll-provider"
 import "./globals.css"
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mohammedelkassoiri.app"
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mohammedelkassoiri.app"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -154,6 +154,7 @@ export default function RootLayout({
           themes={["dark", "cyber"]}
           enableSystem={false}
         >
+          <SmoothScrollProvider />
           <LanguageProvider defaultLanguage="en">{children}</LanguageProvider>
           <Analytics />
           <SpeedInsights />

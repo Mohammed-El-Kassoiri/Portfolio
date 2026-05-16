@@ -1,351 +1,169 @@
 "use client"
 
-import { motion, useReducedMotion } from "framer-motion"
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
-import { Github, Linkedin, Mail, ChevronDown } from "lucide-react"
-import { useTheme } from "next-themes"
-import { useLanguage } from "@/components/language-provider"
-import { useMounted } from "@/hooks/use-mounted"
+import { Github, Linkedin, Mail, Download, ArrowDown } from "lucide-react"
+import { useMemo } from "react"
+import { HeroThreeScene } from "@/components/hero-three-scene"
 
-const translations = {
-  en: {
-    description:
-      "Building the future with AI and Machine Learning. Passionate about designing intelligent systems that drive real-world impact.",
-    viewProjects: "View Projects",
-    contactMe: "Contact Me",
-    roles: [
-      "AI Engineer",
-      2000,
-      "Data Scientist",
-      2000,
-      "Machine Learning Expert",
-      2000,
-      "Deep Learning Researcher",
-      2000,
-    ] as (string | number)[],
-  },
-  fr: {
-    description:
-      "Construire l'avenir avec l'IA et le Machine Learning. Passionné par la conception de systèmes intelligents à fort impact réel.",
-    viewProjects: "Voir les projets",
-    contactMe: "Me contacter",
-    roles: [
-      "Ingénieur IA",
-      2000,
-      "Data Scientist",
-      2000,
-      "Expert Machine Learning",
-      2000,
-      "Chercheur Deep Learning",
-      2000,
-    ] as (string | number)[],
-  },
-}
+const roles: (string | number)[] = [
+  "AI Engineer & Data Scientist Building Intelligent Systems",
+  2200,
+  "Machine Learning • Deep Learning • Computer Vision • NLP",
+  2200,
+]
+
+const stack = ["Python", "PyTorch", "TensorFlow", "FastAPI", "Next.js", "TypeScript"]
 
 export function Hero() {
-  const { theme } = useTheme()
-  const { language } = useLanguage()
-  const mounted = useMounted()
-  const prefersReducedMotion = useReducedMotion()
+  const mouseX = useMotionValue(50)
+  const mouseY = useMotionValue(50)
 
-  const isCyber = mounted && theme === "cyber"
-  const t = translations[language]
+  const spotlight = useMotionTemplate`radial-gradient(520px circle at ${mouseX}% ${mouseY}%, rgba(56,189,248,0.14), transparent 60%)`
+
+  const floatingIcons = useMemo(
+    () =>
+      stack.map((tech, i) => ({
+        tech,
+        left: `${14 + ((i * 13) % 70)}%`,
+        top: `${10 + ((i * 11) % 60)}%`,
+        delay: i * 0.1,
+      })),
+    [],
+  )
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center section-container pt-20">
-      {/* Subtle background pattern — adapts to theme */}
-      <div
-        className={
-          isCyber
-            ? "absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(220,38,38,0.08)_0%,transparent_50%),radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.05)_0%,transparent_50%)]"
-            : "absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.07)_0%,transparent_50%),radial-gradient(circle_at_70%_80%,rgba(96,165,250,0.07)_0%,transparent_50%)]"
-        }
+    <section
+      id="hero"
+      className="section-container relative flex min-h-screen items-center overflow-hidden pt-24"
+      onMouseMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect()
+        mouseX.set(((e.clientX - rect.left) / rect.width) * 100)
+        mouseY.set(((e.clientY - rect.top) / rect.height) * 100)
+      }}
+    >
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{ background: spotlight }}
       />
 
-      {/* Cyber scanline accent */}
-      {isCyber && (
-        <div
-          className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(0deg, transparent, transparent 2px, #dc2626 2px, #dc2626 4px)",
+      {floatingIcons.map((item) => (
+        <motion.span
+          key={item.tech}
+          className="pointer-events-none absolute hidden rounded-full border border-cyan-400/30 bg-slate-900/70 px-3 py-1 text-[11px] font-semibold text-cyan-200/80 md:inline-flex"
+          style={{ left: item.left, top: item.top }}
+          animate={{ y: [0, -8, 0] }}
+          transition={{
+            repeat: Infinity,
+            duration: 4.5,
+            delay: item.delay,
+            ease: "easeInOut",
           }}
-        />
-      )}
+        >
+          {item.tech}
+        </motion.span>
+      ))}
 
-      <div className="container mx-auto max-w-7xl z-10">
-        <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
-          {/* Left side — text content */}
-          <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
+      <div className="container mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="space-y-7">
+          <motion.span
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 rounded-full border border-emerald-400/35 bg-emerald-500/10 px-4 py-1.5 text-sm font-semibold text-emerald-300"
           >
-            {/* Greeting badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium border ${
-                isCyber
-                  ? "bg-red-900/20 border-red-700/40 text-red-300"
-                  : "bg-blue-500/10 border-blue-500/30 text-blue-300"
-              }`}
-            >
-              <span className={`h-2 w-2 rounded-full ${isCyber ? "bg-red-500" : "bg-blue-400"} animate-pulse`} />
-              {language === "en" ? "Available for opportunities" : "Disponible pour des opportunités"}
-            </motion.div>
+            <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+            Available now · Real-time status online
+          </motion.span>
 
-            <motion.h1
-              className="display-title"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <span className={isCyber ? "text-red-100" : "text-slate-100"}>Mohammed</span>
-              <br />
-              <span
-                className={
-                  isCyber
-                    ? "text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-300 animate-gradient"
-                    : "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400 animate-gradient"
-                }
-              >
-                El Kassoiri
-              </span>
-            </motion.h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75 }}
+            className="display-title max-w-4xl text-balance text-slate-100"
+          >
+            Premium AI Engineer Portfolio with Cinematic Motion
+          </motion.h1>
 
-            <div
-              className={`text-2xl md:text-3xl h-16 flex items-center font-semibold ${
-                isCyber ? "text-red-400" : "text-blue-400"
-              }`}
-            >
-              {/* key=language forces a remount when language toggles so the
-                  new language's sequence starts immediately — intentional. */}
-              <TypeAnimation
-                key={language}
-                sequence={t.roles}
-                wrapper="span"
-                speed={50}
-                repeat={prefersReducedMotion ? 0 : Infinity}
-              />
-            </div>
-
-            <motion.p
-              className={`text-lg md:text-xl max-w-2xl leading-relaxed ${
-                isCyber ? "text-red-200/80" : "text-slate-300"
-              }`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              {t.description}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-2.5"
-            >
-              <span
-                className={`rounded-full border px-3 py-1 text-xs font-semibold tracking-wide ${
-                  isCyber
-                    ? "border-red-800/50 bg-red-900/30 text-red-200"
-                    : "border-blue-500/30 bg-blue-500/10 text-blue-200"
-                }`}
-              >
-                {language === "en" ? "Open to full-time roles" : "Ouvert aux postes full-time"}
-              </span>
-              <span
-                className={`rounded-full border px-3 py-1 text-xs font-semibold tracking-wide ${
-                  isCyber
-                    ? "border-red-800/50 bg-red-900/30 text-red-200"
-                    : "border-slate-600/60 bg-slate-800/60 text-slate-200"
-                }`}
-              >
-                {language === "en" ? "AI / ML / Data Engineering" : "IA / ML / Data Engineering"}
-              </span>
-              <span
-                className={`rounded-full border px-3 py-1 text-xs font-semibold tracking-wide ${
-                  isCyber
-                    ? "border-red-800/50 bg-red-900/30 text-red-200"
-                    : "border-slate-600/60 bg-slate-800/60 text-slate-200"
-                }`}
-              >
-                {language === "en" ? "Based in Morocco" : "Basé au Maroc"}
-              </span>
-            </motion.div>
-
-            <motion.div
-              className="flex flex-wrap gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-            >
-              <motion.button
-                whileHover={{ y: -3, scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className={`px-8 py-3.5 font-semibold rounded-xl transition-all shadow-lg ${
-                  isCyber
-                    ? "bg-red-700 hover:bg-red-600 text-white shadow-red-900/50"
-                    : "bg-blue-600 hover:bg-blue-500 text-white shadow-blue-500/30"
-                }`}
-                onClick={() =>
-                  document
-                    .getElementById("projects")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-              >
-                {t.viewProjects}
-              </motion.button>
-              <motion.button
-                whileHover={{ y: -3, scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className={`px-8 py-3.5 border-2 font-semibold rounded-xl transition-all ${
-                  isCyber
-                    ? "border-red-600 text-red-400 hover:bg-red-600/10"
-                    : "border-blue-500 text-blue-400 hover:bg-blue-500/10"
-                }`}
-                onClick={() =>
-                  document
-                    .getElementById("contact")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-              >
-                {t.contactMe}
-              </motion.button>
-            </motion.div>
-
-            <motion.div
-              className="flex gap-5 pt-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9 }}
-            >
-              {[
-                {
-                  href: "https://github.com/Mohammed-El-Kassoiri",
-                  icon: <Github className="w-5 h-5" />,
-                  label: "GitHub",
-                },
-                {
-                  href: "https://linkedin.com/in/Mohammed-El-Kassoiri",
-                  icon: <Linkedin className="w-5 h-5" />,
-                  label: "LinkedIn",
-                },
-                {
-                  href: "mailto:mohammed.kassoiri@gmail.com",
-                  icon: <Mail className="w-5 h-5" />,
-                  label: "Email",
-                },
-              ].map(({ href, icon, label }) => (
-                <motion.a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={
-                    href.startsWith("http") ? "noopener noreferrer" : undefined
-                  }
-                  aria-label={label}
-                  whileHover={{ scale: 1.15, y: -3 }}
-                  className={`p-2.5 rounded-lg border transition-all ${
-                    isCyber
-                      ? "border-red-800/40 text-red-400/70 hover:text-red-400 hover:border-red-600/60 hover:bg-red-900/20"
-                      : "border-slate-700 text-slate-400 hover:text-blue-400 hover:border-blue-500/50 hover:bg-slate-800/50"
-                  }`}
-                >
-                  {icon}
-                </motion.a>
-              ))}
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="min-h-14 text-lg font-semibold text-cyan-300 md:text-2xl"
+          >
+            <TypeAnimation sequence={roles} speed={57} repeat={Infinity} />
           </motion.div>
 
-          {/* Right side — code window mockup */}
-          <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden lg:flex items-center justify-center"
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="max-w-3xl text-base leading-relaxed text-slate-300 md:text-lg"
           >
-            <div className="relative w-full max-w-lg">
-              {/* Gradient orb */}
-              <motion.div
-                className={`absolute inset-0 rounded-full blur-3xl ${
-                  isCyber
-                    ? "bg-gradient-to-br from-red-700/25 to-red-900/10"
-                    : "bg-gradient-to-br from-blue-600/20 to-cyan-400/10"
-                }`}
-                animate={prefersReducedMotion ? { opacity: 0.3 } : { scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-                transition={{ duration: 8, repeat: prefersReducedMotion ? 0 : Infinity, ease: "easeInOut" }}
-              />
+            I design and deploy intelligent AI products with strong engineering
+            discipline, polished UX, and measurable business outcomes.
+          </motion.p>
 
-              {/* Code window */}
-              <motion.div
-                className={`relative glass-surface rounded-2xl p-6 shadow-2xl border ${
-                  isCyber
-                    ? "bg-black/80 border-red-900/50"
-                    : "bg-slate-900/70 border-slate-700/60"
-                }`}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 }}
-                whileHover={{ scale: 1.02 }}
-              >
-                {/* Window chrome */}
-                <div className="flex items-center gap-2 mb-5">
-                  <div className="w-3 h-3 rounded-full bg-red-500" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                  <div className="w-3 h-3 rounded-full bg-green-500" />
-                  <span
-                    className={`ml-2 text-xs font-mono ${
-                      isCyber ? "text-red-400/50" : "text-slate-500"
-                    }`}
-                  >
-                    engineer.py
-                  </span>
-                </div>
-                <pre
-                  className={`text-sm font-mono leading-relaxed overflow-x-auto ${
-                    isCyber ? "text-red-300/90" : "text-slate-300"
-                  }`}
-                >
-{`class Engineer:
-  name = "Mohammed El Kassoiri"
-  skills = {
-    "AI":   ["ML", "Deep Learning",
-             "Computer Vision", "NLP"],
-    "Code": ["Python", "JS", "SQL"],
-    "Infra":["PyTorch", "TensorFlow",
-             "FastAPI", "GEE"],
-  }
-  status = "Open to opportunities 🚀"
-
-  def mission(self):
-    return "Build AI that matters."`}
-                </pre>
-              </motion.div>
-            </div>
-          </motion.div>
+          <div className="flex flex-wrap gap-3 pt-1">
+            <motion.a
+              data-magnetic
+              href="/Mohammed_el_kassoiri.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.03 }}
+              className="inline-flex items-center gap-2 rounded-xl border border-cyan-400/30 bg-cyan-500/15 px-5 py-3 text-sm font-semibold text-cyan-100"
+            >
+              <Download className="h-4 w-4" /> Resume
+            </motion.a>
+            <motion.a
+              data-magnetic
+              href="#contact"
+              whileHover={{ scale: 1.03 }}
+              className="inline-flex items-center gap-2 rounded-xl border border-indigo-400/30 bg-indigo-500/15 px-5 py-3 text-sm font-semibold text-indigo-100"
+            >
+              <Mail className="h-4 w-4" /> Contact
+            </motion.a>
+            <motion.a
+              data-magnetic
+              href="https://github.com/Mohammed-El-Kassoiri"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.03 }}
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-600 bg-slate-800/70 px-5 py-3 text-sm font-semibold text-slate-200"
+            >
+              <Github className="h-4 w-4" /> GitHub
+            </motion.a>
+            <motion.a
+              data-magnetic
+              href="https://linkedin.com/in/Mohammed-El-Kassoiri"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.03 }}
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-600 bg-slate-800/70 px-5 py-3 text-sm font-semibold text-slate-200"
+            >
+              <Linkedin className="h-4 w-4" /> LinkedIn
+            </motion.a>
+          </div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="relative"
+        >
+          <HeroThreeScene />
+        </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+      <motion.a
+        href="#about"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-cyan-300/80"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ repeat: Infinity, duration: 1.8 }}
       >
-        <motion.div
-          animate={prefersReducedMotion ? undefined : { y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: prefersReducedMotion ? 0 : Infinity }}
-          className={isCyber ? "text-red-500" : "text-blue-400"}
-        >
-          <ChevronDown className="w-6 h-6" />
-        </motion.div>
-      </motion.div>
+        <ArrowDown className="h-5 w-5" />
+      </motion.a>
     </section>
   )
 }

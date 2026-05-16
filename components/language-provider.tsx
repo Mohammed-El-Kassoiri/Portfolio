@@ -10,9 +10,7 @@ type LanguageContextValue = {
   toggleLanguage: () => void
 }
 
-const LanguageContext = React.createContext<LanguageContextValue | undefined>(
-  undefined,
-)
+const LanguageContext = React.createContext<LanguageContextValue | undefined>(undefined)
 
 const STORAGE_KEY = "portfolio-language"
 
@@ -27,9 +25,7 @@ export function LanguageProvider({
 
   React.useEffect(() => {
     const stored =
-      typeof window !== "undefined"
-        ? window.localStorage.getItem(STORAGE_KEY)
-        : null
+      typeof window !== "undefined" ? window.localStorage.getItem(STORAGE_KEY) : null
     if (stored === "en" || stored === "fr") {
       setLanguageState(stored)
     }
@@ -51,11 +47,7 @@ export function LanguageProvider({
     [language, setLanguage, toggleLanguage],
   )
 
-  return (
-    <LanguageContext.Provider value={value}>
-      {children}
-    </LanguageContext.Provider>
-  )
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
 }
 
 export function useLanguage() {

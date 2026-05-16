@@ -29,7 +29,12 @@ const translations = {
     period: "Feb 2026 – Jun 2026",
     description:
       "Development of a Deep Learning-based AI system for automatic agricultural parcelization from satellite imagery, integrating a multi-task model combining semantic segmentation and edge detection.",
-    tags: ["Artificial Intelligence", "Deep Learning", "Computer Vision", "Remote Sensing"],
+    tags: [
+      "Artificial Intelligence",
+      "Deep Learning",
+      "Computer Vision",
+      "Remote Sensing",
+    ],
     contributionsTitle: "Key Contributions",
     contributions: [
       "Automatic boundary detection via Encoder-Decoder models (DeepLabV3+)",
@@ -51,7 +56,12 @@ const translations = {
     period: "Fév 2026 – Juin 2026",
     description:
       "Développement d'un système d'intelligence artificielle basé sur le Deep Learning pour la parcellisation automatique à partir d'images satellites. Intégration d'un modèle multi-tâches combinant la segmentation sémantique et la détection des contours.",
-    tags: ["Intelligence Artificielle", "Deep Learning", "Computer Vision", "Remote Sensing"],
+    tags: [
+      "Intelligence Artificielle",
+      "Deep Learning",
+      "Computer Vision",
+      "Remote Sensing",
+    ],
     contributionsTitle: "Contributions Clés",
     contributions: [
       "Détection automatique des limites via modèles Encoder-Decoder (DeepLabV3+)",

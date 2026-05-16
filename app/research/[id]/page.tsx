@@ -73,4 +73,3 @@ export default async function ResearchDetailPage({ params }: Props) {
 
   return <ResearchDetailClient paper={paper} />
 }
-

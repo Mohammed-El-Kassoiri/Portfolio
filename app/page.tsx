@@ -1,54 +1,88 @@
 "use client"
 
+import { useEffect, useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 import { Hero } from "@/components/hero"
 import { About } from "@/components/about"
+import { Education } from "@/components/education"
 import { Experience } from "@/components/experience"
 import { Projects } from "@/components/projects"
 import { Research } from "@/components/research"
 import { Skills } from "@/components/skills"
+import { Certifications } from "@/components/certifications"
 import { Contact } from "@/components/contact"
 import { Navigation } from "@/components/navigation"
 import { AIBackground } from "@/components/ai-background"
-import { FeaturedProjectPFE } from "@/components/featured-project-pfe"
 import { ScrollProgress } from "@/components/scroll-progress"
+import { PageLoader } from "@/components/page-loader"
+import { CustomCursor } from "@/components/custom-cursor"
+import { AIChatbot } from "@/components/ai-chatbot"
+import { PortfolioCommandPalette } from "@/components/command-palette"
+import { ScrollOrchestrator } from "@/components/scroll-orchestrator"
+import { CommandPaletteProvider } from "@/components/command-palette-provider"
 
 export default function Portfolio() {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setLoading(false), 1200)
+    return () => window.clearTimeout(timer)
+  }, [])
+
   return (
-    <div className="relative min-h-screen overflow-x-hidden text-slate-100 transition-colors duration-300 cyber:text-[rgb(255,200,200)]">
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
-      <ScrollProgress />
-      <AIBackground />
-      <Navigation />
-      <main id="main-content" className="relative isolate">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60rem_30rem_at_50%_-10%,rgba(96,165,250,0.15),transparent_70%)] cyber:bg-[radial-gradient(60rem_30rem_at_50%_-10%,rgba(239,68,68,0.15),transparent_70%)]"
-        />
-        <Hero />
-        <div className="section-divider">
-          <About />
-        </div>
-        <div className="section-divider">
-          <Experience />
-        </div>
-        <div className="section-divider">
-          <FeaturedProjectPFE />
-        </div>
-        <div className="section-divider">
-          <Projects />
-        </div>
-        <div className="section-divider">
-          <Research />
-        </div>
-        <div className="section-divider">
-          <Skills />
-        </div>
-        <div className="section-divider">
-          <Contact />
-        </div>
-      </main>
-    </div>
+    <CommandPaletteProvider>
+      <div className="relative min-h-screen overflow-x-hidden text-slate-100">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+
+        <PageLoader loading={loading} />
+        <CustomCursor />
+        <ScrollProgress />
+        <AIBackground />
+        <ScrollOrchestrator />
+        <Navigation />
+        <PortfolioCommandPalette />
+        <AIChatbot />
+
+        <main id="main-content" className="relative isolate">
+          <AnimatePresence mode="wait">
+            {!loading && (
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55 }}
+              >
+                <Hero />
+                <div className="section-divider">
+                  <About />
+                </div>
+                <div className="section-divider">
+                  <Education />
+                </div>
+                <div className="section-divider">
+                  <Experience />
+                </div>
+                <div className="section-divider">
+                  <Projects />
+                </div>
+                <div className="section-divider">
+                  <Research />
+                </div>
+                <div className="section-divider">
+                  <Skills />
+                </div>
+                <div className="section-divider">
+                  <Certifications />
+                </div>
+                <div className="section-divider">
+                  <Contact />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </main>
+      </div>
+    </CommandPaletteProvider>
   )
 }

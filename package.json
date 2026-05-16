@@ -8,7 +8,10 @@
     "lint": "eslint . --max-warnings=0",
     "test": "vitest run --coverage",
     "test:watch": "vitest",
-    "start": "next start"
+    "start": "next start",
+    "prepare": "husky",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
@@ -39,6 +42,7 @@
     "@radix-ui/react-toggle": "latest",
     "@radix-ui/react-toggle-group": "latest",
     "@radix-ui/react-tooltip": "latest",
+    "@react-three/fiber": "^9.6.1",
     "@vercel/analytics": "latest",
     "@vercel/speed-insights": "^2.0.0",
     "class-variance-authority": "^0.7.1",
@@ -46,7 +50,9 @@
     "cmdk": "latest",
     "embla-carousel-react": "latest",
     "framer-motion": "latest",
+    "gsap": "^3.15.0",
     "input-otp": "latest",
+    "lenis": "^1.3.23",
     "lucide-react": "^0.454.0",
     "next": "^16.2.0",
     "next-themes": "latest",
@@ -62,6 +68,7 @@
     "sonner": "latest",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.184.0",
     "tw-animate-css": "latest",
     "vaul": "latest"
   },
@@ -76,10 +83,22 @@
     "@vitest/coverage-v8": "^4.1.6",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.6",
+    "husky": "^9.1.7",
     "jsdom": "^29.1.1",
+    "lint-staged": "^16.2.0",
     "postcss": "^8.5",
+    "prettier": "^3.8.3",
     "tailwindcss": "^4.1.9",
     "typescript": "^5",
     "vitest": "^4.1.6"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --max-warnings=0"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
   }
 }

@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next"
 import { researchPapers } from "@/lib/research-data"
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mohammedelkassoiri.app"
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mohammedelkassoiri.app"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const researchRoutes = researchPapers.map((paper) => ({

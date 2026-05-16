@@ -32,7 +32,8 @@ const projectsEn: Project[] = [
       "Manual color sorting was slow and error-prone for repetitive industrial workflows.",
     approach:
       "Built a real-time CV-driven robotic workflow that detects objects and triggers automated arm-based color sorting.",
-    outcome: "Delivered an end-to-end prototype combining detection, control, and user interface in one loop.",
+    outcome:
+      "Delivered an end-to-end prototype combining detection, control, and user interface in one loop.",
     impactBadge: "Real-time automation",
     category: "industrial",
     tags: ["Python", "OpenCV", "Tkinter", "Arduino", "Computer Vision"],
@@ -46,10 +47,17 @@ const projectsEn: Project[] = [
       "High-quality translation support for Moroccan Darija is limited in mainstream NLP tooling.",
     approach:
       "Trained and fine-tuned a Transformer-based NMT pipeline with bilingual data and Hugging Face deployment.",
-    outcome: "Published both model and interactive demo for practical translation usage and evaluation.",
+    outcome:
+      "Published both model and interactive demo for practical translation usage and evaluation.",
     impactBadge: "Model + live demo",
     category: "other",
-    tags: ["NLP", "Transformers", "Deep Learning", "Moroccan Darija", "Machine Translation"],
+    tags: [
+      "NLP",
+      "Transformers",
+      "Deep Learning",
+      "Moroccan Darija",
+      "Machine Translation",
+    ],
     gradient: "from-purple-500 to-pink-500",
     github: "https://github.com/Mohammed-El-Kassoiri/English-to-Darija-Translator",
     huggingface: "https://huggingface.co/NeoAivara/English_to_Darija_translator",
@@ -61,12 +69,14 @@ const projectsEn: Project[] = [
       "Users struggle to find relevant films when ratings and metadata are scattered across profiles.",
     approach:
       "Combined collaborative and content-based modeling using TF-IDF, LDA, and matrix factorization techniques.",
-    outcome: "Produced personalized recommendations grounded in historical ratings and content similarity.",
+    outcome:
+      "Produced personalized recommendations grounded in historical ratings and content similarity.",
     impactBadge: "Personalized recommendations",
     category: "other",
     tags: ["Data Science", "Python", "NLP", "Scikit-learn", "TF-IDF", "LDA", "SVD"],
     gradient: "from-green-500 to-emerald-600",
-    github: "https://github.com/Mohammed-El-Kassoiri/Letterboxd-Movie-Analytics-Recommendation-System",
+    github:
+      "https://github.com/Mohammed-El-Kassoiri/Letterboxd-Movie-Analytics-Recommendation-System",
   },
   {
     title: "Medical-Diagnosis-COT-DeepSeek V1",
@@ -74,7 +84,8 @@ const projectsEn: Project[] = [
       "General LLM outputs in medical contexts can be unreliable without task-specific tuning.",
     approach:
       "Fine-tuned a transformer model for medical Q&A with evidence-oriented prompting and domain adaptation.",
-    outcome: "Released a specialized medical assistant checkpoint focused on safer diagnostic support.",
+    outcome:
+      "Released a specialized medical assistant checkpoint focused on safer diagnostic support.",
     impactBadge: "Domain-adapted LLM",
     category: "medical",
     tags: ["Deep Learning", "Transformers", "Medical AI", "Healthcare", "LLM"],
@@ -88,12 +99,22 @@ const projectsEn: Project[] = [
       "Traditional monitoring misses spatial water-stress patterns critical for agricultural planning.",
     approach:
       "Built a multi-source Attention U-Net segmentation pipeline with Sentinel and environmental indicators.",
-    outcome: "Generated detailed stress and adaptation maps to support data-informed resource decisions.",
+    outcome:
+      "Generated detailed stress and adaptation maps to support data-informed resource decisions.",
     impactBadge: "Research-backed mapping",
     category: "agriculture",
-    tags: ["Remote Sensing", "Attention U-Net", "Semantic Segmentation", "Sentinel-1", "Sentinel-2", "SMAP", "Google Earth Engine"],
+    tags: [
+      "Remote Sensing",
+      "Attention U-Net",
+      "Semantic Segmentation",
+      "Sentinel-1",
+      "Sentinel-2",
+      "SMAP",
+      "Google Earth Engine",
+    ],
     gradient: "from-amber-500 to-yellow-500",
-    github: "https://github.com/Mohammed-El-Kassoiri/Mapping-Water-Stress-and-Agricultural-Adaptation-Potential",
+    github:
+      "https://github.com/Mohammed-El-Kassoiri/Mapping-Water-Stress-and-Agricultural-Adaptation-Potential",
     paper:
       "https://www.researchgate.net/publication/399089388_Mapping_Water_Stress_and_Agricultural_Adaptation_Potential_Using_Multi-Source_16-Band_Attention_U-Net_Case_of_Taroudant_Morocco",
   },
@@ -103,10 +124,19 @@ const projectsEn: Project[] = [
       "Legal search is slow when statutes are fragmented across multilingual documents.",
     approach:
       "Implemented a multilingual RAG stack with semantic retrieval and citation-first response generation.",
-    outcome: "Enabled faster legal QA with traceable source references for higher trust.",
+    outcome:
+      "Enabled faster legal QA with traceable source references for higher trust.",
     impactBadge: "Citation-first answers",
     category: "legal",
-    tags: ["RAG", "NLP", "Arabic NLP", "Legal AI", "FAISS", "Sentence Transformers", "FastAPI"],
+    tags: [
+      "RAG",
+      "NLP",
+      "Arabic NLP",
+      "Legal AI",
+      "FAISS",
+      "Sentence Transformers",
+      "FastAPI",
+    ],
     gradient: "from-indigo-500 to-blue-600",
     demo: "https://huggingface.co/spaces/NeoAivara/law",
   },
@@ -119,7 +149,8 @@ const projectsFr: Project[] = [
       "Le tri manuel par couleur est lent et peu fiable dans des flux répétitifs.",
     approach:
       "Conception d'un pipeline temps réel de vision par ordinateur pilotant un bras robotisé pour le tri automatique.",
-    outcome: "Prototype fonctionnel intégrant détection, contrôle matériel et interface utilisateur.",
+    outcome:
+      "Prototype fonctionnel intégrant détection, contrôle matériel et interface utilisateur.",
     impactBadge: "Automatisation temps réel",
     category: "industrial",
     tags: ["Python", "OpenCV", "Tkinter", "Arduino", "Computer Vision"],
@@ -133,10 +164,17 @@ const projectsFr: Project[] = [
       "Les ressources NLP pour le Darija marocain restent limitées dans les outils standards.",
     approach:
       "Fine-tuning d'un modèle Transformer NMT avec déploiement sur Hugging Face (modèle + interface).",
-    outcome: "Publication d'un modèle exploitable et d'une démo interactive pour l'évaluation.",
+    outcome:
+      "Publication d'un modèle exploitable et d'une démo interactive pour l'évaluation.",
     impactBadge: "Modèle + démo",
     category: "other",
-    tags: ["NLP", "Transformers", "Deep Learning", "Darija Marocain", "Traduction Automatique"],
+    tags: [
+      "NLP",
+      "Transformers",
+      "Deep Learning",
+      "Darija Marocain",
+      "Traduction Automatique",
+    ],
     gradient: "from-purple-500 to-pink-500",
     github: "https://github.com/Mohammed-El-Kassoiri/English-to-Darija-Translator",
     huggingface: "https://huggingface.co/NeoAivara/English_to_Darija_translator",
@@ -148,12 +186,14 @@ const projectsFr: Project[] = [
       "Découvrir des films pertinents est difficile avec des préférences utilisateurs hétérogènes.",
     approach:
       "Combinaison d'approches content-based et collaboratives (TF-IDF, LDA, factorisation matricielle).",
-    outcome: "Recommandations personnalisées alignées sur l'historique de notes et le contenu.",
+    outcome:
+      "Recommandations personnalisées alignées sur l'historique de notes et le contenu.",
     impactBadge: "Recommandation personnalisée",
     category: "other",
     tags: ["Data Science", "Python", "NLP", "Scikit-learn", "TF-IDF", "LDA", "SVD"],
     gradient: "from-green-500 to-emerald-600",
-    github: "https://github.com/Mohammed-El-Kassoiri/Letterboxd-Movie-Analytics-Recommendation-System",
+    github:
+      "https://github.com/Mohammed-El-Kassoiri/Letterboxd-Movie-Analytics-Recommendation-System",
   },
   {
     title: "Medical-Diagnosis-COT-DeepSeek V1",
@@ -161,7 +201,8 @@ const projectsFr: Project[] = [
       "Les réponses médicales génériques peuvent manquer de fiabilité clinique.",
     approach:
       "Adaptation d'un modèle Transformer au question-réponse médical avec stratégie orientée preuves.",
-    outcome: "Modèle spécialisé pour assistance diagnostique avec meilleure pertinence métier.",
+    outcome:
+      "Modèle spécialisé pour assistance diagnostique avec meilleure pertinence métier.",
     impactBadge: "LLM spécialisé",
     category: "medical",
     tags: ["Deep Learning", "Transformers", "IA Médicale", "Santé", "LLM"],
@@ -170,7 +211,8 @@ const projectsFr: Project[] = [
     huggingface: "https://huggingface.co/MOHAMMED7M7/AI_Doctor_V1",
   },
   {
-    title: "Cartographie du Stress Hydrique et Potentiel d'Adaptation Agricole (Taroudant)",
+    title:
+      "Cartographie du Stress Hydrique et Potentiel d'Adaptation Agricole (Taroudant)",
     description:
       "Le suivi classique du stress hydrique ne reflète pas la variabilité spatiale des parcelles.",
     approach:
@@ -178,9 +220,18 @@ const projectsFr: Project[] = [
     outcome: "Cartes opérationnelles pour appuyer les décisions d'adaptation agricole.",
     impactBadge: "Cartographie orientée décision",
     category: "agriculture",
-    tags: ["Télédétection", "Attention U-Net", "Segmentation Sémantique", "Sentinel-1", "Sentinel-2", "SMAP", "Google Earth Engine"],
+    tags: [
+      "Télédétection",
+      "Attention U-Net",
+      "Segmentation Sémantique",
+      "Sentinel-1",
+      "Sentinel-2",
+      "SMAP",
+      "Google Earth Engine",
+    ],
     gradient: "from-amber-500 to-yellow-500",
-    github: "https://github.com/Mohammed-El-Kassoiri/Mapping-Water-Stress-and-Agricultural-Adaptation-Potential",
+    github:
+      "https://github.com/Mohammed-El-Kassoiri/Mapping-Water-Stress-and-Agricultural-Adaptation-Potential",
     paper:
       "https://www.researchgate.net/publication/399089388_Mapping_Water_Stress_and_Agricultural_Adaptation_Potential_Using_Multi-Source_16-Band_Attention_U-Net_Case_of_Taroudant_Morocco",
   },
@@ -190,10 +241,19 @@ const projectsFr: Project[] = [
       "La recherche juridique multilingue est longue et peu contextualisée pour les utilisateurs.",
     approach:
       "Mise en place d'une architecture RAG multilingue avec recherche sémantique et citations explicites.",
-    outcome: "Réponses juridiques plus rapides et vérifiables grâce au traçage des sources.",
+    outcome:
+      "Réponses juridiques plus rapides et vérifiables grâce au traçage des sources.",
     impactBadge: "Réponses avec sources",
     category: "legal",
-    tags: ["RAG", "NLP", "NLP Arabe", "IA Juridique", "FAISS", "Sentence Transformers", "FastAPI"],
+    tags: [
+      "RAG",
+      "NLP",
+      "NLP Arabe",
+      "IA Juridique",
+      "FAISS",
+      "Sentence Transformers",
+      "FastAPI",
+    ],
     gradient: "from-indigo-500 to-blue-600",
     demo: "https://huggingface.co/spaces/NeoAivara/law",
   },
@@ -243,7 +303,8 @@ export function Projects() {
 
     return [...filteredProjects].sort((a, b) => {
       if (selectedCategory !== "all") {
-        if (a.category === selectedCategory && b.category !== selectedCategory) return -1
+        if (a.category === selectedCategory && b.category !== selectedCategory)
+          return -1
         if (a.category !== selectedCategory && b.category === selectedCategory) return 1
       }
       return 0
@@ -256,8 +317,20 @@ export function Projects() {
       : "Aucun projet correspondant à votre recherche."
   const labels =
     language === "en"
-      ? { section: "Portfolio", title: "Academic & Personal Projects", problem: "Problem", approach: "Approach", result: "Result" }
-      : { section: "Portfolio", title: "Projets Académiques & Personnels", problem: "Problème", approach: "Approche", result: "Résultat" }
+      ? {
+          section: "Portfolio",
+          title: "Academic & Personal Projects",
+          problem: "Problem",
+          approach: "Approach",
+          result: "Result",
+        }
+      : {
+          section: "Portfolio",
+          title: "Projets Académiques & Personnels",
+          problem: "Problème",
+          approach: "Approche",
+          result: "Résultat",
+        }
 
   return (
     <section id="projects" className="relative section-container" ref={ref}>
@@ -268,7 +341,11 @@ export function Projects() {
           transition={{ duration: 0.8 }}
         >
           {/* Section header */}
-          <SectionHeader eyebrow={labels.section} title={labels.title} isCyber={isCyber} />
+          <SectionHeader
+            eyebrow={labels.section}
+            title={labels.title}
+            isCyber={isCyber}
+          />
           <p
             className={`mb-10 max-w-3xl text-base leading-relaxed ${
               isCyber ? "text-red-200/70" : "text-slate-300"
@@ -288,14 +365,14 @@ export function Projects() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label={`Filter ${category.label}`}
-                 className={`px-4 py-2 rounded-lg font-medium text-sm transition-all border-2 interactive-lift ${
+                className={`px-4 py-2 rounded-lg font-medium text-sm transition-all border-2 interactive-lift ${
                   selectedCategory === category.id
                     ? isCyber
                       ? "bg-red-700 text-white border-red-700"
                       : "bg-blue-600 text-white border-blue-600"
                     : isCyber
-                    ? "bg-black/40 text-red-200/70 border-red-900/40 hover:border-red-600/50"
-                    : "bg-slate-800/50 text-slate-300 border-slate-700 hover:border-blue-500/50"
+                      ? "bg-black/40 text-red-200/70 border-red-900/40 hover:border-red-600/50"
+                      : "bg-slate-800/50 text-slate-300 border-slate-700 hover:border-blue-500/50"
                 }`}
               >
                 {category.label}
@@ -328,7 +405,9 @@ export function Projects() {
                     <div className="relative z-10 flex flex-col h-full">
                       {/* Category badge */}
                       <div className="mb-4">
-                        <span className={`inline-block px-3 py-1 text-xs font-medium rounded-full border ${badgeBg}`}>
+                        <span
+                          className={`inline-block px-3 py-1 text-xs font-medium rounded-full border ${badgeBg}`}
+                        >
                           {project.impactBadge}
                         </span>
                       </div>
@@ -360,10 +439,21 @@ export function Projects() {
                         {project.title}
                       </h3>
 
-                      <div className={`text-sm space-y-2.5 mb-4 leading-relaxed flex-grow ${isCyber ? "text-red-200/70" : "text-slate-300"}`}>
-                        <p><span className={detailLabelClass}>{labels.problem}:</span> {project.description}</p>
-                        <p><span className={detailLabelClass}>{labels.approach}:</span> {project.approach}</p>
-                        <p><span className={detailLabelClass}>{labels.result}:</span> {project.outcome}</p>
+                      <div
+                        className={`text-sm space-y-2.5 mb-4 leading-relaxed flex-grow ${isCyber ? "text-red-200/70" : "text-slate-300"}`}
+                      >
+                        <p>
+                          <span className={detailLabelClass}>{labels.problem}:</span>{" "}
+                          {project.description}
+                        </p>
+                        <p>
+                          <span className={detailLabelClass}>{labels.approach}:</span>{" "}
+                          {project.approach}
+                        </p>
+                        <p>
+                          <span className={detailLabelClass}>{labels.result}:</span>{" "}
+                          {project.outcome}
+                        </p>
                       </div>
 
                       {/* Tags */}

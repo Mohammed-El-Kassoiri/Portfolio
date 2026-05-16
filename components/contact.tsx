@@ -134,11 +134,7 @@ export function Contact() {
               isCyber ? "border-red-900/40" : "border-slate-700/50"
             }`}
           >
-            <p
-              className={`text-sm ${
-                isCyber ? "text-red-400/50" : "text-slate-500"
-              }`}
-            >
+            <p className={`text-sm ${isCyber ? "text-red-400/50" : "text-slate-500"}`}>
               {t.copyright}
             </p>
           </motion.footer>

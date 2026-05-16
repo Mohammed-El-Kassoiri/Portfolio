@@ -1,7 +1,6 @@
 import { ImageResponse } from "next/og"
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mohammedelkassoiri.app"
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mohammedelkassoiri.app"
 const siteHost = siteUrl.replace(/^https?:\/\//, "")
 
 export const runtime = "edge"
@@ -19,143 +18,142 @@ export default async function Image() {
   }
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%)",
+        fontFamily: "sans-serif",
+        position: "relative",
+      }}
+    >
+      {/* Subtle grid overlay */}
       <div
         style={{
-          width: "100%",
-          height: "100%",
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(59,130,246,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.07) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      {/* Glow accent */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-120px",
+          right: "-120px",
+          width: "500px",
+          height: "500px",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Content */}
+      <div
+        style={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
-          justifyContent: "center",
-          background: "linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%)",
-          fontFamily: "sans-serif",
-          position: "relative",
+          gap: "48px",
+          zIndex: 1,
+          padding: "0 80px",
         }}
       >
-        {/* Subtle grid overlay */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "linear-gradient(rgba(59,130,246,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.07) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
+        {/* Logo */}
+        {logoSrc && (
+          // @ts-expect-error — arrayBuffer is valid as src in ImageResponse
+          <img
+            src={logoSrc}
+            alt=""
+            width={160}
+            height={160}
+            style={{ borderRadius: "50%", border: "3px solid rgba(59,130,246,0.5)" }}
+          />
+        )}
 
-        {/* Glow accent */}
-        <div
-          style={{
-            position: "absolute",
-            top: "-120px",
-            right: "-120px",
-            width: "500px",
-            height: "500px",
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)",
-          }}
-        />
-
-        {/* Content */}
+        {/* Text block */}
         <div
           style={{
             display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: "48px",
-            zIndex: 1,
-            padding: "0 80px",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: "16px",
           }}
         >
-          {/* Logo */}
-          {logoSrc && (
-            // @ts-expect-error — arrayBuffer is valid as src in ImageResponse
-            <img
-              src={logoSrc}
-              alt=""
-              width={160}
-              height={160}
-              style={{ borderRadius: "50%", border: "3px solid rgba(59,130,246,0.5)" }}
-            />
-          )}
-
-          {/* Text block */}
+          {/* Badge */}
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-              gap: "16px",
+              alignItems: "center",
+              gap: "8px",
+              background: "rgba(59,130,246,0.15)",
+              border: "1px solid rgba(59,130,246,0.4)",
+              borderRadius: "999px",
+              padding: "6px 20px",
+              color: "#93c5fd",
+              fontSize: "18px",
+              fontWeight: 500,
+              letterSpacing: "0.05em",
             }}
           >
-            {/* Badge */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                background: "rgba(59,130,246,0.15)",
-                border: "1px solid rgba(59,130,246,0.4)",
-                borderRadius: "999px",
-                padding: "6px 20px",
-                color: "#93c5fd",
-                fontSize: "18px",
-                fontWeight: 500,
-                letterSpacing: "0.05em",
-              }}
-            >
-              AI Engineer · Data Scientist · Morocco
-            </div>
+            AI Engineer · Data Scientist · Morocco
+          </div>
 
-            {/* Name */}
-            <div
-              style={{
-                fontSize: "68px",
-                fontWeight: 800,
-                color: "#f1f5f9",
-                lineHeight: 1.1,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Mohammed El Kassoiri
-            </div>
+          {/* Name */}
+          <div
+            style={{
+              fontSize: "68px",
+              fontWeight: 800,
+              color: "#f1f5f9",
+              lineHeight: 1.1,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Mohammed El Kassoiri
+          </div>
 
-            {/* Tagline */}
-            <div
-              style={{
-                fontSize: "22px",
-                color: "#94a3b8",
-                lineHeight: 1.5,
-              }}
-            >
-              Machine Learning · Deep Learning · Computer Vision · NLP
-            </div>
+          {/* Tagline */}
+          <div
+            style={{
+              fontSize: "22px",
+              color: "#94a3b8",
+              lineHeight: 1.5,
+            }}
+          >
+            Machine Learning · Deep Learning · Computer Vision · NLP
+          </div>
 
-            {/* Divider */}
-            <div
-              style={{
-                width: "80px",
-                height: "3px",
-                background: "linear-gradient(90deg, #3b82f6, #60a5fa)",
-                borderRadius: "2px",
-              }}
-            />
+          {/* Divider */}
+          <div
+            style={{
+              width: "80px",
+              height: "3px",
+              background: "linear-gradient(90deg, #3b82f6, #60a5fa)",
+              borderRadius: "2px",
+            }}
+          />
 
-            {/* URL */}
-            <div
-              style={{
-                fontSize: "20px",
-                color: "#60a5fa",
-                letterSpacing: "0.03em",
-              }}
-            >
-              {siteHost}
-            </div>
+          {/* URL */}
+          <div
+            style={{
+              fontSize: "20px",
+              color: "#60a5fa",
+              letterSpacing: "0.03em",
+            }}
+          >
+            {siteHost}
           </div>
         </div>
       </div>
-    ),
-    size
+    </div>,
+    size,
   )
 }

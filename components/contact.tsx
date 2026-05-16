@@ -3,28 +3,9 @@
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
-import { Github, Linkedin, Mail } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { useMounted } from "@/hooks/use-mounted"
 import { SectionHeader } from "@/components/section-header"
-
-const socialLinks = [
-  {
-    name: "GitHub",
-    url: "https://github.com/Mohammed-El-Kassoiri",
-    icon: Github,
-  },
-  {
-    name: "LinkedIn",
-    url: "https://linkedin.com/in/Mohammed-El-Kassoiri",
-    icon: Linkedin,
-  },
-  {
-    name: "Email",
-    url: "mailto:mohammed.kassoiri@gmail.com",
-    icon: Mail,
-  },
-]
 
 const translations = {
   en: {
@@ -80,33 +61,6 @@ export function Contact() {
           >
             {t.description}
           </p>
-
-          {/* Social links */}
-          <div className="flex justify-center gap-5 mb-12">
-            {socialLinks.map((link, index) => {
-              const Icon = link.icon
-              return (
-                <motion.a
-                  key={index}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.08, y: -2 }}
-                  className={`w-16 h-16 glass-surface border rounded-2xl transition-all flex items-center justify-center interactive-lift ${
-                    isCyber
-                      ? "bg-black/60 border-red-900/40 hover:border-red-600/60 text-red-400/60 hover:text-red-400"
-                      : "bg-slate-800/50 border-slate-700/60 hover:border-blue-500/50 text-slate-400 hover:text-blue-400"
-                  }`}
-                >
-                  <Icon className="w-6 h-6" />
-                </motion.a>
-              )
-            })}
-          </div>
 
           {/* Primary CTA */}
           <motion.a

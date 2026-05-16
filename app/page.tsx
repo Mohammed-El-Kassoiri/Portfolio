@@ -4,12 +4,10 @@ import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Hero } from "@/components/hero"
 import { About } from "@/components/about"
-import { Education } from "@/components/education"
 import { Experience } from "@/components/experience"
 import { Projects } from "@/components/projects"
 import { Research } from "@/components/research"
 import { Skills } from "@/components/skills"
-import { Certifications } from "@/components/certifications"
 import { Contact } from "@/components/contact"
 import { Navigation } from "@/components/navigation"
 import { AIBackground } from "@/components/ai-background"
@@ -58,9 +56,6 @@ export default function Portfolio() {
                   <About />
                 </div>
                 <div className="section-divider">
-                  <Education />
-                </div>
-                <div className="section-divider">
                   <Experience />
                 </div>
                 <div className="section-divider">
@@ -71,9 +66,6 @@ export default function Portfolio() {
                 </div>
                 <div className="section-divider">
                   <Skills />
-                </div>
-                <div className="section-divider">
-                  <Certifications />
                 </div>
                 <div className="section-divider">
                   <Contact />

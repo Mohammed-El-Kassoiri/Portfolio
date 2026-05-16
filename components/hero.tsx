@@ -82,7 +82,7 @@ export function Hero() {
             transition={{ duration: 0.75 }}
             className="display-title max-w-4xl text-balance text-slate-100"
           >
-            Premium AI Engineer Portfolio with Cinematic Motion
+            MOHAMMED EL KASSOIRI
           </motion.h1>
 
           <motion.div

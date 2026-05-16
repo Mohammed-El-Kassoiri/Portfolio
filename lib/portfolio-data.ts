@@ -4,7 +4,6 @@ export const portfolioProfile = {
   specialization: "Machine Learning, Deep Learning, Computer Vision, and NLP",
   location: "Morocco",
   status: "Available for full-time AI and Data Science opportunities",
-  education: "Engineering degree at ENSIASD (Data Science, Big Data & AI)",
   internship:
     "Data Science & Machine Learning Intern at XAI Morocco (Aug 2025 – Oct 2025)",
   technologies: [
@@ -42,11 +41,9 @@ export const portfolioProfile = {
 
 export const chatbotQuickQuestions = [
   "Who am I?",
-  "What do I study?",
   "Where did I do my internship?",
   "What technologies do I use?",
   "What are my projects?",
-  "What is my academic background?",
   "What are my research interests?",
   "How can you contact me?",
   "Show my CV",
@@ -59,9 +56,6 @@ export function getChatbotAnswer(question: string): string {
 
   if (q.includes("who") && q.includes("i")) {
     return `${portfolioProfile.name} is an ${portfolioProfile.title} focused on building intelligent systems with measurable impact.`
-  }
-  if (q.includes("study") || q.includes("academic background")) {
-    return `He is currently completing his ${portfolioProfile.education}.`
   }
   if (q.includes("intern")) {
     return portfolioProfile.internship
@@ -85,5 +79,5 @@ export function getChatbotAnswer(question: string): string {
     return portfolioProfile.specialization
   }
 
-  return "I can help with background, education, internship, projects, skills, research interests, and contact details."
+  return "I can help with background, internship, projects, skills, research interests, and contact details."
 }

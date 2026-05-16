@@ -3,16 +3,10 @@
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
-import { Target, GraduationCap, Briefcase, Code2 } from "lucide-react"
+import { Target, Briefcase, Code2 } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { useMounted } from "@/hooks/use-mounted"
 import { SectionHeader } from "@/components/section-header"
-
-const counters = [
-  { label: "AI Projects", value: "15+" },
-  { label: "Research Focus", value: "4" },
-  { label: "Core Domains", value: "ML/CV/NLP" },
-]
 
 const translations = {
   en: {
@@ -22,16 +16,10 @@ const translations = {
     bio1: "Data Scientist & AI Engineer specializing in Machine Learning, Deep Learning, and Computer Vision. Currently developing an AI system for automatic agricultural parcelization.",
     location: "Location:",
     locationVal: "Morocco 🇲🇦",
-    education: "Education:",
-    educationVal: "ENSIASD — Data Science, Big Data & AI",
     pfeBadgeTitle: "Featured Project (PFE)",
     pfeBadgeStatus: "In Progress",
     pfeDesc:
       "Automatic Agricultural Parcelization — Deep Learning system for automatic field delineation from satellite imagery using multi-task segmentation and edge detection.",
-    educationCard: "Education",
-    educationSchool: "ENSIASD",
-    educationProgram: "Data Science, Big Data & AI",
-    educationCity: "Taroudant, Morocco",
     missionTitle: "Mission",
     missionText:
       "AI & Data Engineer ready for the industry — seeking full-time roles in AI, Data Science, or Software Engineering where cutting-edge ML skills meet real-world impact. Ready to contribute to meaningful projects that shape the future.",
@@ -43,16 +31,10 @@ const translations = {
     bio1: "Data Scientist & Ingénieur IA spécialisé en Machine Learning, Deep Learning et Computer Vision. Actuellement en train de développer un système IA pour la parcellisation automatique des terres agricoles.",
     location: "Localisation :",
     locationVal: "Maroc 🇲🇦",
-    education: "Formation :",
-    educationVal: "ENSIASD — Data Science, Big Data & IA",
     pfeBadgeTitle: "Projet de Fin d'Études (PFE)",
     pfeBadgeStatus: "En cours",
     pfeDesc:
       "Parcellisation Automatique des Parcelles Agricoles — Système Deep Learning pour la délimitation automatique des parcelles depuis des images satellites, combinant segmentation sémantique et détection de contours.",
-    educationCard: "Formation",
-    educationSchool: "ENSIASD",
-    educationProgram: "Data Science, Big Data & IA",
-    educationCity: "Taroudant, Maroc",
     missionTitle: "Mission",
     missionText:
       "Ingénieur IA & Data prêt pour l'industrie — à la recherche d'un poste en IA, Data Science ou Ingénierie Logicielle, pour mettre en œuvre des compétences ML de pointe au service de projets à fort impact réel.",
@@ -136,11 +118,6 @@ export function About() {
                   🌍 <span className={`font-semibold ${titleColor}`}>{t.location}</span>{" "}
                   {t.locationVal}
                 </p>
-                <p>
-                  🎓{" "}
-                  <span className={`font-semibold ${titleColor}`}>{t.education}</span>{" "}
-                  {t.educationVal}
-                </p>
               </div>
 
               {/* Code snippet */}
@@ -193,33 +170,6 @@ me.say_hi()`}</pre>
               <p className={`text-sm leading-relaxed ${textColor}`}>{t.pfeDesc}</p>
             </motion.div>
 
-            {/* Education Card */}
-            <motion.div
-              variants={cardVariant}
-              whileHover={{ scale: 1.02 }}
-              className={cardBase}
-            >
-              <div
-                className={`w-12 h-12 ${iconBg} rounded-xl flex items-center justify-center mb-4`}
-              >
-                <GraduationCap className={`w-6 h-6 ${iconColor}`} />
-              </div>
-              <h3 className={`text-lg font-semibold mb-3 ${titleColor}`}>
-                {t.educationCard}
-              </h3>
-              <p className={`text-sm leading-relaxed ${textColor}`}>
-                <span className={`font-semibold text-base ${titleColor}`}>
-                  {t.educationSchool}
-                </span>
-                <br />
-                {t.educationProgram}
-                <br />
-                <span className={isCyber ? "text-red-400/60" : "text-slate-400"}>
-                  {t.educationCity}
-                </span>
-              </p>
-            </motion.div>
-
             {/* Mission Card — wide */}
             <motion.div
               variants={cardVariant}
@@ -239,23 +189,6 @@ me.say_hi()`}</pre>
                 {t.missionTitle}
               </h3>
               <p className={`leading-relaxed ${textColor}`}>{t.missionText}</p>
-            </motion.div>
-
-            <motion.div
-              variants={cardVariant}
-              className={`lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-4 ${cardBase}`}
-            >
-              {counters.map((counter) => (
-                <div
-                  key={counter.label}
-                  className={`rounded-xl border p-4 ${isCyber ? "border-red-900/40 bg-red-950/20" : "border-slate-700/60 bg-slate-900/40"}`}
-                >
-                  <p className={`text-2xl font-bold ${accentColor}`}>{counter.value}</p>
-                  <p className={`text-xs uppercase tracking-widest mt-1 ${textColor}`}>
-                    {counter.label}
-                  </p>
-                </div>
-              ))}
             </motion.div>
           </motion.div>
         </motion.div>

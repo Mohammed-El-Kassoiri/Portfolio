@@ -56,3 +56,20 @@ Action:
 ## Current status guidance
 
 Use workflow logs to determine ownership for each failing run before changing source code. If build succeeds consistently with `npm ci` and `npm run build`, remaining non-deterministic failures are likely tool/platform-side.
+
+
+## Current observed run status (this PR)
+
+Observed runs on branch `copilot/add-deterministic-testing-stack-another-one` after workflow creation:
+
+- CodeQL run `25966428219` concluded as `action_required`
+- Validation/lint/test/build runs concluded as `action_required`
+- workflow job count for those runs is `0`
+
+Classification:
+
+- This pattern is **GitHub Actions/tool-side** (policy/approval gate) rather than repository code failure, because no workflow jobs started and no repository execution logs were produced.
+
+Implication:
+
+- Once workflow approval/policy gating is cleared in GitHub, the same workflows should execute normally and can then be evaluated for repository-side failures, if any.

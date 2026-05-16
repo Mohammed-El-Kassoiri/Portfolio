@@ -46,6 +46,8 @@ export function Hero() {
   const mouseY = useMotionValue(50)
   const { language } = useLanguage()
   const t = translations[language]
+  const heroSectionClass =
+    "section-container relative flex min-h-[var(--hero-min-height)] items-start overflow-hidden pt-[var(--hero-padding-top)] pb-[var(--hero-padding-bottom)] md:min-h-[var(--hero-min-height-md)] md:pt-[var(--hero-padding-top-md)]"
 
   const spotlight = useMotionTemplate`radial-gradient(520px circle at ${mouseX}% ${mouseY}%, rgba(56,189,248,0.14), transparent 60%)`
 
@@ -63,7 +65,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="section-container relative flex min-h-[var(--hero-min-height)] items-start overflow-hidden pt-[var(--hero-padding-top)] pb-[var(--hero-padding-bottom)] md:min-h-[var(--hero-min-height-md)] md:pt-[var(--hero-padding-top-md)]"
+      className={heroSectionClass}
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect()
         mouseX.set(((e.clientX - rect.left) / rect.width) * 100)

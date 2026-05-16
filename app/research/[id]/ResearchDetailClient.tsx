@@ -246,6 +246,7 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
                 <iframe
                   src={paper.pdf}
                   className="w-full h-full"
+                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
                   title="Research Paper PDF"
                 />
               </div>

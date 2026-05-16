@@ -52,7 +52,7 @@ export function Hero() {
   const t = translations[language]
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center section-container pt-16">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center section-container pt-20">
       {/* Subtle background pattern — adapts to theme */}
       <div
         className={
@@ -74,13 +74,13 @@ export function Hero() {
       )}
 
       <div className="container mx-auto max-w-7xl z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
           {/* Left side — text content */}
           <motion.div
             initial={prefersReducedMotion ? false : { opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-7"
+            className="space-y-8"
           >
             {/* Greeting badge */}
             <motion.div
@@ -133,7 +133,7 @@ export function Hero() {
             </div>
 
             <motion.p
-              className={`text-lg md:text-xl max-w-xl leading-relaxed ${
+              className={`text-lg md:text-xl max-w-2xl leading-relaxed ${
                 isCyber ? "text-red-200/80" : "text-slate-300"
               }`}
               initial={{ opacity: 0 }}
@@ -142,6 +142,41 @@ export function Hero() {
             >
               {t.description}
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="flex flex-wrap gap-2.5"
+            >
+              <span
+                className={`rounded-full border px-3 py-1 text-xs font-semibold tracking-wide ${
+                  isCyber
+                    ? "border-red-800/50 bg-red-900/30 text-red-200"
+                    : "border-blue-500/30 bg-blue-500/10 text-blue-200"
+                }`}
+              >
+                {language === "en" ? "Open to full-time roles" : "Ouvert aux postes full-time"}
+              </span>
+              <span
+                className={`rounded-full border px-3 py-1 text-xs font-semibold tracking-wide ${
+                  isCyber
+                    ? "border-red-800/50 bg-red-900/30 text-red-200"
+                    : "border-slate-600/60 bg-slate-800/60 text-slate-200"
+                }`}
+              >
+                {language === "en" ? "AI / ML / Data Engineering" : "IA / ML / Data Engineering"}
+              </span>
+              <span
+                className={`rounded-full border px-3 py-1 text-xs font-semibold tracking-wide ${
+                  isCyber
+                    ? "border-red-800/50 bg-red-900/30 text-red-200"
+                    : "border-slate-600/60 bg-slate-800/60 text-slate-200"
+                }`}
+              >
+                {language === "en" ? "Based in Morocco" : "Basé au Maroc"}
+              </span>
+            </motion.div>
 
             <motion.div
               className="flex flex-wrap gap-4"
@@ -248,7 +283,7 @@ export function Hero() {
 
               {/* Code window */}
               <motion.div
-                className={`relative backdrop-blur-sm rounded-2xl p-6 shadow-2xl border ${
+                className={`relative glass-surface rounded-2xl p-6 shadow-2xl border ${
                   isCyber
                     ? "bg-black/80 border-red-900/50"
                     : "bg-slate-900/70 border-slate-700/60"

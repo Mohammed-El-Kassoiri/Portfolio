@@ -269,6 +269,15 @@ export function Projects() {
         >
           {/* Section header */}
           <SectionHeader eyebrow={labels.section} title={labels.title} isCyber={isCyber} />
+          <p
+            className={`mb-10 max-w-3xl text-base leading-relaxed ${
+              isCyber ? "text-red-200/70" : "text-slate-300"
+            }`}
+          >
+            {language === "en"
+              ? "Selected projects framed around problem, technical approach, and measurable outcome to help recruiters assess impact quickly."
+              : "Une sélection de projets présentés par problème, approche technique et résultat mesurable pour une lecture rapide orientée impact."}
+          </p>
 
           {/* Filter buttons */}
           <div className="mb-10 flex flex-wrap gap-2">
@@ -276,9 +285,10 @@ export function Projects() {
               <motion.button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-4 py-2 rounded-lg font-medium text-sm transition-all border-2 ${
+                aria-label={`Filter ${category.label}`}
+                 className={`px-4 py-2 rounded-lg font-medium text-sm transition-all border-2 interactive-lift ${
                   selectedCategory === category.id
                     ? isCyber
                       ? "bg-red-700 text-white border-red-700"
@@ -302,10 +312,10 @@ export function Projects() {
                   initial={{ opacity: 0, y: 50 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
-                  whileHover={{ y: -4 }}
+                  whileHover={{ y: -3 }}
                 >
                   <Card
-                    className={`h-full backdrop-blur-sm border transition-all duration-300 p-6 relative overflow-hidden group ${
+                    className={`h-full glass-surface border transition-all duration-300 p-6 relative overflow-hidden group interactive-lift ${
                       isCyber
                         ? "bg-black/60 border-red-900/40 hover:border-red-600/60"
                         : "bg-slate-800/50 border-slate-700/60 hover:border-blue-500/50"
@@ -388,7 +398,7 @@ export function Projects() {
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            whileHover={{ scale: 1.05 }}
+                            whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.95 }}
                             className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border rounded-lg transition-all ${accentColor} ${accentBorder} ${accentHoverBg}`}
                           >
@@ -402,7 +412,7 @@ export function Projects() {
                             href={project.demo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            whileHover={{ scale: 1.05 }}
+                            whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.95 }}
                             className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border rounded-lg transition-all ${accentColor} ${accentBorder} ${accentHoverBg}`}
                           >
@@ -414,7 +424,7 @@ export function Projects() {
                             href={project.huggingface}
                             target="_blank"
                             rel="noopener noreferrer"
-                            whileHover={{ scale: 1.05 }}
+                            whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.95 }}
                             className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border rounded-lg transition-all ${accentColor} ${accentBorder} ${accentHoverBg}`}
                           >
@@ -428,7 +438,7 @@ export function Projects() {
                             href={project.paper}
                             target="_blank"
                             rel="noopener noreferrer"
-                            whileHover={{ scale: 1.05 }}
+                            whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.95 }}
                             className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border rounded-lg transition-all ${accentColor} ${accentBorder} ${accentHoverBg}`}
                           >

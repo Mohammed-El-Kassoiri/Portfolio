@@ -147,16 +147,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`font-sans antialiased`}>
+      <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           themes={["dark", "cyber"]}
           enableSystem={false}
         >
-          <LanguageProvider defaultLanguage="en">
-            {children}
-          </LanguageProvider>
+          <LanguageProvider defaultLanguage="en">{children}</LanguageProvider>
           <Analytics />
           <SpeedInsights />
         </ThemeProvider>

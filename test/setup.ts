@@ -1,4 +1,4 @@
-import "@testing-library/jest-dom/vitest";
+import "@testing-library/jest-dom/vitest"
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,
@@ -12,4 +12,12 @@ Object.defineProperty(window, "matchMedia", {
     removeEventListener: () => {},
     dispatchEvent: () => false,
   }),
-});
+})
+
+class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+vi.stubGlobal("ResizeObserver", ResizeObserver)

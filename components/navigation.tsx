@@ -121,28 +121,28 @@ export function Navigation() {
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
             ? isCyber
-              ? "bg-black/90 backdrop-blur-lg border-b border-red-900/50"
-              : "bg-slate-900/90 backdrop-blur-lg border-b border-slate-700/50"
+              ? "bg-black/85 backdrop-blur-xl border-b border-red-900/50 shadow-[0_8px_28px_rgba(127,29,29,0.2)]"
+              : "bg-slate-900/80 backdrop-blur-xl border-b border-slate-700/60 shadow-[0_8px_28px_rgba(15,23,42,0.35)]"
             : "bg-transparent",
         )}
       >
       <div className="container mx-auto container-padding max-w-7xl">
         <div className="flex items-center justify-between h-16">
           <motion.div
-            className="text-xl font-bold"
+            className="text-xl font-bold tracking-tight"
             whileHover={{ scale: 1.05 }}
           >
             <span className={isCyber ? "text-red-500 cyber-glow" : "text-blue-400"}>MK</span>
           </motion.div>
 
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-1.5">
             {navItems.map((item) => (
                 <a
                   key={item.id}
                   href={`#${item.id}`}
                   aria-current={activeSection === item.id ? "page" : undefined}
                 className={cn(
-                  "px-4 py-2 text-sm font-medium transition-all duration-300 relative rounded-lg",
+                  "px-4 py-2 text-sm font-medium transition-all duration-300 relative rounded-lg interactive-lift",
                   activeSection === item.id
                     ? isCyber ? "text-red-400" : "text-blue-400"
                     : isCyber
@@ -165,12 +165,12 @@ export function Navigation() {
             ))}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <Sheet open={openMobileMenu} onOpenChange={setOpenMobileMenu}>
               <SheetTrigger asChild>
                 <button
                   className={cn(
-                    "md:hidden p-2 rounded-lg transition-all duration-300",
+                    "md:hidden p-2 rounded-lg transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2",
                     isCyber
                       ? "text-red-300 hover:text-red-200 hover:bg-red-900/30"
                       : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50",

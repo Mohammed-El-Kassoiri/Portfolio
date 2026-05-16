@@ -19,10 +19,11 @@ import { useMounted } from "@/hooks/use-mounted"
 
 export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }) {
   const [selectedFigure, setSelectedFigure] = useState<string | null>(null)
+  const [showPdfPreview, setShowPdfPreview] = useState(false)
   const { theme } = useTheme()
   const mounted = useMounted()
   const isCyber = mounted && theme === "cyber"
-  const pageBg = isCyber ? "bg-black text-red-100" : "bg-slate-900 text-slate-100"
+  const pageBg = isCyber ? "bg-black text-red-100" : "bg-slate-950 text-slate-100"
   const cardClass = isCyber
     ? "border-red-900/40 bg-black/50 backdrop-blur-sm"
     : "border-slate-700/60 bg-slate-900/60 backdrop-blur-sm"
@@ -240,16 +241,34 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
           >
             <Card className={`${cardClass} p-8 mb-8`}>
               <h2 className={`text-2xl font-bold ${accentClass} mb-4`}>PDF Preview</h2>
-              <div
-                className={`relative w-full h-[600px] rounded-lg overflow-hidden border ${isCyber ? "bg-red-950/20 border-red-900/30" : "bg-slate-900/50 border-slate-700/60"}`}
+              <p
+                className={`text-sm mb-4 ${isCyber ? "text-red-200/70" : "text-slate-300"}`}
               >
-                <iframe
-                  src={paper.pdf}
-                  className="w-full h-full"
-                  sandbox="allow-same-origin"
-                  title="Research Paper PDF"
-                />
-              </div>
+                Load the embedded viewer only when needed to improve performance on
+                slower devices.
+              </p>
+              {!showPdfPreview ? (
+                <Button
+                  onClick={() => setShowPdfPreview(true)}
+                  className={
+                    isCyber
+                      ? "bg-red-700 hover:bg-red-600 text-white"
+                      : "bg-blue-600 hover:bg-blue-500 text-white"
+                  }
+                >
+                  Load PDF preview
+                </Button>
+              ) : (
+                <div
+                  className={`relative w-full h-[600px] rounded-lg overflow-hidden border ${isCyber ? "bg-red-950/20 border-red-900/30" : "bg-slate-800/50 border-slate-700/60"}`}
+                >
+                  <iframe
+                    src={paper.pdf}
+                    className="w-full h-full"
+                    title="Research Paper PDF"
+                  />
+                </div>
+              )}
             </Card>
           </motion.div>
         )}

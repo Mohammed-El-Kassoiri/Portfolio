@@ -17,6 +17,24 @@ import Image from "next/image"
 import { useTheme } from "next-themes"
 import { useMounted } from "@/hooks/use-mounted"
 
+function getSafePdfPreviewSrc(pdf: string) {
+  if (pdf.startsWith("/")) {
+    return `${encodeURI(pdf)}#view=FitH`
+  }
+
+  try {
+    const parsed = new URL(pdf)
+    if (parsed.protocol === "https:" || parsed.protocol === "http:") {
+      parsed.hash = "view=FitH"
+      return parsed.toString()
+    }
+  } catch {
+    return null
+  }
+
+  return null
+}
+
 export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }) {
   const [selectedFigure, setSelectedFigure] = useState<string | null>(null)
   const { theme } = useTheme()
@@ -27,6 +45,7 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
     ? "border-red-900/40 bg-black/50 backdrop-blur-sm"
     : "border-slate-700/60 bg-slate-900/60 backdrop-blur-sm"
   const accentClass = isCyber ? "text-red-400" : "text-blue-400"
+  const pdfPreviewSrc = paper.pdf ? getSafePdfPreviewSrc(paper.pdf) : null
 
   return (
     <div className={`min-h-screen ${pageBg}`}>
@@ -248,12 +267,20 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
               <div
                 className={`relative w-full h-[650px] rounded-lg overflow-hidden border shadow-lg ${isCyber ? "border-red-800/40 bg-gradient-to-br from-black via-red-950/20 to-black" : "border-slate-600/60 bg-gradient-to-br from-slate-900 via-slate-800/70 to-slate-950"}`}
               >
-                <iframe
-                  src={`${paper.pdf}#view=FitH`}
-                  className="w-full h-full bg-white"
-                  title="Research Paper PDF"
-                  loading="lazy"
-                />
+                {pdfPreviewSrc ? (
+                  <iframe
+                    src={pdfPreviewSrc}
+                    className="w-full h-full bg-white"
+                    title="Research Paper PDF"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div
+                    className={`flex h-full items-center justify-center text-sm ${isCyber ? "text-red-200/80" : "text-slate-200"}`}
+                  >
+                    PDF preview is unavailable for this link.
+                  </div>
+                )}
               </div>
             </Card>
           </motion.div>

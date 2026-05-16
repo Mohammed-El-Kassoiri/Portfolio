@@ -19,7 +19,6 @@ import { useMounted } from "@/hooks/use-mounted"
 
 export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }) {
   const [selectedFigure, setSelectedFigure] = useState<string | null>(null)
-  const [showPdfPreview, setShowPdfPreview] = useState(false)
   const { theme } = useTheme()
   const mounted = useMounted()
   const isCyber = mounted && theme === "cyber"
@@ -244,31 +243,18 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
               <p
                 className={`text-sm mb-4 ${isCyber ? "text-red-200/70" : "text-slate-300"}`}
               >
-                Load the embedded viewer only when needed to improve performance on
-                slower devices.
+                Embedded viewer restored with improved contrast and background styling.
               </p>
-              {!showPdfPreview ? (
-                <Button
-                  onClick={() => setShowPdfPreview(true)}
-                  className={
-                    isCyber
-                      ? "bg-red-700 hover:bg-red-600 text-white"
-                      : "bg-blue-600 hover:bg-blue-500 text-white"
-                  }
-                >
-                  Load PDF preview
-                </Button>
-              ) : (
-                <div
-                  className={`relative w-full h-[600px] rounded-lg overflow-hidden border ${isCyber ? "bg-red-950/20 border-red-900/30" : "bg-slate-800/50 border-slate-700/60"}`}
-                >
-                  <iframe
-                    src={paper.pdf}
-                    className="w-full h-full"
-                    title="Research Paper PDF"
-                  />
-                </div>
-              )}
+              <div
+                className={`relative w-full h-[650px] rounded-lg overflow-hidden border shadow-lg ${isCyber ? "border-red-800/40 bg-gradient-to-br from-black via-red-950/20 to-black" : "border-slate-600/60 bg-gradient-to-br from-slate-900 via-slate-800/70 to-slate-950"}`}
+              >
+                <iframe
+                  src={`${paper.pdf}#view=FitH`}
+                  className="w-full h-full bg-white"
+                  title="Research Paper PDF"
+                  loading="lazy"
+                />
+              </div>
             </Card>
           </motion.div>
         )}

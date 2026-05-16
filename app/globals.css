@@ -12,6 +12,7 @@
   --font-size-heading: clamp(1.95rem, 2.7vw + 1rem, 3.25rem);
   --font-size-title: clamp(1.25rem, 1.2vw + 1rem, 1.8rem);
   --font-size-body: clamp(1rem, 0.25vw + 0.95rem, 1.08rem);
+  /* Reduced intentionally to tighten large vertical gaps between sections. */
   --section-spacing-y: clamp(2.2rem, 5.5vw, 4.5rem);
   --hero-min-height: 72vh;
   --hero-min-height-md: 82vh;

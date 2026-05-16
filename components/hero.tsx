@@ -63,7 +63,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="section-container relative flex min-h-[72vh] items-start overflow-hidden pt-14 pb-8 md:min-h-[82vh] md:pt-20"
+      className="section-container relative flex min-h-[var(--hero-min-height)] items-start overflow-hidden pt-[var(--hero-padding-top)] pb-[var(--hero-padding-bottom)] md:min-h-[var(--hero-min-height-md)] md:pt-[var(--hero-padding-top-md)]"
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect()
         mouseX.set(((e.clientX - rect.left) / rect.width) * 100)

@@ -47,8 +47,5 @@ jobs:
           config-file: ./.github/codeql/codeql-config.yml
           build-mode: none
 
-      - name: Build for analysis
-        run: npm run build
-
       - name: Perform CodeQL analysis
         uses: github/codeql-action/analyze@v4

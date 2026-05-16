@@ -22,12 +22,10 @@ import {
 const NAV_IDS = [
   "hero",
   "about",
-  "education",
   "experience",
   "projects",
   "research",
   "skills",
-  "certifications",
   "contact",
 ] as const
 
@@ -36,11 +34,9 @@ const navLabels = {
     home: "Home",
     about: "About",
     experience: "Experience",
-    education: "Education",
     projects: "Projects",
     research: "Research",
     skills: "Skills",
-    certifications: "Certifications",
     contact: "Contact",
     resume: "Resume",
     switchToCyber: "Switch to cyber theme",
@@ -50,11 +46,9 @@ const navLabels = {
     home: "Accueil",
     about: "À propos",
     experience: "Expérience",
-    education: "Formation",
     projects: "Projets",
     research: "Recherche",
     skills: "Compétences",
-    certifications: "Certifications",
     contact: "Contact",
     resume: "CV",
     switchToCyber: "Passer au thème cyber",
@@ -89,12 +83,10 @@ export function Navigation() {
   const navItems = [
     { id: "hero", label: t.home },
     { id: "about", label: t.about },
-    { id: "education", label: t.education },
     { id: "experience", label: t.experience },
     { id: "projects", label: t.projects },
     { id: "research", label: t.research },
     { id: "skills", label: t.skills },
-    { id: "certifications", label: t.certifications },
     { id: "contact", label: t.contact },
   ]
 

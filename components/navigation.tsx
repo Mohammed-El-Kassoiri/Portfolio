@@ -38,7 +38,6 @@ const navLabels = {
     research: "Research",
     skills: "Skills",
     contact: "Contact",
-    resume: "Resume",
     switchToCyber: "Switch to cyber theme",
     switchToDark: "Switch to dark theme",
   },
@@ -50,7 +49,6 @@ const navLabels = {
     research: "Recherche",
     skills: "Compétences",
     contact: "Contact",
-    resume: "CV",
     switchToCyber: "Passer au thème cyber",
     switchToDark: "Passer au thème sombre",
   },
@@ -295,22 +293,6 @@ export function Navigation() {
                 <ThemeIcon theme={theme} />
               </motion.button>
             )}
-
-            <motion.a
-              href="/Mohammed_el_kassoiri.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={cn(
-                "hidden sm:inline-flex px-5 py-2 text-sm font-semibold border-2 transition-all rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2",
-                isCyber
-                  ? "border-red-600 text-red-400 hover:bg-red-600/10 focus-visible:outline-red-500"
-                  : "border-blue-500 text-blue-400 hover:bg-blue-500/10 focus-visible:outline-blue-500",
-              )}
-            >
-              {mounted ? t.resume : "Resume"}
-            </motion.a>
           </div>
         </div>
       </div>

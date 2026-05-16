@@ -5,19 +5,47 @@ import { TypeAnimation } from "react-type-animation"
 import { Github, Linkedin, Mail, Download, ArrowDown } from "lucide-react"
 import { useMemo } from "react"
 import { HeroThreeScene } from "@/components/hero-three-scene"
+import { useLanguage } from "@/components/language-provider"
 
-const roles: (string | number)[] = [
-  "AI Engineer & Data Scientist Building Intelligent Systems",
-  2200,
-  "Machine Learning • Deep Learning • Computer Vision • NLP",
-  2200,
-]
+const roles: Record<"en" | "fr", (string | number)[]> = {
+  en: [
+    "AI Engineer & Data Scientist Building Intelligent Systems",
+    2200,
+    "Machine Learning • Deep Learning • Computer Vision • NLP",
+    2200,
+  ],
+  fr: [
+    "Ingénieur IA & Data Scientist créant des systèmes intelligents",
+    2200,
+    "Machine Learning • Deep Learning • Vision par ordinateur • NLP",
+    2200,
+  ],
+}
+
+const translations = {
+  en: {
+    availability: "Available now · Real-time status online",
+    description:
+      "I design and deploy intelligent AI products with strong engineering discipline, polished UX, and measurable business outcomes.",
+    resume: "Resume",
+    contact: "Contact",
+  },
+  fr: {
+    availability: "Disponible maintenant · Statut en ligne en temps réel",
+    description:
+      "Je conçois et déploie des produits d’IA intelligents avec une forte rigueur d’ingénierie, une UX soignée et des résultats métier mesurables.",
+    resume: "CV",
+    contact: "Contact",
+  },
+}
 
 const stack = ["Python", "PyTorch", "TensorFlow", "FastAPI", "Next.js", "TypeScript"]
 
 export function Hero() {
   const mouseX = useMotionValue(50)
   const mouseY = useMotionValue(50)
+  const { language } = useLanguage()
+  const t = translations[language]
 
   const spotlight = useMotionTemplate`radial-gradient(520px circle at ${mouseX}% ${mouseY}%, rgba(56,189,248,0.14), transparent 60%)`
 
@@ -73,7 +101,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 rounded-full border border-emerald-400/35 bg-emerald-500/10 px-4 py-1.5 text-sm font-semibold text-emerald-300"
           >
             <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-            Available now · Real-time status online
+            {t.availability}
           </motion.span>
 
           <motion.h1
@@ -91,7 +119,7 @@ export function Hero() {
             transition={{ delay: 0.2 }}
             className="min-h-14 text-lg font-semibold text-cyan-300 md:text-2xl"
           >
-            <TypeAnimation sequence={roles} speed={57} repeat={Infinity} />
+            <TypeAnimation sequence={roles[language]} speed={57} repeat={Infinity} />
           </motion.div>
 
           <motion.p
@@ -100,8 +128,7 @@ export function Hero() {
             transition={{ delay: 0.3 }}
             className="max-w-3xl text-base leading-relaxed text-slate-300 md:text-lg"
           >
-            I design and deploy intelligent AI products with strong engineering
-            discipline, polished UX, and measurable business outcomes.
+            {t.description}
           </motion.p>
 
           <div className="flex flex-wrap gap-3 pt-1">
@@ -113,7 +140,7 @@ export function Hero() {
               whileHover={{ scale: 1.03 }}
               className="inline-flex items-center gap-2 rounded-xl border border-cyan-400/30 bg-cyan-500/15 px-5 py-3 text-sm font-semibold text-cyan-100"
             >
-              <Download className="h-4 w-4" /> Resume
+              <Download className="h-4 w-4" /> {t.resume}
             </motion.a>
             <motion.a
               data-magnetic
@@ -121,7 +148,7 @@ export function Hero() {
               whileHover={{ scale: 1.03 }}
               className="inline-flex items-center gap-2 rounded-xl border border-indigo-400/30 bg-indigo-500/15 px-5 py-3 text-sm font-semibold text-indigo-100"
             >
-              <Mail className="h-4 w-4" /> Contact
+              <Mail className="h-4 w-4" /> {t.contact}
             </motion.a>
             <motion.a
               data-magnetic

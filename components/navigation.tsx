@@ -261,7 +261,7 @@ export function Navigation() {
               )}
               aria-label="Open command palette"
             >
-              ⌘K
+              Cmd/Ctrl+K
             </button>
 
             {/* EN / FR language toggle */}

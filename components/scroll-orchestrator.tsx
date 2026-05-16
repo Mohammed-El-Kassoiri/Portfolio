@@ -53,6 +53,7 @@ export function ScrollOrchestrator() {
 
     return () => {
       cleanupListeners.forEach((cleanup) => cleanup())
+      sections.forEach((section) => gsap.killTweensOf(section))
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
     }
   }, [])

@@ -45,7 +45,7 @@ jobs:
         with:
           languages: ${{ matrix.language }}
           config-file: ./.github/codeql/codeql-config.yml
-          build-mode: manual
+          build-mode: none
 
       - name: Build for analysis
         run: npm run build

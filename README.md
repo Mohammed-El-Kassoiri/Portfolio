@@ -13,13 +13,13 @@ I'm an AI Engineer and Data Scientist from Morocco specialising in Machine Learn
 
 ## Tech Stack
 
-| Layer | Technologies |
-|---|---|
-| **Framework** | Next.js 15 (App Router), React 19, TypeScript |
-| **Styling** | Tailwind CSS v4, Framer Motion, tw-animate-css |
-| **UI Components** | Radix UI, shadcn/ui |
-| **Theme** | next-themes (light / dark / cyber hacker) |
-| **Analytics** | Vercel Analytics, Vercel Speed Insights |
+| Layer             | Technologies                                   |
+| ----------------- | ---------------------------------------------- |
+| **Framework**     | Next.js 15 (App Router), React 19, TypeScript  |
+| **Styling**       | Tailwind CSS v4, Framer Motion, tw-animate-css |
+| **UI Components** | Radix UI, shadcn/ui                            |
+| **Theme**         | next-themes (light / dark / cyber hacker)      |
+| **Analytics**     | Vercel Analytics, Vercel Speed Insights        |
 
 ---
 
@@ -116,13 +116,13 @@ To also serve a traditional `favicon.ico` (recommended for Google Search favicon
 
 ## Contact & Links
 
-| | |
-|---|---|
-| **Email** | [mohammed.kassoiri@gmail.com](mailto:mohammed.kassoiri@gmail.com) |
-| **LinkedIn** | [linkedin.com/in/Mohammed-El-Kassoiri](https://linkedin.com/in/Mohammed-El-Kassoiri) |
-| **GitHub** | [github.com/Mohammed-El-Kassoiri](https://github.com/Mohammed-El-Kassoiri) |
-| **Portfolio** | [mohammedelkassoiri.app](https://www.mohammedelkassoiri.app) |
+|               |                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------ |
+| **Email**     | [mohammed.kassoiri@gmail.com](mailto:mohammed.kassoiri@gmail.com)                    |
+| **LinkedIn**  | [linkedin.com/in/Mohammed-El-Kassoiri](https://linkedin.com/in/Mohammed-El-Kassoiri) |
+| **GitHub**    | [github.com/Mohammed-El-Kassoiri](https://github.com/Mohammed-El-Kassoiri)           |
+| **Portfolio** | [mohammedelkassoiri.app](https://www.mohammedelkassoiri.app)                         |
 
 ---
 
-*Built with ❤️ and lots of ☕ by Mohammed El Kassoiri.*
+_Built with ❤️ and lots of ☕ by Mohammed El Kassoiri._

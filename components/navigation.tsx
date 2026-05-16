@@ -21,10 +21,12 @@ import {
 const NAV_IDS = [
   "hero",
   "about",
+  "education",
   "experience",
   "projects",
   "research",
   "skills",
+  "certifications",
   "contact",
 ] as const
 
@@ -33,9 +35,11 @@ const navLabels = {
     home: "Home",
     about: "About",
     experience: "Experience",
+    education: "Education",
     projects: "Projects",
     research: "Research",
     skills: "Skills",
+    certifications: "Certifications",
     contact: "Contact",
     resume: "Resume",
     switchToCyber: "Switch to cyber theme",
@@ -45,9 +49,11 @@ const navLabels = {
     home: "Accueil",
     about: "À propos",
     experience: "Expérience",
+    education: "Formation",
     projects: "Projets",
     research: "Recherche",
     skills: "Compétences",
+    certifications: "Certifications",
     contact: "Contact",
     resume: "CV",
     switchToCyber: "Passer au thème cyber",
@@ -81,10 +87,12 @@ export function Navigation() {
   const navItems = [
     { id: "hero", label: t.home },
     { id: "about", label: t.about },
+    { id: "education", label: t.education },
     { id: "experience", label: t.experience },
     { id: "projects", label: t.projects },
     { id: "research", label: t.research },
     { id: "skills", label: t.skills },
+    { id: "certifications", label: t.certifications },
     { id: "contact", label: t.contact },
   ]
 
@@ -114,40 +122,44 @@ export function Navigation() {
 
   return (
     <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        aria-label="Main navigation"
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          scrolled
-            ? isCyber
-              ? "bg-black/85 backdrop-blur-xl border-b border-red-900/50 shadow-[0_8px_28px_rgba(127,29,29,0.2)]"
-              : "bg-slate-900/80 backdrop-blur-xl border-b border-slate-700/60 shadow-[0_8px_28px_rgba(15,23,42,0.35)]"
-            : "bg-transparent",
-        )}
-      >
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      aria-label="Main navigation"
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        scrolled
+          ? isCyber
+            ? "bg-black/85 backdrop-blur-xl border-b border-red-900/50 shadow-[0_8px_28px_rgba(127,29,29,0.2)]"
+            : "bg-slate-900/80 backdrop-blur-xl border-b border-slate-700/60 shadow-[0_8px_28px_rgba(15,23,42,0.35)]"
+          : "bg-transparent",
+      )}
+    >
       <div className="container mx-auto container-padding max-w-7xl">
         <div className="flex items-center justify-between h-16">
           <motion.div
             className="text-xl font-bold tracking-tight"
             whileHover={{ scale: 1.05 }}
           >
-            <span className={isCyber ? "text-red-500 cyber-glow" : "text-blue-400"}>MK</span>
+            <span className={isCyber ? "text-red-500 cyber-glow" : "text-blue-400"}>
+              MK
+            </span>
           </motion.div>
 
           <div className="hidden md:flex items-center gap-1.5">
             {navItems.map((item) => (
-                <a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  aria-current={activeSection === item.id ? "page" : undefined}
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                aria-current={activeSection === item.id ? "page" : undefined}
                 className={cn(
                   "px-4 py-2 text-sm font-medium transition-all duration-300 relative rounded-lg interactive-lift",
                   activeSection === item.id
-                    ? isCyber ? "text-red-400" : "text-blue-400"
+                    ? isCyber
+                      ? "text-red-400"
+                      : "text-blue-400"
                     : isCyber
-                    ? "text-red-200/70 hover:text-red-400 hover:bg-red-900/20"
-                    : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50",
+                      ? "text-red-200/70 hover:text-red-400 hover:bg-red-900/20"
+                      : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50",
                 )}
               >
                 {item.label}
@@ -193,7 +205,9 @@ export function Navigation() {
                   <SheetTitle className={isCyber ? "text-red-100" : "text-slate-100"}>
                     Navigation
                   </SheetTitle>
-                  <SheetDescription className={isCyber ? "text-red-300/70" : "text-slate-400"}>
+                  <SheetDescription
+                    className={isCyber ? "text-red-300/70" : "text-slate-400"}
+                  >
                     {language === "en" ? "Jump to a section" : "Aller à une section"}
                   </SheetDescription>
                 </SheetHeader>
@@ -210,8 +224,8 @@ export function Navigation() {
                               ? "bg-red-900/30 text-red-300"
                               : "bg-blue-500/15 text-blue-300"
                             : isCyber
-                            ? "text-red-200/80 hover:bg-red-900/20"
-                            : "text-slate-300 hover:bg-slate-800/50",
+                              ? "text-red-200/80 hover:bg-red-900/20"
+                              : "text-slate-300 hover:bg-slate-800/50",
                         )}
                       >
                         {item.label}
@@ -235,13 +249,32 @@ export function Navigation() {
                 </div>
               </SheetContent>
             </Sheet>
+            <button
+              onClick={() =>
+                window.dispatchEvent(
+                  new KeyboardEvent("keydown", { key: "k", metaKey: true }),
+                )
+              }
+              className={cn(
+                "hidden lg:inline-flex px-2.5 py-1.5 text-[11px] font-semibold rounded-lg border transition-all",
+                isCyber
+                  ? "border-red-700/50 text-red-300 hover:bg-red-900/30"
+                  : "border-slate-600 text-slate-300 hover:bg-slate-800/50",
+              )}
+              aria-label="Open command palette"
+            >
+              ⌘K
+            </button>
+
             {/* EN / FR language toggle */}
             {mounted && (
               <motion.button
                 onClick={toggleLanguage}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                aria-label={language === "en" ? "Switch to French" : "Switch to English"}
+                aria-label={
+                  language === "en" ? "Switch to French" : "Switch to English"
+                }
                 title={language === "en" ? "Switch to French" : "Switch to English"}
                 className={cn(
                   "px-3 py-1.5 text-xs font-bold rounded-lg border transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 tracking-wider",

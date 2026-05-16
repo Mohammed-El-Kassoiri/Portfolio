@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { SectionHeader } from "@/components/section-header";
+import { render, screen } from "@testing-library/react"
+import { SectionHeader } from "@/components/section-header"
 
 describe("SectionHeader", () => {
   it("renders requested heading level and merges class names", () => {
@@ -11,15 +11,15 @@ describe("SectionHeader", () => {
         as="h3"
         className="custom-class"
       />,
-    );
+    )
 
     const heading = screen.getByRole("heading", {
       level: 3,
       name: "Featured Work",
-    });
+    })
 
-    expect(heading).toHaveClass("section-title");
-    expect(screen.getByText("Portfolio")).toBeInTheDocument();
-    expect(heading.parentElement).toHaveClass("custom-class");
-  });
-});
+    expect(heading).toHaveClass("section-title")
+    expect(screen.getByText("Portfolio")).toBeInTheDocument()
+    expect(heading.parentElement).toHaveClass("custom-class")
+  })
+})

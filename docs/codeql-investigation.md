@@ -57,7 +57,6 @@ Action:
 
 Use workflow logs to determine ownership for each failing run before changing source code. If build succeeds consistently with `npm ci` and `npm run build`, remaining non-deterministic failures are likely tool/platform-side.
 
-
 ## Current observed run status (this PR)
 
 Observed runs on branch `copilot/add-deterministic-testing-stack-another-one` after workflow creation:

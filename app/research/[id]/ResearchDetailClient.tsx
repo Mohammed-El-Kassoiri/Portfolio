@@ -61,12 +61,12 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
         >
           <Card className={`${cardClass} p-8 mb-8`}>
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl font-bold mb-6">
-              {paper.title}
-            </h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-6">{paper.title}</h1>
 
             {/* Authors and Metadata */}
-            <div className={`flex flex-wrap gap-4 mb-6 ${isCyber ? "text-red-200/75" : "text-slate-300"}`}>
+            <div
+              className={`flex flex-wrap gap-4 mb-6 ${isCyber ? "text-red-200/75" : "text-slate-300"}`}
+            >
               <div className="flex items-center gap-2">
                 <span className={`${accentClass} font-semibold`}>Authors:</span>
                 <span>{paper.authors}</span>
@@ -81,7 +81,11 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
             <div className="flex flex-wrap gap-3">
               <Button
                 asChild
-                className={isCyber ? "bg-red-900/20 border border-red-700/50 text-red-300 hover:bg-red-900/30" : "bg-blue-500/20 border border-blue-500/50 text-blue-300 hover:bg-blue-500/30"}
+                className={
+                  isCyber
+                    ? "bg-red-900/20 border border-red-700/50 text-red-300 hover:bg-red-900/30"
+                    : "bg-blue-500/20 border border-blue-500/50 text-blue-300 hover:bg-blue-500/30"
+                }
               >
                 <a
                   href={paper.paper}
@@ -97,13 +101,13 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
               {paper.pdf && (
                 <Button
                   asChild
-                  className={isCyber ? "bg-red-900/20 border border-red-700/50 text-red-300 hover:bg-red-900/30" : "bg-blue-500/20 border border-blue-500/50 text-blue-300 hover:bg-blue-500/30"}
+                  className={
+                    isCyber
+                      ? "bg-red-900/20 border border-red-700/50 text-red-300 hover:bg-red-900/30"
+                      : "bg-blue-500/20 border border-blue-500/50 text-blue-300 hover:bg-blue-500/30"
+                  }
                 >
-                  <a
-                    href={paper.pdf}
-                    download
-                    className="flex items-center gap-2"
-                  >
+                  <a href={paper.pdf} download className="flex items-center gap-2">
                     <Download className="w-4 h-4" />
                     Download PDF
                   </a>
@@ -113,7 +117,11 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
               {paper.github && (
                 <Button
                   asChild
-                  className={isCyber ? "bg-red-900/20 border border-red-700/50 text-red-300 hover:bg-red-900/30" : "bg-blue-500/20 border border-blue-500/50 text-blue-300 hover:bg-blue-500/30"}
+                  className={
+                    isCyber
+                      ? "bg-red-900/20 border border-red-700/50 text-red-300 hover:bg-red-900/30"
+                      : "bg-blue-500/20 border border-blue-500/50 text-blue-300 hover:bg-blue-500/30"
+                  }
                 >
                   <a
                     href={paper.github}
@@ -138,7 +146,9 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
         >
           <Card className={`${cardClass} p-8 mb-8`}>
             <h2 className={`text-2xl font-bold ${accentClass} mb-4`}>Abstract</h2>
-            <p className={`${isCyber ? "text-red-200/80" : "text-slate-200"} leading-relaxed text-justify`}>
+            <p
+              className={`${isCyber ? "text-red-200/80" : "text-slate-200"} leading-relaxed text-justify`}
+            >
               {paper.abstract}
             </p>
           </Card>
@@ -152,24 +162,22 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Card className={`${cardClass} p-8 mb-8`}>
-              <h2 className={`text-2xl font-bold ${accentClass} mb-6`}>
-                Figures
-              </h2>
+              <h2 className={`text-2xl font-bold ${accentClass} mb-6`}>Figures</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {paper.figures.map((figure) => (
                   <Dialog
                     key={figure.id}
                     open={selectedFigure === figure.id}
-                    onOpenChange={(open) =>
-                      setSelectedFigure(open ? figure.id : null)
-                    }
+                    onOpenChange={(open) => setSelectedFigure(open ? figure.id : null)}
                   >
                     <DialogTrigger asChild>
                       <motion.div
                         whileHover={{ scale: 1.02 }}
                         className="cursor-pointer group"
                       >
-                          <div className={`relative aspect-video rounded-lg overflow-hidden mb-3 border transition-colors ${isCyber ? "bg-red-950/20 border-red-900/30 group-hover:border-red-700/50" : "bg-slate-800/50 border-slate-700/50 group-hover:border-blue-500/50"}`}>
+                        <div
+                          className={`relative aspect-video rounded-lg overflow-hidden mb-3 border transition-colors ${isCyber ? "bg-red-950/20 border-red-900/30 group-hover:border-red-700/50" : "bg-slate-800/50 border-slate-700/50 group-hover:border-blue-500/50"}`}
+                        >
                           <Image
                             src={figure.src}
                             alt={figure.alt}
@@ -178,21 +186,29 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           />
                         </div>
-                        <p className={`text-sm font-mono ${isCyber ? "text-red-200/80" : "text-slate-200"}`}>
+                        <p
+                          className={`text-sm font-mono ${isCyber ? "text-red-200/80" : "text-slate-200"}`}
+                        >
                           {figure.caption}
                         </p>
                         {figure.description && (
-                          <p className={`text-xs mt-2 ${isCyber ? "text-red-300/60" : "text-slate-400"}`}>
+                          <p
+                            className={`text-xs mt-2 ${isCyber ? "text-red-300/60" : "text-slate-400"}`}
+                          >
                             {figure.description}
                           </p>
                         )}
                       </motion.div>
                     </DialogTrigger>
-                    <DialogContent className={`max-w-4xl ${isCyber ? "bg-black border-red-900/40" : "bg-slate-900 border-slate-700/60"}`}>
+                    <DialogContent
+                      className={`max-w-4xl ${isCyber ? "bg-black border-red-900/40" : "bg-slate-900 border-slate-700/60"}`}
+                    >
                       <DialogTitle className={accentClass}>
                         {figure.caption}
                       </DialogTitle>
-                      <div className={`relative aspect-video rounded-lg overflow-hidden ${isCyber ? "bg-red-950/20" : "bg-slate-800/50"}`}>
+                      <div
+                        className={`relative aspect-video rounded-lg overflow-hidden ${isCyber ? "bg-red-950/20" : "bg-slate-800/50"}`}
+                      >
                         <Image
                           src={figure.src}
                           alt={figure.alt}
@@ -202,7 +218,9 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
                         />
                       </div>
                       {figure.description && (
-                        <p className={`text-sm ${isCyber ? "text-red-200/80" : "text-slate-300"}`}>
+                        <p
+                          className={`text-sm ${isCyber ? "text-red-200/80" : "text-slate-300"}`}
+                        >
                           {figure.description}
                         </p>
                       )}
@@ -222,21 +240,28 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <Card className={`${cardClass} p-8 mb-8`}>
-              <h2 className={`text-2xl font-bold ${accentClass} mb-4`}>
-                PDF Preview
-              </h2>
-              <p className={`text-sm mb-4 ${isCyber ? "text-red-200/70" : "text-slate-300"}`}>
-                Load the embedded viewer only when needed to improve performance on slower devices.
+              <h2 className={`text-2xl font-bold ${accentClass} mb-4`}>PDF Preview</h2>
+              <p
+                className={`text-sm mb-4 ${isCyber ? "text-red-200/70" : "text-slate-300"}`}
+              >
+                Load the embedded viewer only when needed to improve performance on
+                slower devices.
               </p>
               {!showPdfPreview ? (
                 <Button
                   onClick={() => setShowPdfPreview(true)}
-                  className={isCyber ? "bg-red-700 hover:bg-red-600 text-white" : "bg-blue-600 hover:bg-blue-500 text-white"}
+                  className={
+                    isCyber
+                      ? "bg-red-700 hover:bg-red-600 text-white"
+                      : "bg-blue-600 hover:bg-blue-500 text-white"
+                  }
                 >
                   Load PDF preview
                 </Button>
               ) : (
-                <div className={`relative w-full h-[600px] rounded-lg overflow-hidden border ${isCyber ? "bg-red-950/20 border-red-900/30" : "bg-slate-800/50 border-slate-700/60"}`}>
+                <div
+                  className={`relative w-full h-[600px] rounded-lg overflow-hidden border ${isCyber ? "bg-red-950/20 border-red-900/30" : "bg-slate-800/50 border-slate-700/60"}`}
+                >
                   <iframe
                     src={paper.pdf}
                     className="w-full h-full"
@@ -256,9 +281,7 @@ export default function ResearchDetailClient({ paper }: { paper: ResearchPaper }
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <Card className={`${cardClass} p-8 mb-8`}>
-              <h2 className={`text-2xl font-bold ${accentClass} mb-6`}>
-                References
-              </h2>
+              <h2 className={`text-2xl font-bold ${accentClass} mb-6`}>References</h2>
               <ol className="space-y-3 list-decimal list-inside">
                 {paper.references.map((reference) => (
                   <li

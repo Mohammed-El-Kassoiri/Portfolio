@@ -8,13 +8,18 @@ import { useLanguage } from "@/components/language-provider"
 import { useMounted } from "@/hooks/use-mounted"
 import { SectionHeader } from "@/components/section-header"
 
+const counters = [
+  { label: "AI Projects", value: "15+" },
+  { label: "Research Focus", value: "4" },
+  { label: "Core Domains", value: "ML/CV/NLP" },
+]
+
 const translations = {
   en: {
     sectionTitle: "About Me",
     name: "Mohammed El Kassoiri",
     role: "Data Scientist & AI Engineer",
-    bio1:
-      "Data Scientist & AI Engineer specializing in Machine Learning, Deep Learning, and Computer Vision. Currently developing an AI system for automatic agricultural parcelization.",
+    bio1: "Data Scientist & AI Engineer specializing in Machine Learning, Deep Learning, and Computer Vision. Currently developing an AI system for automatic agricultural parcelization.",
     location: "Location:",
     locationVal: "Morocco 🇲🇦",
     education: "Education:",
@@ -35,8 +40,7 @@ const translations = {
     sectionTitle: "À propos",
     name: "Mohammed El Kassoiri",
     role: "Data Scientist & Ingénieur IA",
-    bio1:
-      "Data Scientist & Ingénieur IA spécialisé en Machine Learning, Deep Learning et Computer Vision. Actuellement en train de développer un système IA pour la parcellisation automatique des terres agricoles.",
+    bio1: "Data Scientist & Ingénieur IA spécialisé en Machine Learning, Deep Learning et Computer Vision. Actuellement en train de développer un système IA pour la parcellisation automatique des terres agricoles.",
     location: "Localisation :",
     locationVal: "Maroc 🇲🇦",
     education: "Formation :",
@@ -129,10 +133,13 @@ export function About() {
               <div className={`space-y-3 leading-relaxed ${textColor}`}>
                 <p>{t.bio1}</p>
                 <p>
-                  🌍 <span className={`font-semibold ${titleColor}`}>{t.location}</span> {t.locationVal}
+                  🌍 <span className={`font-semibold ${titleColor}`}>{t.location}</span>{" "}
+                  {t.locationVal}
                 </p>
                 <p>
-                  🎓 <span className={`font-semibold ${titleColor}`}>{t.education}</span> {t.educationVal}
+                  🎓{" "}
+                  <span className={`font-semibold ${titleColor}`}>{t.education}</span>{" "}
+                  {t.educationVal}
                 </p>
               </div>
 
@@ -161,12 +168,20 @@ me.say_hi()`}</pre>
             </motion.div>
 
             {/* PFE Focus Card */}
-            <motion.div variants={cardVariant} whileHover={{ scale: 1.02 }} className={cardBase}>
-              <div className={`w-12 h-12 ${iconBg} rounded-xl flex items-center justify-center mb-4`}>
+            <motion.div
+              variants={cardVariant}
+              whileHover={{ scale: 1.02 }}
+              className={cardBase}
+            >
+              <div
+                className={`w-12 h-12 ${iconBg} rounded-xl flex items-center justify-center mb-4`}
+              >
                 <Target className={`w-6 h-6 ${iconColor}`} />
               </div>
               <div className="flex items-center gap-2 mb-3 flex-wrap">
-                <h3 className={`text-lg font-semibold ${titleColor}`}>{t.pfeBadgeTitle}</h3>
+                <h3 className={`text-lg font-semibold ${titleColor}`}>
+                  {t.pfeBadgeTitle}
+                </h3>
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-semibold whitespace-nowrap">
                   <span className="relative flex h-1.5 w-1.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75" />
@@ -179,17 +194,29 @@ me.say_hi()`}</pre>
             </motion.div>
 
             {/* Education Card */}
-            <motion.div variants={cardVariant} whileHover={{ scale: 1.02 }} className={cardBase}>
-              <div className={`w-12 h-12 ${iconBg} rounded-xl flex items-center justify-center mb-4`}>
+            <motion.div
+              variants={cardVariant}
+              whileHover={{ scale: 1.02 }}
+              className={cardBase}
+            >
+              <div
+                className={`w-12 h-12 ${iconBg} rounded-xl flex items-center justify-center mb-4`}
+              >
                 <GraduationCap className={`w-6 h-6 ${iconColor}`} />
               </div>
-              <h3 className={`text-lg font-semibold mb-3 ${titleColor}`}>{t.educationCard}</h3>
+              <h3 className={`text-lg font-semibold mb-3 ${titleColor}`}>
+                {t.educationCard}
+              </h3>
               <p className={`text-sm leading-relaxed ${textColor}`}>
-                <span className={`font-semibold text-base ${titleColor}`}>{t.educationSchool}</span>
+                <span className={`font-semibold text-base ${titleColor}`}>
+                  {t.educationSchool}
+                </span>
                 <br />
                 {t.educationProgram}
                 <br />
-                <span className={isCyber ? "text-red-400/60" : "text-slate-400"}>{t.educationCity}</span>
+                <span className={isCyber ? "text-red-400/60" : "text-slate-400"}>
+                  {t.educationCity}
+                </span>
               </p>
             </motion.div>
 
@@ -203,11 +230,32 @@ me.say_hi()`}</pre>
                   : "bg-gradient-to-br from-blue-600/10 to-cyan-400/5 border-blue-500/30 hover:border-blue-500/50"
               }`}
             >
-              <div className={`w-12 h-12 ${iconBg} rounded-xl flex items-center justify-center mb-4`}>
+              <div
+                className={`w-12 h-12 ${iconBg} rounded-xl flex items-center justify-center mb-4`}
+              >
                 <Briefcase className={`w-6 h-6 ${iconColor}`} />
               </div>
-              <h3 className={`text-lg font-semibold mb-3 ${titleColor}`}>{t.missionTitle}</h3>
+              <h3 className={`text-lg font-semibold mb-3 ${titleColor}`}>
+                {t.missionTitle}
+              </h3>
               <p className={`leading-relaxed ${textColor}`}>{t.missionText}</p>
+            </motion.div>
+
+            <motion.div
+              variants={cardVariant}
+              className={`lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-4 ${cardBase}`}
+            >
+              {counters.map((counter) => (
+                <div
+                  key={counter.label}
+                  className={`rounded-xl border p-4 ${isCyber ? "border-red-900/40 bg-red-950/20" : "border-slate-700/60 bg-slate-900/40"}`}
+                >
+                  <p className={`text-2xl font-bold ${accentColor}`}>{counter.value}</p>
+                  <p className={`text-xs uppercase tracking-widest mt-1 ${textColor}`}>
+                    {counter.label}
+                  </p>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
         </motion.div>

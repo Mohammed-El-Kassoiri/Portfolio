@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
+import { Github, Linkedin, Download } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { useMounted } from "@/hooks/use-mounted"
 import { SectionHeader } from "@/components/section-header"
@@ -14,6 +15,7 @@ const translations = {
     description:
       "I'm an AI & Data Engineer open to exciting full-time opportunities in AI, Data Science, and Machine Learning. Let's connect and build something impactful together.",
     cta: "Say Hello 👋",
+    cv: "Download CV",
     copyright: "© 2026 Mohammed El Kassoiri. All rights reserved.",
   },
   fr: {
@@ -22,6 +24,7 @@ const translations = {
     description:
       "Ingénieur IA & Data ouvert à des opportunités passionnantes en IA, Data Science et Machine Learning. Connectons-nous et construisons ensemble quelque chose d'impactant.",
     cta: "Dire Bonjour 👋",
+    cv: "Télécharger CV",
     copyright: "© 2026 Mohammed El Kassoiri. Tous droits réservés.",
   },
 }
@@ -78,6 +81,53 @@ export function Contact() {
           >
             {t.cta}
           </motion.a>
+
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.52 }}
+            className="mt-7 flex flex-wrap items-center justify-center gap-3"
+          >
+            <a
+              href="https://github.com/Mohammed-El-Kassoiri"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-all hover:-translate-y-0.5 ${
+                isCyber
+                  ? "border-red-800/50 bg-red-900/20 text-red-200 hover:bg-red-900/30"
+                  : "border-slate-600 bg-slate-800/60 text-slate-200 hover:bg-slate-700/70"
+              }`}
+            >
+              <Github className="h-4 w-4" />
+              GitHub
+            </a>
+            <a
+              href="https://linkedin.com/in/Mohammed-El-Kassoiri"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-all hover:-translate-y-0.5 ${
+                isCyber
+                  ? "border-red-800/50 bg-red-900/20 text-red-200 hover:bg-red-900/30"
+                  : "border-slate-600 bg-slate-800/60 text-slate-200 hover:bg-slate-700/70"
+              }`}
+            >
+              <Linkedin className="h-4 w-4" />
+              LinkedIn
+            </a>
+            <a
+              href="/Mohammed_el_kassoiri.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-all hover:-translate-y-0.5 ${
+                isCyber
+                  ? "border-red-800/50 bg-red-900/20 text-red-200 hover:bg-red-900/30"
+                  : "border-slate-600 bg-slate-800/60 text-slate-200 hover:bg-slate-700/70"
+              }`}
+            >
+              <Download className="h-4 w-4" />
+              {t.cv}
+            </a>
+          </motion.div>
 
           {/* Footer */}
           <motion.footer

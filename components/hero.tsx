@@ -94,7 +94,7 @@ export function Hero() {
       ))}
 
       <div className="container mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="space-y-7">
+        <div className="space-y-7 premium-surface animated-border p-6 md:p-8">
           <motion.span
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -108,7 +108,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 26 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75 }}
-            className="display-title max-w-4xl text-balance text-slate-100"
+            className="display-title max-w-4xl text-balance bg-gradient-to-r from-slate-100 via-blue-200 to-amber-200 bg-clip-text text-transparent"
           >
             MOHAMMED EL KASSOIRI
           </motion.h1>
@@ -177,7 +177,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="relative"
+          className="relative rounded-3xl border border-slate-700/60 bg-slate-900/35 p-3 shadow-[0_24px_65px_rgba(15,23,42,0.45)] backdrop-blur-md"
         >
           <HeroThreeScene />
         </motion.div>

@@ -17,30 +17,30 @@
   --focus-outline-width: 2px;
   --focus-outline-offset: 2px;
   --focus-outline-color: rgb(96 165 250);
-  --background: 15 23 42; /* slate-900 */
-  --foreground: 241 245 249; /* slate-100 */
-  --card: 30 41 59; /* slate-800 */
-  --card-foreground: 241 245 249; /* slate-100 */
-  --popover: 30 41 59; /* slate-800 */
-  --popover-foreground: 241 245 249; /* slate-100 */
-  --primary: 59 130 246; /* blue-500 */
-  --primary-foreground: 241 245 249; /* slate-100 */
-  --secondary: 51 65 85; /* slate-700 */
-  --secondary-foreground: 241 245 249; /* slate-100 */
-  --muted: 51 65 85; /* slate-700 */
-  --muted-foreground: 203 213 225; /* slate-300 */
-  --accent: 96 165 250; /* blue-400 */
-  --accent-foreground: 241 245 249; /* slate-100 */
+  --background: 2 6 15; /* deep navy-black */
+  --foreground: 226 232 240; /* slate-200 */
+  --card: 9 14 30; /* rich charcoal-blue */
+  --card-foreground: 226 232 240; /* slate-200 */
+  --popover: 9 14 30; /* rich charcoal-blue */
+  --popover-foreground: 226 232 240; /* slate-200 */
+  --primary: 37 99 235; /* blue-600 */
+  --primary-foreground: 248 250 252; /* slate-50 */
+  --secondary: 30 41 59; /* slate-800 */
+  --secondary-foreground: 226 232 240; /* slate-200 */
+  --muted: 30 41 59; /* slate-800 */
+  --muted-foreground: 148 163 184; /* slate-400 */
+  --accent: 250 204 21; /* amber-400 (luxury gold accent) */
+  --accent-foreground: 17 24 39; /* gray-900 */
   --destructive: 239 68 68; /* red-500 */
   --destructive-foreground: 241 245 249; /* slate-100 */
-  --border: 71 85 105; /* slate-600 */
-  --input: 71 85 105; /* slate-600 */
-  --ring: 59 130 246; /* blue-500 */
-  --chart-1: 59 130 246;
-  --chart-2: 96 165 250;
-  --chart-3: 147 197 253;
-  --chart-4: 191 219 254;
-  --chart-5: 37 99 235;
+  --border: 51 65 85; /* slate-700 */
+  --input: 51 65 85; /* slate-700 */
+  --ring: 37 99 235; /* blue-600 */
+  --chart-1: 37 99 235;
+  --chart-2: 59 130 246;
+  --chart-3: 250 204 21;
+  --chart-4: 147 197 253;
+  --chart-5: 234 179 8;
   --radius: 0.9rem;
   --sidebar: 30 41 59;
   --sidebar-foreground: 241 245 249;
@@ -53,30 +53,30 @@
 }
 
 .dark {
-  --background: 15 23 42;
-  --foreground: 241 245 249;
-  --card: 30 41 59;
-  --card-foreground: 241 245 249;
-  --popover: 30 41 59;
-  --popover-foreground: 241 245 249;
-  --primary: 59 130 246;
-  --primary-foreground: 241 245 249;
-  --secondary: 51 65 85;
-  --secondary-foreground: 241 245 249;
-  --muted: 51 65 85;
-  --muted-foreground: 203 213 225;
-  --accent: 96 165 250;
-  --accent-foreground: 241 245 249;
+  --background: 2 6 15;
+  --foreground: 226 232 240;
+  --card: 9 14 30;
+  --card-foreground: 226 232 240;
+  --popover: 9 14 30;
+  --popover-foreground: 226 232 240;
+  --primary: 37 99 235;
+  --primary-foreground: 248 250 252;
+  --secondary: 30 41 59;
+  --secondary-foreground: 226 232 240;
+  --muted: 30 41 59;
+  --muted-foreground: 148 163 184;
+  --accent: 250 204 21;
+  --accent-foreground: 17 24 39;
   --destructive: 239 68 68;
   --destructive-foreground: 241 245 249;
-  --border: 71 85 105;
-  --input: 71 85 105;
-  --ring: 59 130 246;
-  --chart-1: 59 130 246;
-  --chart-2: 96 165 250;
-  --chart-3: 147 197 253;
-  --chart-4: 191 219 254;
-  --chart-5: 37 99 235;
+  --border: 51 65 85;
+  --input: 51 65 85;
+  --ring: 37 99 235;
+  --chart-1: 37 99 235;
+  --chart-2: 59 130 246;
+  --chart-3: 250 204 21;
+  --chart-4: 147 197 253;
+  --chart-5: 234 179 8;
   --sidebar: 30 41 59;
   --sidebar-foreground: 241 245 249;
   --sidebar-primary: 59 130 246;
@@ -251,6 +251,56 @@
       rgb(255 255 255 / 0.08),
       rgb(255 255 255 / 0.03)
     );
+  }
+
+  .premium-surface {
+    @apply border rounded-2xl backdrop-blur-xl;
+    background: linear-gradient(
+      160deg,
+      rgb(15 23 42 / 0.7),
+      rgb(15 23 42 / 0.35) 35%,
+      rgb(30 41 59 / 0.5) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.06),
+      0 14px 40px rgb(2 6 23 / 0.35);
+  }
+
+  .cyber .premium-surface {
+    background: linear-gradient(
+      160deg,
+      rgb(28 6 6 / 0.72),
+      rgb(28 6 6 / 0.38) 35%,
+      rgb(69 10 10 / 0.45) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.06),
+      0 14px 40px rgb(69 10 10 / 0.35);
+  }
+
+  .animated-border {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .animated-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(
+      115deg,
+      rgb(250 204 21 / 0.32),
+      rgb(59 130 246 / 0.42),
+      rgb(250 204 21 / 0.24)
+    );
+    opacity: 0;
+    transition: opacity 260ms ease;
+  }
+
+  .animated-border:hover::before {
+    opacity: 1;
   }
 
   .section-divider {

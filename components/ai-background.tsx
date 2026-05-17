@@ -1,8 +1,14 @@
 "use client"
 
-import { motion, useReducedMotion } from "framer-motion"
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from "framer-motion"
 import { useTheme } from "next-themes"
-import { useMemo } from "react"
+import { useEffect, useMemo } from "react"
 import { useMounted } from "@/hooks/use-mounted"
 import { useIsMobile } from "@/hooks/use-mobile"
 
@@ -82,6 +88,10 @@ export function AIBackground() {
   const mounted = useMounted()
   const isMobile = useIsMobile()
   const prefersReducedMotion = useReducedMotion()
+  const rawX = useMotionValue(50)
+  const rawY = useMotionValue(50)
+  const smoothX = useSpring(rawX, { stiffness: 80, damping: 18, mass: 0.6 })
+  const smoothY = useSpring(rawY, { stiffness: 80, damping: 18, mass: 0.6 })
   const isCyber = mounted && theme === "cyber"
   const reducedDecor = isMobile || prefersReducedMotion
   const particles = useMemo(
@@ -100,6 +110,21 @@ export function AIBackground() {
   const primary = isCyber ? "220,38,38" : "59,130,246"
   const accent = isCyber ? "239,68,68" : "96,165,250"
   const secondary = isCyber ? "185,28,28" : "34,211,238"
+  const spotlight = useMotionTemplate`radial-gradient(620px circle at ${smoothX}% ${smoothY}%, rgba(${accent},0.18), transparent 62%)`
+
+  useEffect(() => {
+    if (reducedDecor) return
+
+    const handlePointerMove = (event: MouseEvent) => {
+      const viewportWidth = window.innerWidth || 1
+      const viewportHeight = window.innerHeight || 1
+      rawX.set((event.clientX / viewportWidth) * 100)
+      rawY.set((event.clientY / viewportHeight) * 100)
+    }
+
+    window.addEventListener("mousemove", handlePointerMove, { passive: true })
+    return () => window.removeEventListener("mousemove", handlePointerMove)
+  }, [rawX, rawY, reducedDecor])
 
   return (
     <div
@@ -115,6 +140,22 @@ export function AIBackground() {
             : "radial-gradient(ellipse 90% 70% at 20% 40%, #030d22 0%, #020a18 55%, #020508 100%)",
         }}
       />
+      <motion.div className="absolute inset-0" style={{ background: spotlight }} />
+
+      {!reducedDecor && (
+        <motion.div
+          className="absolute inset-0 opacity-[0.16]"
+          style={{
+            backgroundImage: isCyber
+              ? "linear-gradient(130deg, rgba(220,38,38,0.35), rgba(127,29,29,0.08) 45%, rgba(239,68,68,0.25)), linear-gradient(315deg, rgba(185,28,28,0.2), rgba(30,6,6,0.08) 50%, rgba(220,38,38,0.2))"
+              : "linear-gradient(130deg, rgba(59,130,246,0.32), rgba(15,23,42,0.08) 45%, rgba(250,204,21,0.22)), linear-gradient(315deg, rgba(30,64,175,0.2), rgba(2,6,23,0.08) 50%, rgba(56,189,248,0.24))",
+            backgroundSize: "180% 180%",
+            mixBlendMode: "screen",
+          }}
+          animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+          transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+        />
+      )}
 
       {/* ── Dot grid ── */}
       <div

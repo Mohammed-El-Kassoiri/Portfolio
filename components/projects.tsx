@@ -1,11 +1,11 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
 import { Card } from "@/components/ui/card"
-import { Github, ExternalLink, FileText } from "lucide-react"
+import { Github, ExternalLink, FileText, ChevronDown } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { useMounted } from "@/hooks/use-mounted"
 import { SectionHeader } from "@/components/section-header"
@@ -280,6 +280,7 @@ const categoriesFr = [
 export function Projects() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [selectedCategory, setSelectedCategory] = useState("all")
+  const [expandedProject, setExpandedProject] = useState<string | null>(null)
   const { theme } = useTheme()
   const { language } = useLanguage()
   const mounted = useMounted()
@@ -392,12 +393,15 @@ export function Projects() {
                   whileHover={{ y: -3 }}
                 >
                   <Card
-                    className={`h-full glass-surface border transition-all duration-300 p-6 relative overflow-hidden group interactive-lift ${
+                    className={`h-full premium-surface animated-border border transition-all duration-300 p-6 relative overflow-hidden group interactive-lift ${
                       isCyber
                         ? "bg-black/60 border-red-900/40 hover:border-red-600/60"
                         : "bg-slate-800/50 border-slate-700/60 hover:border-blue-500/50"
                     }`}
                   >
+                    <div
+                      className={`pointer-events-none absolute inset-x-6 top-0 h-px opacity-70 ${isCyber ? "bg-gradient-to-r from-transparent via-red-400/70 to-transparent" : "bg-gradient-to-r from-transparent via-amber-300/70 to-transparent"}`}
+                    />
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
                     />
@@ -458,28 +462,76 @@ export function Projects() {
 
                       {/* Tags */}
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tags.slice(0, 4).map((tag, i) => (
-                          <span
-                            key={i}
-                            className={`px-2 py-1 text-xs font-medium rounded border ${
-                              isCyber
-                                ? "bg-red-900/20 text-red-300/80 border-red-900/40"
-                                : "bg-slate-700/50 text-slate-300 border-slate-600"
-                            }`}
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                        {project.tags.length > 4 && (
-                          <span
-                            className={`px-2 py-1 text-xs font-medium ${
-                              isCyber ? "text-red-400/60" : "text-slate-400"
-                            }`}
-                          >
-                            +{project.tags.length - 4}
-                          </span>
-                        )}
+                        {project.tags
+                          .slice(
+                            0,
+                            expandedProject === project.title ? project.tags.length : 4,
+                          )
+                          .map((tag, i) => (
+                            <span
+                              key={i}
+                              className={`px-2 py-1 text-xs font-medium rounded border ${
+                                isCyber
+                                  ? "bg-red-900/20 text-red-300/80 border-red-900/40"
+                                  : "bg-slate-700/50 text-slate-300 border-slate-600"
+                              }`}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        {project.tags.length > 4 &&
+                          expandedProject !== project.title && (
+                            <span
+                              className={`px-2 py-1 text-xs font-medium ${
+                                isCyber ? "text-red-400/60" : "text-slate-400"
+                              }`}
+                            >
+                              +{project.tags.length - 4}
+                            </span>
+                          )}
                       </div>
+
+                      {project.tags.length > 4 && (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setExpandedProject((current) =>
+                              current === project.title ? null : project.title,
+                            )
+                          }
+                          className={`mb-4 inline-flex items-center gap-1.5 text-xs font-semibold ${accentColor} transition-opacity hover:opacity-80`}
+                        >
+                          <ChevronDown
+                            className={`h-3.5 w-3.5 transition-transform ${expandedProject === project.title ? "rotate-180" : ""}`}
+                          />
+                          {language === "en"
+                            ? expandedProject === project.title
+                              ? "Show less"
+                              : "Expand stack"
+                            : expandedProject === project.title
+                              ? "Réduire"
+                              : "Afficher plus"}
+                        </button>
+                      )}
+
+                      <AnimatePresence initial={false}>
+                        {expandedProject === project.title && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className={`mb-4 overflow-hidden rounded-xl border px-3 py-2 text-xs ${
+                              isCyber
+                                ? "border-red-900/40 bg-red-900/10 text-red-200/80"
+                                : "border-slate-600/60 bg-slate-800/45 text-slate-300"
+                            }`}
+                          >
+                            {language === "en"
+                              ? "Expanded view keeps all original project details while surfacing the full tech stack."
+                              : "La vue étendue conserve les détails existants et affiche la pile technologique complète."}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
 
                       {/* Action buttons */}
                       <div className="flex gap-2 mt-auto flex-wrap">

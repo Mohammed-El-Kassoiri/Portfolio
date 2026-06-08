@@ -90,8 +90,6 @@ export function Navigation() {
     // NAV_IDS is a module-level constant; setState setters from useState are stable
   }, [])
 
-  const isCyber = false
-
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -100,9 +98,7 @@ export function Navigation() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? isCyber
-            ? "bg-black/85 backdrop-blur-xl border-b border-red-900/50 shadow-[0_8px_28px_rgba(127,29,29,0.2)]"
-            : "bg-slate-900/80 backdrop-blur-xl border-b border-slate-700/60 shadow-[0_8px_28px_rgba(15,23,42,0.35)]"
+          ? "bg-slate-900/80 backdrop-blur-xl border-b border-slate-700/60 shadow-[0_8px_28px_rgba(15,23,42,0.35)]"
           : "bg-transparent",
       )}
     >
@@ -112,9 +108,7 @@ export function Navigation() {
             className="text-xl font-bold tracking-tight"
             whileHover={{ scale: 1.05 }}
           >
-            <span className={isCyber ? "text-red-500 cyber-glow" : "text-blue-400"}>
-              MK
-            </span>
+            <span className="text-blue-400">MK</span>
           </motion.div>
 
           <div className="hidden md:flex items-center gap-1.5">
@@ -126,12 +120,8 @@ export function Navigation() {
                 className={cn(
                   "px-4 py-2 text-sm font-medium transition-all duration-300 relative rounded-lg interactive-lift",
                   activeSection === item.id
-                    ? isCyber
-                      ? "text-red-400"
-                      : "text-blue-400"
-                    : isCyber
-                      ? "text-red-200/70 hover:text-red-400 hover:bg-red-900/20"
-                      : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50",
+                    ? "text-blue-400"
+                    : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50",
                 )}
               >
                 {item.label}
@@ -140,7 +130,7 @@ export function Navigation() {
                     layoutId="activeSection"
                     className={cn(
                       "absolute bottom-0 left-0 right-0 h-0.5",
-                      isCyber ? "bg-red-500" : "bg-blue-500",
+                      "bg-blue-500",
                     )}
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
@@ -155,9 +145,7 @@ export function Navigation() {
                 <button
                   className={cn(
                     "md:hidden p-2 rounded-lg transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2",
-                    isCyber
-                      ? "text-red-300 hover:text-red-200 hover:bg-red-900/30"
-                      : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50",
+                    "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50",
                   )}
                   aria-label={language === "en" ? "Open menu" : "Ouvrir le menu"}
                 >
@@ -166,20 +154,11 @@ export function Navigation() {
               </SheetTrigger>
               <SheetContent
                 side="left"
-                className={cn(
-                  "w-[85vw] border-r",
-                  isCyber
-                    ? "bg-black text-red-100 border-red-900/50"
-                    : "bg-slate-900 text-slate-100 border-slate-700/60",
-                )}
+                className="w-[85vw] border-r bg-slate-900 text-slate-100 border-slate-700/60"
               >
                 <SheetHeader>
-                  <SheetTitle className={isCyber ? "text-red-100" : "text-slate-100"}>
-                    Navigation
-                  </SheetTitle>
-                  <SheetDescription
-                    className={isCyber ? "text-red-300/70" : "text-slate-400"}
-                  >
+                  <SheetTitle className="text-slate-100">Navigation</SheetTitle>
+                  <SheetDescription className="text-slate-400">
                     {language === "en" ? "Jump to a section" : "Aller à une section"}
                   </SheetDescription>
                 </SheetHeader>
@@ -192,12 +171,8 @@ export function Navigation() {
                         className={cn(
                           "flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold transition-all",
                           activeSection === item.id
-                            ? isCyber
-                              ? "bg-red-900/30 text-red-300"
-                              : "bg-blue-500/15 text-blue-300"
-                            : isCyber
-                              ? "text-red-200/80 hover:bg-red-900/20"
-                              : "text-slate-300 hover:bg-slate-800/50",
+                            ? "bg-blue-500/15 text-blue-300"
+                            : "text-slate-300 hover:bg-slate-800/50",
                         )}
                       >
                         {item.label}
@@ -211,9 +186,7 @@ export function Navigation() {
               onClick={openPalette}
               className={cn(
                 "hidden lg:inline-flex px-2.5 py-1.5 text-[11px] font-semibold rounded-lg border transition-all",
-                isCyber
-                  ? "border-red-700/50 text-red-300 hover:bg-red-900/30"
-                  : "border-slate-600 text-slate-300 hover:bg-slate-800/50",
+                "border-slate-600 text-slate-300 hover:bg-slate-800/50",
               )}
               aria-label="Open command palette"
             >
@@ -232,9 +205,7 @@ export function Navigation() {
                 title={language === "en" ? "Switch to French" : "Switch to English"}
                 className={cn(
                   "px-3 py-1.5 text-xs font-bold rounded-lg border transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 tracking-wider",
-                  isCyber
-                    ? "border-red-700/50 text-red-400 hover:bg-red-900/30 focus-visible:outline-red-500"
-                    : "border-slate-600 text-slate-300 hover:text-blue-400 hover:border-blue-500/50 hover:bg-slate-800/50 focus-visible:outline-blue-500",
+                  "border-slate-600 text-slate-300 hover:text-blue-400 hover:border-blue-500/50 hover:bg-slate-800/50 focus-visible:outline-blue-500",
                 )}
               >
                 {language === "en" ? "FR" : "EN"}

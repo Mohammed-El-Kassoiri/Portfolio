@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Moon, Zap, Menu } from "lucide-react"
-import { useTheme } from "next-themes"
+import { Menu } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { cn } from "@/lib/utils"
 import { useMounted } from "@/hooks/use-mounted"
@@ -38,8 +37,6 @@ const navLabels = {
     research: "Research",
     skills: "Skills",
     contact: "Contact",
-    switchToCyber: "Switch to cyber theme",
-    switchToDark: "Switch to dark theme",
   },
   fr: {
     home: "Accueil",
@@ -49,22 +46,7 @@ const navLabels = {
     research: "Recherche",
     skills: "Compétences",
     contact: "Contact",
-    switchToCyber: "Passer au thème cyber",
-    switchToDark: "Passer au thème sombre",
   },
-}
-
-const themeOrder = ["dark", "cyber"] as const
-type Theme = (typeof themeOrder)[number]
-
-function nextTheme(current: string | undefined): Theme {
-  const idx = themeOrder.indexOf((current ?? "dark") as Theme)
-  return themeOrder[(idx + 1) % themeOrder.length]
-}
-
-function ThemeIcon({ theme }: { theme: string | undefined }) {
-  if (theme === "cyber") return <Moon className="w-5 h-5" />
-  return <Zap className="w-5 h-5" />
 }
 
 export function Navigation() {
@@ -72,7 +54,6 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [openMobileMenu, setOpenMobileMenu] = useState(false)
   const mounted = useMounted()
-  const { theme, setTheme } = useTheme()
   const { language, toggleLanguage } = useLanguage()
   const { openPalette } = useCommandPalette()
 
@@ -109,8 +90,7 @@ export function Navigation() {
     // NAV_IDS is a module-level constant; setState setters from useState are stable
   }, [])
 
-  const isCyber = mounted && theme === "cyber"
-  const themeLabel = isCyber ? t.switchToDark : t.switchToCyber
+  const isCyber = false
 
   return (
     <motion.nav
@@ -224,20 +204,6 @@ export function Navigation() {
                       </a>
                     </SheetClose>
                   ))}
-                  {mounted && (
-                    <button
-                      onClick={() => setTheme(nextTheme(theme))}
-                      className={cn(
-                        "mt-4 w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all",
-                        isCyber
-                          ? "bg-red-900/30 text-red-300 hover:bg-red-900/40"
-                          : "bg-blue-500/15 text-blue-300 hover:bg-blue-500/25",
-                      )}
-                    >
-                      <ThemeIcon theme={theme} />
-                      {themeLabel}
-                    </button>
-                  )}
                 </div>
               </SheetContent>
             </Sheet>
@@ -272,25 +238,6 @@ export function Navigation() {
                 )}
               >
                 {language === "en" ? "FR" : "EN"}
-              </motion.button>
-            )}
-
-            {/* Theme toggle — cycles dark ↔ cyber */}
-            {mounted && (
-              <motion.button
-                onClick={() => setTheme(nextTheme(theme))}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                aria-label={themeLabel}
-                title={themeLabel}
-                className={cn(
-                  "p-2 rounded-lg transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2",
-                  isCyber
-                    ? "text-red-400 hover:text-red-300 hover:bg-red-900/30 focus-visible:outline-red-500"
-                    : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50 focus-visible:outline-blue-500",
-                )}
-              >
-                <ThemeIcon theme={theme} />
               </motion.button>
             )}
           </div>

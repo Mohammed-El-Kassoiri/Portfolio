@@ -12,8 +12,8 @@ const translations = {
   en: {
     sectionTitle: "About Me",
     name: "Mohammed El Kassoiri",
-    role: "Data Scientist & AI Engineer",
-    bio1: "Data Scientist & AI Engineer specializing in Machine Learning, Deep Learning, and Computer Vision. Currently developing an AI system for automatic agricultural parcelization.",
+    role: "Data Scientist & AI Architect",
+    bio1: "Data Scientist & AI Architect specializing in Machine Learning, Deep Learning, and Computer Vision. Currently developing an AI system for automatic agricultural parcelization.",
     location: "Location:",
     locationVal: "Morocco 🇲🇦",
     pfeBadgeTitle: "Featured Project (PFE)",
@@ -131,7 +131,7 @@ export function About() {
                 <pre>{`class AI:
   def __init__(self):
     self.name    = "Mohammed El Kassoiri"
-    self.role    = "Data Scientist & AI Engineer"
+    self.role    = "Data Scientist & AI Architect"
     self.location = "Morocco 🇲🇦"
     self.focus   = ["ML", "Deep Learning",
                     "Data Science", "NLP"]

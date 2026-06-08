@@ -12,18 +12,18 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mohammedelkasso
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Mohammed El Kassoiri | AI Engineer & Data Scientist",
+    default: "Mohammed El Kassoiri | AI Architect & Data Scientist",
     template: "%s | Mohammed El Kassoiri",
   },
   description:
-    "AI Engineer & Data Scientist from Morocco specializing in Machine Learning, Deep Learning, Computer Vision, NLP, and Agricultural AI. Building intelligent systems that make a real difference.",
+    "AI Architect & Data Scientist from Morocco specializing in Machine Learning, Deep Learning, Computer Vision, NLP, and Agricultural AI. Building intelligent systems that make a real difference.",
   keywords: [
     "Mohammed El Kassoiri",
     "Mohammed El Kassoiri portfolio",
     "Mohammed El Kassoiri AI",
     "Mohammed El Kassoiri engineer",
     "El Kassoiri Mohammed",
-    "AI Engineer",
+    "AI Architect",
     "Data Scientist",
     "Machine Learning Engineer",
     "Deep Learning Engineer",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "Python",
     "Portfolio",
     "Morocco",
-    "AI Engineer Morocco",
+    "AI Architect Morocco",
     "Data Scientist Morocco",
     "Agricultural AI",
     "Remote Sensing",
@@ -72,24 +72,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Mohammed El Kassoiri | AI Engineer & Data Scientist",
-    title: "Mohammed El Kassoiri | AI Engineer & Data Scientist",
+    siteName: "Mohammed El Kassoiri | AI Architect & Data Scientist",
+    title: "Mohammed El Kassoiri | AI Architect & Data Scientist",
     description:
-      "AI Engineer & Data Scientist from Morocco specializing in Machine Learning, Deep Learning, Computer Vision, NLP, and Agricultural AI.",
+      "AI Architect & Data Scientist from Morocco specializing in Machine Learning, Deep Learning, Computer Vision, NLP, and Agricultural AI.",
     images: [
       {
         url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "Mohammed El Kassoiri – AI Engineer & Data Scientist",
+        alt: "Mohammed El Kassoiri – AI Architect & Data Scientist",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mohammed El Kassoiri | AI Engineer & Data Scientist",
+    title: "Mohammed El Kassoiri | AI Architect & Data Scientist",
     description:
-      "AI Engineer & Data Scientist from Morocco specializing in Machine Learning, Deep Learning, Computer Vision, NLP, and Agricultural AI.",
+      "AI Architect & Data Scientist from Morocco specializing in Machine Learning, Deep Learning, Computer Vision, NLP, and Agricultural AI.",
     images: [`${siteUrl}/opengraph-image`],
   },
   alternates: {
@@ -106,9 +106,9 @@ const jsonLd = {
   alternateName: ["Mohammed Kassoiri", "El Kassoiri Mohammed"],
   url: siteUrl,
   image: `${siteUrl}/logo.png`,
-  jobTitle: "AI Engineer & Data Scientist",
+  jobTitle: "AI Architect & Data Scientist",
   description:
-    "AI Engineer & Data Scientist from Morocco specializing in Machine Learning, Deep Learning, Computer Vision, NLP, and Agricultural AI.",
+    "AI Architect & Data Scientist from Morocco specializing in Machine Learning, Deep Learning, Computer Vision, NLP, and Agricultural AI.",
   sameAs: [
     "https://github.com/Mohammed-El-Kassoiri",
     "https://linkedin.com/in/Mohammed-El-Kassoiri",
@@ -130,7 +130,7 @@ const jsonLd = {
   mainEntityOfPage: {
     "@type": "WebPage",
     "@id": siteUrl,
-    name: "Mohammed El Kassoiri – AI Engineer & Data Scientist Portfolio",
+    name: "Mohammed El Kassoiri – AI Architect & Data Scientist Portfolio",
   },
 }
 

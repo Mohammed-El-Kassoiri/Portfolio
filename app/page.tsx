@@ -14,7 +14,6 @@ import { AIBackground } from "@/components/ai-background"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { PageLoader } from "@/components/page-loader"
 import { CustomCursor } from "@/components/custom-cursor"
-import { AIChatbot } from "@/components/ai-chatbot"
 import { PortfolioCommandPalette } from "@/components/command-palette"
 import { ScrollOrchestrator } from "@/components/scroll-orchestrator"
 import { CommandPaletteProvider } from "@/components/command-palette-provider"
@@ -41,7 +40,6 @@ export default function Portfolio() {
         <ScrollOrchestrator />
         <Navigation />
         <PortfolioCommandPalette />
-        <AIChatbot />
 
         <main id="main-content" className="relative isolate">
           <AnimatePresence mode="wait">

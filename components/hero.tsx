@@ -9,7 +9,7 @@ import { useLanguage } from "@/components/language-provider"
 
 const roles: Record<"en" | "fr", (string | number)[]> = {
   en: [
-    "AI Engineer & Data Scientist Building Intelligent Systems",
+    "AI Architect & Data Scientist Building Intelligent Systems",
     2200,
     "Machine Learning • Deep Learning • Computer Vision • NLP",
     2200,
@@ -98,9 +98,9 @@ export function Hero() {
           <motion.span
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 rounded-full border border-emerald-400/35 bg-emerald-500/10 px-4 py-1.5 text-sm font-semibold text-emerald-300"
+            className="inline-flex items-center gap-2 rounded-full border border-indigo-400/35 bg-indigo-500/10 px-4 py-1.5 text-sm font-semibold text-indigo-300"
           >
-            <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+            <span className="h-2 w-2 animate-pulse rounded-full bg-indigo-400" />
             {t.availability}
           </motion.span>
 
@@ -108,7 +108,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 26 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75 }}
-            className="display-title max-w-4xl text-balance bg-gradient-to-r from-slate-100 via-blue-200 to-amber-200 bg-clip-text text-transparent"
+            className="display-title max-w-4xl text-balance bg-gradient-to-r from-white via-indigo-300 to-purple-400 bg-clip-text text-transparent"
           >
             MOHAMMED EL KASSOIRI
           </motion.h1>

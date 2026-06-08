@@ -5,7 +5,7 @@ const siteHost = siteUrl.replace(/^https?:\/\//, "")
 
 export const runtime = "edge"
 
-export const alt = "Mohammed El Kassoiri – AI Engineer & Data Scientist"
+export const alt = "Mohammed El Kassoiri – AI Architect & Data Scientist"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -104,7 +104,7 @@ export default async function Image() {
               letterSpacing: "0.05em",
             }}
           >
-            AI Engineer · Data Scientist · Morocco
+            AI Architect · Data Scientist · Morocco
           </div>
 
           {/* Name */}

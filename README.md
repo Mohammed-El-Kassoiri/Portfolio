@@ -1,4 +1,4 @@
-# Mohammed El Kassoiri — AI Engineer & Data Scientist
+# Mohammed El Kassoiri — AI Architect & Data Scientist
 
 > **Personal portfolio** built with Next.js 15, TypeScript, Tailwind CSS v4, and Framer Motion.  
 > Live at **[mohammedelkassoiri.app](https://www.mohammedelkassoiri.app)**
@@ -7,7 +7,7 @@
 
 ## About
 
-I'm an AI Engineer and Data Scientist from Morocco specialising in Machine Learning, Deep Learning, Computer Vision, and NLP. I'm currently completing my engineering degree at **ENSIASD** (Data Science, Big Data & AI) and open to full-time roles where cutting-edge AI meets real-world impact.
+I'm an AI Architect and Data Scientist from Morocco specialising in Machine Learning, Deep Learning, Computer Vision, and NLP. I'm currently completing my engineering degree at **ENSIASD** (Data Science, Big Data & AI) and open to full-time roles where cutting-edge AI meets real-world impact.
 
 ---
 

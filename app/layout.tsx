@@ -151,7 +151,8 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          themes={["dark", "cyber"]}
+          forcedTheme="dark"
+          themes={["dark"]}
           enableSystem={false}
         >
           <SmoothScrollProvider />

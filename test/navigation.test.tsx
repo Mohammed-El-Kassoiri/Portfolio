@@ -2,12 +2,7 @@ import type React from "react"
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { Navigation } from "@/components/navigation"
 
-const setTheme = vi.fn()
 const toggleLanguage = vi.fn()
-
-vi.mock("next-themes", () => ({
-  useTheme: () => ({ theme: "dark", setTheme }),
-}))
 
 vi.mock("@/components/language-provider", () => ({
   useLanguage: () => ({
@@ -72,7 +67,6 @@ function addSection(id: string, offsetTop: number) {
 
 describe("Navigation", () => {
   beforeEach(() => {
-    setTheme.mockReset()
     toggleLanguage.mockReset()
     document.body.innerHTML = ""
     addSection("hero", 0)
@@ -90,9 +84,8 @@ describe("Navigation", () => {
     fireEvent.scroll(window)
 
     await waitFor(() => {
-      expect(
-        screen.getByRole("navigation", { name: "Main navigation" }),
-      ).toBeInTheDocument()
+      const nav = screen.getByRole("navigation", { name: "Main navigation" })
+      expect(nav.className.includes("bg-slate-900/80")).toBe(true)
       expect(screen.getAllByRole("link", { name: "About" })[0]).toHaveAttribute(
         "aria-current",
         "page",
@@ -100,16 +93,12 @@ describe("Navigation", () => {
     })
   })
 
-  it("supports theme toggling from both mobile and desktop controls", () => {
+  it("does not expose theme toggles in single-theme mode", () => {
     render(<Navigation />)
 
-    const toggles = screen.getAllByRole("button", { name: "Switch to cyber theme" })
-
-    fireEvent.click(toggles[0])
-    fireEvent.click(toggles[1])
-
-    expect(setTheme).toHaveBeenNthCalledWith(1, "cyber")
-    expect(setTheme).toHaveBeenNthCalledWith(2, "cyber")
+    expect(
+      screen.queryByRole("button", { name: "Switch to cyber theme" }),
+    ).not.toBeInTheDocument()
   })
 
   it("provides accessible language and mobile menu controls", () => {

@@ -84,9 +84,8 @@ describe("Navigation", () => {
     fireEvent.scroll(window)
 
     await waitFor(() => {
-      expect(
-        screen.getByRole("navigation", { name: "Main navigation" }),
-      ).toBeInTheDocument()
+      const nav = screen.getByRole("navigation", { name: "Main navigation" })
+      expect(nav.className.includes("bg-slate-900/80")).toBe(true)
       expect(screen.getAllByRole("link", { name: "About" })[0]).toHaveAttribute(
         "aria-current",
         "page",

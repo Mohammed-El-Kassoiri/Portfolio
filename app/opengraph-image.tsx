@@ -5,7 +5,7 @@ const siteHost = siteUrl.replace(/^https?:\/\//, "")
 
 export const runtime = "edge"
 
-export const alt = "Mohammed El Kassoiri – AI Architect & Data Scientist"
+export const alt = "Mohammed El Kassoiri – Junior Data Scientist & AI Engineer"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 

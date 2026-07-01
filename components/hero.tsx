@@ -9,7 +9,7 @@ import { useLanguage } from "@/components/language-provider"
 
 const roles: Record<"en" | "fr", (string | number)[]> = {
   en: [
-    "AI Architect & Data Scientist Building Intelligent Systems",
+    "Junior Data Scientist & AI Engineer Building Intelligent Systems",
     2200,
     "Machine Learning • Deep Learning • Computer Vision • NLP",
     2200,

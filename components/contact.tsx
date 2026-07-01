@@ -13,7 +13,7 @@ const translations = {
     subheading: "Let's connect",
     sectionTitle: "Get In Touch",
     description:
-      "I'm an AI & Data Engineer open to exciting full-time opportunities in AI, Data Science, and Machine Learning. Let's connect and build something impactful together.",
+      "I'm a Junior Data Scientist & AI Engineer open to exciting full-time opportunities in AI, Data Science, and Machine Learning. Let's connect and build something impactful together.",
     cta: "Say Hello 👋",
     cv: "Download CV",
     copyright: "© 2026 Mohammed El Kassoiri. All rights reserved.",

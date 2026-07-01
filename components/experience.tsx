@@ -38,7 +38,7 @@ const experienceData = {
       ],
     },
     {
-      title: "Data Science & Machine Learning Intern",
+      title: "Data Science Intern",
       company: "XAI Morocco",
       period: "Aug 2025 – Oct 2025",
       type: "internship",

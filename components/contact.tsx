@@ -13,7 +13,7 @@ const translations = {
     subheading: "Let's connect",
     sectionTitle: "Get In Touch",
     description:
-      "I'm a Junior Data Scientist & AI Engineer open to exciting full-time opportunities in AI, Data Science, and Machine Learning. Let's connect and build something impactful together.",
+      "I'm a Data Scientist & MACHINE LEARNING Engineer open to full-time opportunities in AI and data-driven product teams. Let's connect and build something impactful together.",
     cta: "Say Hello 👋",
     cv: "Download CV",
     copyright: "© 2026 Mohammed El Kassoiri. All rights reserved.",
@@ -22,7 +22,7 @@ const translations = {
     subheading: "Restons en contact",
     sectionTitle: "Me Contacter",
     description:
-      "Ingénieur IA & Data ouvert à des opportunités passionnantes en IA, Data Science et Machine Learning. Connectons-nous et construisons ensemble quelque chose d'impactant.",
+      "Data Scientist & Ingénieur Machine Learning ouvert à des opportunités passionnantes en IA et Data Science. Connectons-nous et construisons ensemble quelque chose d'impactant.",
     cta: "Dire Bonjour 👋",
     cv: "Télécharger CV",
     copyright: "© 2026 Mohammed El Kassoiri. Tous droits réservés.",

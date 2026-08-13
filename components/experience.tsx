@@ -14,14 +14,15 @@ const experienceData = {
       title: "Final Year Project (PFE) — Automatic Agricultural Parcelization",
       company:
         "Pôle Digital de l'Agriculture, de la Forêt et Observatoire de la Sécheresse",
-      period: "Feb 2026 – Jun 2026",
+      period: "Feb 2026 – 16/06/2026",
       type: "pfe",
-      badge: "Final Year Project (PFE) · In Progress",
+      badge: "Final Year Project (PFE) · Completed on 16/06/2026",
       description:
-        "Development of a Deep Learning-based AI system for automatic agricultural parcelization from satellite imagery, integrating a multi-task model combining semantic segmentation and edge detection.",
+        "Delivered a Deep Learning-based AI system for automatic agricultural parcelization from satellite imagery, integrating a multi-task model combining semantic segmentation and edge detection.",
       highlights: [
-        "Automatic field boundary detection via Encoder-Decoder models (DeepLabV3+)",
+        "Compared segmentation architectures and selected DeepLabV3+ and multi-task variants as top-performing candidates",
         "Multi-task model: semantic segmentation + edge detection for precise boundaries",
+        "Strong spatial overlap quality validated through IoU-focused evaluation on parcel boundaries",
         "Sentinel-2 imagery with GIS integration (Google Earth Engine, QGIS)",
         "Vegetation indices: NDVI, GNDVI, OSAVI",
         "End-to-end pipeline: extraction → preprocessing → training → evaluation → fine-tuning",
@@ -59,14 +60,15 @@ const experienceData = {
         "Projet de Fin d'Études (PFE) — Parcellisation Automatique des Parcelles Agricoles",
       company:
         "Pôle Digital de l'Agriculture, de la Forêt et Observatoire de la Sécheresse",
-      period: "Fév 2026 – Juin 2026",
+      period: "Fév 2026 – 16/06/2026",
       type: "pfe",
-      badge: "Projet de Fin d'Études (PFE) · En cours",
+      badge: "Projet de Fin d'Études (PFE) · Terminé le 16/06/2026",
       description:
-        "Développement d'un système d'intelligence artificielle basé sur le Deep Learning pour la parcellisation automatique des parcelles agricoles à partir d'images satellites, intégrant un modèle multi-tâches combinant la segmentation sémantique et la détection des contours.",
+        "Livraison d'un système IA basé sur le Deep Learning pour la parcellisation automatique des parcelles agricoles à partir d'images satellites, avec un modèle multi-tâches combinant segmentation sémantique et détection des contours.",
       highlights: [
-        "Détection automatique des limites des parcelles via modèles Encoder-Decoder (DeepLabV3+)",
+        "Comparaison de plusieurs architectures de segmentation, avec DeepLabV3+ et variantes multi-tâches comme meilleures options",
         "Modèle multi-tâches : segmentation sémantique + edge detection pour des frontières précises",
+        "Forte qualité de recouvrement spatial validée via une évaluation orientée IoU des limites de parcelles",
         "Exploitation d'images Sentinel-2 avec intégration GIS (Google Earth Engine, QGIS)",
         "Utilisation d'indices de végétation : NDVI, GNDVI, OSAVI",
         "Pipeline complet : extraction → prétraitement → entraînement → évaluation → fine-tuning",

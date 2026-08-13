@@ -1,20 +1,18 @@
 "use client"
 
 import {
-  Satellite,
-  Map,
-  Cpu,
   Calendar,
   Building2,
   ChevronDown,
   CheckCircle2,
-  Target,
+  Trophy,
+  ScanSearch,
   BarChart3,
-  Database,
 } from "lucide-react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useTheme } from "next-themes"
+import Image from "next/image"
 import { useLanguage } from "@/components/language-provider"
 import { useMounted } from "@/hooks/use-mounted"
 import { SectionHeader } from "@/components/section-header"
@@ -22,57 +20,75 @@ import { SectionHeader } from "@/components/section-header"
 const translations = {
   en: {
     sectionTitle: "Featured Final Year Project",
-    badge: "Final Year Project (PFE) · In Progress",
+    badge: "Final Year Project (PFE) · Completed",
     projectTitle: "Automatic Agricultural Parcelization",
     company:
       "Pôle Digital de l'Agriculture, de la Forêt et Observatoire de la Sécheresse",
-    period: "Feb 2026 – Jun 2026",
+    period: "Feb 2026 – 16/06/2026",
+    completionDate: "Completed on 16/06/2026",
     description:
-      "Development of a Deep Learning-based AI system for automatic agricultural parcelization from satellite imagery, integrating a multi-task model combining semantic segmentation and edge detection.",
+      "Designed and delivered a production-oriented deep learning workflow for automatic parcel delineation from satellite imagery, combining semantic segmentation and edge detection to improve boundary precision.",
     tags: [
-      "Artificial Intelligence",
+      "Data Science",
+      "Machine Learning",
       "Deep Learning",
       "Computer Vision",
       "Remote Sensing",
     ],
-    contributionsTitle: "Key Contributions",
+    contributionsTitle: "Key Achievements",
     contributions: [
-      "Automatic boundary detection via Encoder-Decoder models (DeepLabV3+)",
-      "Multi-task model (Segmentation + Edge Detection) for precise field boundaries",
-      "Sentinel-2 imagery processing with GEE and QGIS",
-      "End-to-end pipeline: Extraction, Preprocessing, Training and Fine-tuning",
+      "Benchmarked multiple segmentation strategies and selected the best-performing architecture for robust parcel boundaries.",
+      "Reached strong overlap quality with IoU-focused optimization, improving spatial alignment between predictions and ground truth masks.",
+      "Operationalized a full pipeline from Sentinel-2 data extraction to preprocessing, training, and evaluation with GIS tooling.",
+      "Delivered reproducible outputs that support agricultural monitoring and downstream decision workflows.",
     ],
-    metricsTitle: "Model Performance",
+    metricsTitle: "Outcome Snapshot",
     metricNote:
-      "Highly robust model across multi-resolution images (Sentinel-2 and very high resolution data).",
-    ctaLabel: "View Project Details",
+      "Results confirm robust generalization across multi-resolution imagery and clean parcel boundary recovery.",
+    ctaLabel: "Explore More Projects",
+    resultTitle: "PFE Results",
+    resultModelComparison: "Model comparison and training performance",
+    resultModelComparisonCaption:
+      "The comparison chart highlights the selected architecture as the best trade-off between segmentation quality and reliability.",
+    resultSpatialOverlap: "Spatial overlap and IoU quality",
+    resultSpatialOverlapCaption:
+      "Prediction overlays show precise parcel boundaries with strong overlap consistency against reference masks.",
   },
   fr: {
     sectionTitle: "Projet de Fin d'Études",
-    badge: "Projet de Fin d'Études · En cours",
+    badge: "Projet de Fin d'Études · Terminé",
     projectTitle: "Parcellisation Automatique des Parcelles Agricoles",
     company:
       "Pôle Digital de l'Agriculture, de la Forêt et Observatoire de la Sécheresse",
-    period: "Fév 2026 – Juin 2026",
+    period: "Fév 2026 – 16/06/2026",
+    completionDate: "Terminé le 16/06/2026",
     description:
-      "Développement d'un système d'intelligence artificielle basé sur le Deep Learning pour la parcellisation automatique à partir d'images satellites. Intégration d'un modèle multi-tâches combinant la segmentation sémantique et la détection des contours.",
+      "Conception et livraison d'un workflow Deep Learning orienté production pour la délimitation automatique des parcelles agricoles à partir d'images satellites, en combinant segmentation sémantique et détection des contours.",
     tags: [
-      "Intelligence Artificielle",
+      "Data Science",
+      "Machine Learning",
       "Deep Learning",
       "Computer Vision",
       "Remote Sensing",
     ],
-    contributionsTitle: "Contributions Clés",
+    contributionsTitle: "Réalisations Clés",
     contributions: [
-      "Détection automatique des limites via modèles Encoder-Decoder (DeepLabV3+)",
-      "Modèle multi-tâches (Segmentation + Edge Detection) pour des frontières précises",
-      "Exploitation d'images Sentinel-2 avec GEE et QGIS",
-      "Pipeline complet : Extraction, Prétraitement, Entraînement et Fine-tuning",
+      "Comparaison de plusieurs approches de segmentation pour sélectionner l'architecture la plus performante.",
+      "Obtention d'un fort niveau de recouvrement spatial (IoU) grâce à une optimisation orientée qualité des contours.",
+      "Industrialisation d'un pipeline complet : extraction Sentinel-2, prétraitement, entraînement et évaluation via outils SIG.",
+      "Livraison de résultats reproductibles utiles au suivi agricole et à l'aide à la décision.",
     ],
-    metricsTitle: "Performances du Modèle",
+    metricsTitle: "Synthèse des Résultats",
     metricNote:
-      "Modèle hautement robuste sur des images multi-résolution (Sentinel-2 et données très haute résolution).",
-    ctaLabel: "Voir les détails du projet",
+      "Les résultats confirment une bonne généralisation sur des images multi-résolution et des limites de parcelles nettes.",
+    ctaLabel: "Explorer plus de projets",
+    resultTitle: "Résultats du PFE",
+    resultModelComparison: "Comparaison des modèles et performances",
+    resultModelComparisonCaption:
+      "Le graphique de comparaison met en avant l'architecture retenue pour son meilleur compromis précision/robustesse.",
+    resultSpatialOverlap: "Recouvrement spatial et qualité IoU",
+    resultSpatialOverlapCaption:
+      "Les superpositions de prédiction montrent des limites précises avec un fort recouvrement par rapport aux masques de référence.",
   },
 }
 
@@ -146,6 +162,16 @@ export function FeaturedProjectPFE() {
                       <span>{t.period}</span>
                     </div>
                   </div>
+                  <p
+                    className={`inline-flex w-fit items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-semibold ${
+                      isCyber
+                        ? "bg-red-900/20 text-red-200 border border-red-900/40"
+                        : "bg-emerald-500/10 text-emerald-300 border border-emerald-500/30"
+                    }`}
+                  >
+                    <Trophy className="h-4 w-4" />
+                    {t.completionDate}
+                  </p>
 
                   <p
                     className={`leading-relaxed text-lg mb-6 ${
@@ -202,10 +228,9 @@ export function FeaturedProjectPFE() {
                 >
                   <div className="flex flex-wrap gap-3">
                     {[
-                      { icon: Cpu, label: "TensorFlow / PyTorch" },
-                      { icon: Satellite, label: "Sentinel-2 / GEE" },
-                      { icon: Map, label: "QGIS" },
-                      { icon: Database, label: "NDVI / GNDVI / OSAVI" },
+                      { icon: ScanSearch, label: "DeepLabV3+ / Multi-task Segmentation" },
+                      { icon: BarChart3, label: "IoU / Dice-based Evaluation" },
+                      { icon: Calendar, label: "Feb 2026 → 16/06/2026" },
                     ].map(({ icon: Icon, label }) => (
                       <div
                         key={label}
@@ -223,9 +248,9 @@ export function FeaturedProjectPFE() {
                 </div>
               </div>
 
-              {/* Right column — metrics */}
+              {/* Right column — results */}
               <div className="lg:col-span-5 flex flex-col justify-center space-y-6">
-                {/* Performance card */}
+                {/* Result images */}
                 <div
                   className={`rounded-2xl p-6 relative overflow-hidden border ${
                     isCyber
@@ -240,71 +265,85 @@ export function FeaturedProjectPFE() {
                       isCyber ? "text-red-100" : "text-white"
                     }`}
                   >
-                    <Target className="w-5 h-5 text-blue-400" />
-                    {t.metricsTitle}
+                    <BarChart3 className="w-5 h-5 text-blue-400" />
+                    {t.resultTitle}
                   </h4>
 
-                  {/* IoU */}
-                  <div className="mb-6">
-                    <div className="flex justify-between items-end mb-2">
-                      <span
-                        className={`font-medium ${
-                          isCyber ? "text-red-300/70" : "text-gray-400"
-                        }`}
-                      >
-                        Intersection over Union (IoU)
-                      </span>
-                      <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-                        0.87
-                      </span>
-                    </div>
-                    <div className="w-full bg-white/5 rounded-full h-2.5 overflow-hidden">
-                      <div className="bg-gradient-to-r from-blue-500 to-cyan-400 h-2.5 rounded-full w-[87%] relative">
-                        <div className="absolute top-0 right-0 bottom-0 w-10 bg-gradient-to-r from-transparent to-white/30 animate-pulse" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Dice */}
-                  <div className="mb-6">
-                    <div className="flex justify-between items-end mb-2">
-                      <span
-                        className={`font-medium ${
-                          isCyber ? "text-red-300/70" : "text-gray-400"
-                        }`}
-                      >
-                        Dice Score (F1)
-                      </span>
-                      <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300">
-                        0.92
-                      </span>
-                    </div>
-                    <div className="w-full bg-white/5 rounded-full h-2.5 overflow-hidden">
-                      <div className="bg-gradient-to-r from-purple-500 to-pink-400 h-2.5 rounded-full w-[92%] relative">
-                        <div className="absolute top-0 right-0 bottom-0 w-10 bg-gradient-to-r from-transparent to-white/30 animate-pulse" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    className={`flex items-start gap-3 p-4 rounded-xl border mt-4 ${
-                      isCyber
-                        ? "bg-red-900/10 border-red-900/20"
-                        : "bg-white/5 border-white/5"
-                    }`}
-                  >
-                    <BarChart3
-                      className={`w-5 h-5 shrink-0 mt-0.5 ${
-                        isCyber ? "text-green-400" : "text-green-400"
-                      }`}
-                    />
-                    <p
-                      className={`text-sm ${
-                        isCyber ? "text-red-200/70" : "text-gray-300"
+                  <div className="space-y-5">
+                    <article
+                      className={`rounded-xl border p-3 ${
+                        isCyber ? "border-red-900/30 bg-red-900/10" : "border-white/10 bg-white/5"
                       }`}
                     >
-                      {t.metricNote}
-                    </p>
+                      <div className="relative aspect-[16/10] overflow-hidden rounded-lg">
+                        <Image
+                          src="/research/figures/accuracy-metrics.jpg"
+                          alt="Model comparison and training metrics for agricultural parcelization"
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 1024px) 100vw, 38vw"
+                        />
+                      </div>
+                      <h5
+                        className={`mt-3 text-sm font-semibold ${
+                          isCyber ? "text-red-100" : "text-slate-100"
+                        }`}
+                      >
+                        {t.resultModelComparison}
+                      </h5>
+                      <p className={`mt-1 text-xs ${isCyber ? "text-red-200/70" : "text-slate-300"}`}>
+                        {t.resultModelComparisonCaption}
+                      </p>
+                    </article>
+
+                    <article
+                      className={`rounded-xl border p-3 ${
+                        isCyber ? "border-red-900/30 bg-red-900/10" : "border-white/10 bg-white/5"
+                      }`}
+                    >
+                      <div className="relative aspect-[16/10] overflow-hidden rounded-lg">
+                        <Image
+                          src="/research/figures/segmentation-results.jpg"
+                          alt="Spatial overlap and segmentation outputs for parcel boundaries"
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 1024px) 100vw, 38vw"
+                        />
+                      </div>
+                      <h5
+                        className={`mt-3 text-sm font-semibold ${
+                          isCyber ? "text-red-100" : "text-slate-100"
+                        }`}
+                      >
+                        {t.resultSpatialOverlap}
+                      </h5>
+                      <p className={`mt-1 text-xs ${isCyber ? "text-red-200/70" : "text-slate-300"}`}>
+                        {t.resultSpatialOverlapCaption}
+                      </p>
+                    </article>
+                  </div>
+
+                  <div className="mt-6 space-y-4">
+                    <h4
+                      className={`flex items-center gap-2 text-lg font-semibold ${
+                        isCyber ? "text-red-100" : "text-white"
+                      }`}
+                    >
+                      <ScanSearch className="w-5 h-5 text-cyan-400" />
+                      {t.metricsTitle}
+                    </h4>
+                    <div
+                      className={`flex items-start gap-3 p-4 rounded-xl border ${
+                        isCyber
+                          ? "bg-red-900/10 border-red-900/20"
+                          : "bg-white/5 border-white/5"
+                      }`}
+                    >
+                      <BarChart3 className="w-5 h-5 shrink-0 mt-0.5 text-green-400" />
+                      <p className={`text-sm ${isCyber ? "text-red-200/70" : "text-gray-300"}`}>
+                        {t.metricNote}
+                      </p>
+                    </div>
                   </div>
                 </div>
 

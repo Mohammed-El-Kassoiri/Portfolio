@@ -1,6 +1,6 @@
 export const portfolioProfile = {
   name: "Mohammed El Kassoiri",
-  title: "AI Architect & Data Scientist",
+  title: "Data Scientist & MACHINE LEARNING Engineer",
   specialization: "Machine Learning, Deep Learning, Computer Vision, and NLP",
   location: "Morocco",
   status: "Available for full-time AI and Data Science opportunities",

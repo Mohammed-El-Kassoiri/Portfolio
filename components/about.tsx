@@ -12,14 +12,14 @@ const translations = {
   en: {
     sectionTitle: "About Me",
     name: "Mohammed El Kassoiri",
-    role: "Junior Data Scientist & AI Engineer",
-    bio1: "Junior Data Scientist & AI Engineer specializing in Machine Learning, Deep Learning, and Computer Vision. Currently developing an AI system for automatic agricultural parcelization.",
+    role: "Data Scientist & MACHINE LEARNING Engineer",
+    bio1: "Data Scientist & MACHINE LEARNING Engineer specializing in Machine Learning, Deep Learning, and Computer Vision. Built an AI system for automatic agricultural parcelization, completed on 16/06/2026.",
     location: "Location:",
     locationVal: "Morocco 🇲🇦",
     pfeBadgeTitle: "Featured Project (PFE)",
-    pfeBadgeStatus: "In Progress",
+    pfeBadgeStatus: "Completed · 16/06/2026",
     pfeDesc:
-      "Automatic Agricultural Parcelization — Deep Learning system for automatic field delineation from satellite imagery using multi-task segmentation and edge detection.",
+      "Automatic Agricultural Parcelization — Deep Learning system for automatic field delineation from satellite imagery using multi-task segmentation and edge detection, validated with strong model comparison and IoU overlap outcomes.",
     missionTitle: "Mission",
     missionText:
       "AI & Data Engineer ready for the industry — seeking full-time roles in AI, Data Science, or Software Engineering where cutting-edge ML skills meet real-world impact. Ready to contribute to meaningful projects that shape the future.",
@@ -32,9 +32,9 @@ const translations = {
     location: "Localisation :",
     locationVal: "Maroc 🇲🇦",
     pfeBadgeTitle: "Projet de Fin d'Études (PFE)",
-    pfeBadgeStatus: "En cours",
+    pfeBadgeStatus: "Terminé · 16/06/2026",
     pfeDesc:
-      "Parcellisation Automatique des Parcelles Agricoles — Système Deep Learning pour la délimitation automatique des parcelles depuis des images satellites, combinant segmentation sémantique et détection de contours.",
+      "Parcellisation Automatique des Parcelles Agricoles — Système Deep Learning pour la délimitation automatique des parcelles depuis des images satellites, combinant segmentation sémantique et détection de contours, avec comparaison de modèles et forts résultats de recouvrement IoU.",
     missionTitle: "Mission",
     missionText:
       "Ingénieur IA & Data prêt pour l'industrie — à la recherche d'un poste en IA, Data Science ou Ingénierie Logicielle, pour mettre en œuvre des compétences ML de pointe au service de projets à fort impact réel.",
@@ -131,7 +131,7 @@ export function About() {
                 <pre>{`class AI:
   def __init__(self):
     self.name    = "Mohammed El Kassoiri"
-    self.role    = "Data Scientist & AI Engineer"
+    self.role    = "Data Scientist & MACHINE LEARNING Engineer"
     self.location = "Morocco 🇲🇦"
     self.focus   = ["ML", "Deep Learning",
                     "Data Science", "NLP"]

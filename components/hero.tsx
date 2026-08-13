@@ -9,7 +9,7 @@ import { useLanguage } from "@/components/language-provider"
 
 const roles: Record<"en" | "fr", (string | number)[]> = {
   en: [
-    "Junior Data Scientist & AI Engineer Building Intelligent Systems",
+    "Data Scientist & MACHINE LEARNING Engineer Building Intelligent Systems",
     2200,
     "Machine Learning • Deep Learning • Computer Vision • NLP",
     2200,
@@ -26,7 +26,7 @@ const translations = {
   en: {
     availability: "Available now · Real-time status online",
     description:
-      "I design and deploy intelligent AI products with strong engineering discipline, polished UX, and measurable business outcomes.",
+      "I design and deploy data-driven ML solutions with strong engineering discipline, polished UX, and measurable business outcomes.",
     resume: "Resume",
     contact: "Contact",
   },
